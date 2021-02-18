@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "nodemon ./server.js localhost 3080"
+    "dev": "nodemon ./server.js localhost 3070"
   },
   "dependencies": {
     "express": "^4.17.1",

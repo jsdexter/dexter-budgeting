@@ -3,20 +3,23 @@ const bodyParser = require('body-parser');
 const AbstractJsonHandler = require('./AbstractJsonHandler');
 
 const rootRouter = require('./routes/root');
-const billsRouter = require('./routes/bills');
-const incomesRouter = require('./routes/incomes');
+const createsRouter = require('./routes/create');
+const readsRouter = require('./routes/read');
+const updatesRouter = require('./routes/update');
+const deletesRouter = require('./routes/delete');
 
 const app = express();
 const db = new AbstractJsonHandler('../db.json');
 
 app.use(bodyParser.json());
 
-const PORT = 3080;
-// const {v4 : uuidv4} = require('uuid');
+const PORT = 3070;
 
 app.use(rootRouter);
-app.use(incomesRouter);
-app.use(billsRouter);
+app.use(createsRouter);
+app.use(readsRouter);
+app.use(updatesRouter);
+app.use(deletesRouter);
 
 //read homepage
 // app.get('/api/month/:id' , (req, res) => {
