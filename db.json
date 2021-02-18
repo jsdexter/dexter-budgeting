@@ -1,0 +1,41 @@
+{
+  "incomesRecurring": [],
+  "billsRecurring": [
+    {
+      "month": 2,
+      "name": "Car",
+      "address": "123 Main St.",
+      "city": "Naperville",
+      "state": "Il.",
+      "zip": "61540",
+      "accountNumber": 12345,
+      "amountDue": 123.48,
+      "dueDate": "weekly",
+      "id": "e9a8658b-3d70-4798-887c-018627abbf02"
+    },
+    {
+      "month": 2,
+      "name": "Jason's Everything 2",
+      "address": "123 Main St.",
+      "city": "Naperville",
+      "state": "Il.",
+      "zip": "61540",
+      "accountNumber": 12345,
+      "amountDue": 123.48,
+      "dueDate": "everyday",
+      "id": "6703d433-c8e1-4d60-ba34-3714bc10f5b1"
+    },
+    {
+      "month": 2,
+      "name": "Car",
+      "address": "123 Main St.",
+      "city": "Naperville",
+      "state": "Il.",
+      "zip": "61540",
+      "accountNumber": 12345,
+      "amountDue": 123.48,
+      "dueDate": "weekly",
+      "id": "5a5991bc-d9f3-471f-b32a-4dab2a2e591f"
+    }
+  ]
+}
