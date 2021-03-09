@@ -1,6 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const AbstractJsonHandler = require('./AbstractJsonHandler');
+const db = require('./db');
+
+const PORT = 3070;
 
 const rootRouter = require('./routes/root');
 const createsRouter = require('./routes/create');
@@ -9,17 +11,15 @@ const updatesRouter = require('./routes/update');
 const deletesRouter = require('./routes/delete');
 
 const app = express();
-const db = new AbstractJsonHandler('../db.json');
 
 app.use(bodyParser.json());
 
-const PORT = 3070;
 
 app.use(rootRouter);
-app.use(createsRouter);
-app.use(readsRouter);
-app.use(updatesRouter);
-app.use(deletesRouter);
+app.use('/api', createsRouter);
+app.use('/api', readsRouter);
+app.use('/api', updatesRouter);
+app.use('/api',deletesRouter);
 
 //read homepage
 // app.get('/api/month/:id' , (req, res) => {
@@ -43,15 +43,15 @@ app.use(deletesRouter);
 // });
 
 function runMigrations() {
-  const data = db.getData();
-  if (!data.billsRecurring) {
-    db.patchData({ billsRecurring: [] });
-  }
+    const data = db.getData();
+    if (!data.billsRecurring) {
+        db.patchData({ billsRecurring: [] });
+    }
 
-  if (!data.incomesRecurring) {
-    db.patchData({ incomesRecurring: [] });
-  }
-}
+    if (!data.incomesRecurring) {
+        db.patchData({ incomesRecurring: [] });
+    }
+}  
 
 async function init() {
   await db.init();

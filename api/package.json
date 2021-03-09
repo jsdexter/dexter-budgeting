@@ -1,7 +1,7 @@
 {
-  "name": "react-nodejs-example",
+  "name": "dexter-budgeting",
   "version": "1.0.0",
-  "description": "example project react with nodejs",
+  "description": "budgeting app for personal use",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

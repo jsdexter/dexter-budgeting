@@ -183,3 +183,70 @@
 //     res.status(200).json([]);
 //   }).catch((error) => console.log(error));
 // });
+
+
+//This is what the updateItem page used to look like prior to the refactor 
+// const db = require('../db');
+
+// const updateBill = (req, res) => {
+//     let index;
+//     const { billsRecurring } = db.getData();
+//     for (let i = 0; i < billsRecurring.length; i++) {
+//       if (billsRecurring[i].id == req.params.id) {
+//         index = i;
+//         break;
+//       }
+//     }
+  
+//     if (typeof index !== "undefined") {
+//       billsRecurring[index] = { ...billsRecurring[index], ...req.body };
+//       db.patchData({ billsRecurring });
+//       res.status(200).send({ ok: true });
+//     } else {
+//       res.status(400).send({ ok: false });
+//     }
+// };
+
+// const updateIncome = (req, res) => {
+//     let index;
+//     const { incomesRecurring } = db.getData();
+//     for (let i = 0; i < incomesRecurring.length; i++) {
+//       if (incomesRecurring[i].id == req.params.id) {
+//         index = i;
+//         break;
+//       }
+//     }
+  
+//     if (typeof index !== "undefined") {
+//       incomesRecurring[index] = { ...incomesRecurring[index], ...req.body };
+//       db.patchData({ incomesRecurring });
+//       res.status(400).send({ ok: true });
+//     } else {
+//       res.status(400).send({ ok: false });
+//     }
+//   };
+
+// module.exports = {
+//     updateBill,
+//     updateIncome
+// };
+
+// const updateItem = (req, res, itemObj) => {
+//     let index;
+//     for (let i = 0; i < itemObj.length; i++) {
+//         if (itemObj[i].id == req.params.id) {
+//           index = i;
+//           break;
+//         }
+//       }
+
+//       if (typeof index !== "undefined") {
+//         itemObj[index] = { ...itemObj[index], ...req.body };
+//         db.patchData({ itemObj });
+//         res.status(200).send({ ok: true });
+//       } else {
+//         res.status(400).send({ ok: false });
+//       }
+// }
+
+//End updateItem page
