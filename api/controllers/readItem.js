@@ -14,14 +14,6 @@ const getCollection = (key) => {
 }
 
 const billId = (req, res) => {
-
-  // let index; 
-  // for (let i = 0; i < billObject.length; i++) {
-  //   if (billObject[i].id == req.params.id) {
-  //     index = i;
-  //   }
-  // }
-
   const billObject = getCollection('billsRecurring');
   const billItem = find(billObject, req.params.id);
 
@@ -36,13 +28,6 @@ const incomeId = (req, res) => {
   const incomeObject = getCollection('incomesRecurring');
   const incomeItem = find(incomeObject, req.params.id);
 
-  // let index; 
-  // for (let i = 0; i < incomeObject.length; i++) {
-  //   if (incomeObject[i].id == req.params.id) {
-  //     index = i;
-  //   }
-  // }
-
   if (typeof incomeItem !== "undefined") {
     res.status(200).send(incomeItem);
   } else {
@@ -51,14 +36,11 @@ const incomeId = (req, res) => {
 };
 
 const allBills = (req, res) => {
-    // const { billsRecurring } = db.getData();
     const billObject = getCollection('billsRecurring');
     res.status(200).send(billObject);
 };
 
 const allIncomes = (req, res) => {
-    // console.log("api/incomes called!");
-    // const { incomesRecurring } = db.getData();
     const incomeObject = getCollection('incomesRecurring');
     res.status(200).send(incomeObject);
 };
