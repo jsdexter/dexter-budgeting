@@ -1,30 +1,37 @@
-import React from 'react';
-import { Title, Heading, Form, Button, Input, SelectOption } from './Footer.elements';
+import React from "react";
+import {
+  Title,
+  Heading,
+  Form,
+  Button,
+  Input,
+  SelectOption,
+} from "./Footer.elements";
 
 function FormIncome() {
-    return (
-        <Form>
-            <Title>Add Income</Title>
-            <Heading>
-                <label>Pay Date:</label>
-            </Heading>
-            <Input type="date" name="dueDate" required/>
-            <Heading>
-                <label>Amount:</label>
-            </Heading>
-            <Input type="number" name="amount"/>
-            <Heading>
-                <label>Recurring:</label>
-            </Heading>
-            {/* <SelectOption value="Monthly" options={options} onChange={(values) => this.setValues(values)}> */}
-            <SelectOption value="Monthly">
-                <option value="Monthly">Monthly</option>
-                <option value="BiMonthly">BiMonthly</option>
-                <option value="Radish">Weekly</option>
-            </SelectOption>
-            <Button type="submit">Save</Button>
-        </Form>
-    );
+  return (
+    <Form>
+      <Title>Add Income</Title>
+      <Heading>
+        <label>Pay Date:</label>
+      </Heading>
+      <Input type="date" name="dueDate" required />
+      <Heading>
+        <label>Amount:</label>
+      </Heading>
+      <Input type="number" name="amount" />
+      <Heading>
+        <label>Recurring:</label>
+      </Heading>
+      {/* <SelectOption value="Monthly" options={options} onChange={(values) => this.setValues(values)}> */}
+      <SelectOption value="Monthly">
+        <option value="Monthly">Monthly</option>
+        <option value="BiMonthly">BiMonthly</option>
+        <option value="Radish">Weekly</option>
+      </SelectOption>
+      <Button type="submit">Save</Button>
+    </Form>
+  );
 }
 
 // const Form = styled.form`
@@ -33,7 +40,7 @@ function FormIncome() {
 //     justify-content: center;
 //     align-items: center;
 //     align-content: center;
-    
+
 // `;
 
 // const Heading = styled.h4`

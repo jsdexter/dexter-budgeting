@@ -10,4 +10,10 @@ router.get('/echo', (req, res) => {
   res.status(200).send(req.body);
 });
 
+router.get('/login', (req, res) => {
+  //Authenticate User
+
+  const password = req.body.password;
+})
+
 module.exports = router;

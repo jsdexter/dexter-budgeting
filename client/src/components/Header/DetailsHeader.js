@@ -2,10 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import { Link, useHistory } from "react-router-dom";
 
-import ArchiveDropdown from "./ArchiveDropdown";
 import MonthDropdown from "./MonthDropdown";
 
-const Header = () => {
+const DetailsHeader = () => {
   const history = useHistory();
 
   return (
@@ -18,7 +17,7 @@ const Header = () => {
         Back
       </BackButton>
       <MonthDropdown>January 2021</MonthDropdown>
-      <ArchiveDropdown></ArchiveDropdown>
+      <EditDetails>Edit</EditDetails>
     </TopBar>
   );
 };
@@ -41,4 +40,11 @@ const TopBar = styled.div`
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.4);
 `;
 
-export default Header;
+const EditDetails = styled.div`
+    font-weight: 500;
+    font-size: 1.3rem;
+    color: #ffffff;
+    text-decoration: none;
+`;
+
+export default DetailsHeader;

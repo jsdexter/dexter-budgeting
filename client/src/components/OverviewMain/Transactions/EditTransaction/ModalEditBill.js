@@ -5,23 +5,23 @@ import {
   ModalWrapper,
   CloseModalButton,
   ModalContent,
-} from "./Footer.elements";
-import FormIncome from "./FormIncome";
+} from "./ModalEdit.elements";
+import FormEditBill from "./FormEditBill";
 
-export const ModalIncome = ({ showModal, setShowModal }) => {
+export const ModalEditBill = ({ showModal, setShowModal }) => {
   return ReactDOM.createPortal(
     <>
       {showModal ? (
         <ModalBackground>
           <ModalWrapper showModal={showModal}>
             <CloseModalButton
-              aria-label="Close modal"
-              onClick={() => setShowModal((prev) => !prev)}
+              aria-label="close modal"
+              onClick={setShowModal}
             >
               X
             </CloseModalButton>
             <ModalContent>
-              <FormIncome></FormIncome>
+              <FormEditBill>Testing</FormEditBill>
             </ModalContent>
           </ModalWrapper>
         </ModalBackground>
