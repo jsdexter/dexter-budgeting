@@ -250,3 +250,81 @@
 // }
 
 //End updateItem page
+
+//DeleteItem Page
+// const db = require('../db');
+
+// const getCollection = (key) => {
+//   const dbData = db.getData();
+//   return dbData[key];
+// }
+
+// function find(collection, id) {
+//   for (let i = 0; i < collection.length; i++) {
+//     if (collection[i].id == id) {
+//       // return collection[i];
+//       return i;
+//     }
+//   }
+// }
+
+//   //delete a bill
+//   const deleteBill = (req, res) => {
+//     const billObject = getCollection('billsRecurring');
+//     const billIndex = find(billObject, req.params.id);
+  
+//     if (typeof billIndex !== 'undefined') {
+//       billObject.splice(billIndex, 1);
+//       db.patchData({ billsRecurring: billObject });
+//       res.status(200).send({ ok: true });
+//     } else {
+//       res.status(400).send({ ok: false });
+//     }
+//   };
+
+//   //delete an income
+// const deleteIncome = (req, res) => {
+//     // let index;
+//     // const { incomesRecurring } = db.getData();
+//     // for (let i = 0; i < incomesRecurring.length; i++) {
+//     //   if (incomesRecurring[i].id == req.params.id) {
+//     //     index = i;
+//     //     break;
+//     //   }
+//     // }
+    
+//     const incomeObject = getCollection('incomesRecurring');
+//     const incomeItem = find(incomeObject, req.params.id);
+
+//     if (typeof incomeItem !== "undefined") {
+//       incomeObject.splice(incomeItem, 1);
+//       db.patchData({ incomeItem });
+//       res.status(200).send({ ok: true });
+//     } else {
+//       res.status(400).send({ ok: false });
+//     }
+//   };
+
+//   module.exports = {
+//       deleteBill, 
+//       deleteIncome
+//   }
+
+//Update an item
+// const updateItem = (req, res, itemObj) => {
+  //     let index;
+  //     for (let i = 0; i < itemObj.length; i++) {
+  //         if (itemObj[i].id == req.params.id) {
+  //           index = i;
+  //           break;
+  //         }
+  //       }
+  
+  //       if (typeof index !== "undefined") {
+  //         itemObj[index] = { ...itemObj[index], ...req.body };
+  //         db.patchData({ itemObj });
+  //         res.status(200).send({ ok: true });
+  //       } else {
+  //         res.status(400).send({ ok: false });
+  //       }
+  // }
