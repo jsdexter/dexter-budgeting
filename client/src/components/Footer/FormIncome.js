@@ -13,6 +13,10 @@ function FormIncome() {
     <Form>
       <Title>Add Income</Title>
       <Heading>
+        <label>Name:</label>
+      </Heading>
+      <Input type="text" name="name" required />
+      <Heading>
         <label>Pay Date:</label>
       </Heading>
       <Input type="date" name="dueDate" required />

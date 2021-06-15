@@ -19,23 +19,22 @@ function FormEditBill() {
             <Heading>
                 <label>Pay To:</label>
             </Heading>
-            <Input type="text" name="payTo" required />
+            <Input type="text" name="payTo" value="City of Naperville Utilities" required />
             <Heading>
                 <label>Payee Address:</label>
             </Heading>
-            <Input type="text" name="address" required />
+            <Input type="text" name="address" required value="123 Main Naperville, IL. 60540" />
             <Heading>
                 <label>Account #:</label>
             </Heading>
-            <Input type="text" name="account" />
+            <Input type="text" name="account" value="1283921327" />
             <Heading>
                 <label>Amount:</label>
             </Heading>
-            <Input type="number" name="amount" />
+            <Input type="number" name="amount" value="148.00" />
             <Heading>
                 <label>Recurring:</label>
             </Heading>
-            {/* <SelectOption value="Monthly" options={options} onChange={(values) => this.setValues(values)}> */}
             <SelectOption value="Monthly">
                 <option value="Monthly">Monthly</option>
                 <option value="BiMonthly">BiMonthly</option>
