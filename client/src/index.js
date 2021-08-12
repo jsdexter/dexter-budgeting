@@ -5,7 +5,7 @@ import { Provider } from "react-redux";
 
 import App from "../src/components/App";
 
-import store from "./redux/store";
+import store from "./store/store";
 import reportWebVitals from "./reportWebVitals";
 
 // library.add(fab, faCheckSquare, faCoffee)

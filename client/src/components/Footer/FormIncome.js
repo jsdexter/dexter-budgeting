@@ -15,7 +15,7 @@ function FormIncome() {
       <Heading>
         <label>Name:</label>
       </Heading>
-      <Input type="text" name="name" required />
+      <Input type="text" name="payFrom" required />
       <Heading>
         <label>Pay Date:</label>
       </Heading>

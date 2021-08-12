@@ -14,12 +14,19 @@ const app = express();
 
 app.use(bodyParser.json());
 
+app.use((req, res, next) => {
+    res.header('access-control-allow-origin', '*');
+    res.header('access-control-allow-methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS, HEAD');
+    res.header('access-control-allow-credentials', 'true');
+    res.header('access-control-max-age', '86400');
+    next();
+});
 
 app.use(rootRouter);
 app.use('/api', createsRouter);
 app.use('/api', readsRouter);
 app.use('/api', updatesRouter);
-app.use('/api',deletesRouter);
+app.use('/api', deletesRouter);
 
 //read homepage
 // app.get('/api/month/:id' , (req, res) => {
@@ -44,19 +51,23 @@ app.use('/api',deletesRouter);
 
 function runMigrations() {
     const data = db.getData();
-    if (!data.billsRecurring) {
-        db.patchData({ billsRecurring: [] });
+    if (!data.transaction) {
+        db.patchData({ transaction: [] });
     }
 
-    if (!data.incomesRecurring) {
-        db.patchData({ incomesRecurring: [] });
-    }
-}  
+    // if (!data.billsRecurring) {
+    //     db.patchData({ billsRecurring: [] });
+    // }
+
+    // if (!data.incomesRecurring) {
+    //     db.patchData({ incomesRecurring: [] });
+    // }
+}
 
 async function init() {
-  await db.init();
-  runMigrations();
-  app.listen(PORT);
+    await db.init();
+    runMigrations();
+    app.listen(PORT);
 }
 
 init();

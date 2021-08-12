@@ -1,33 +1,20 @@
 const db = require('../db');
 
-const {v4 : uuidv4} = require('uuid');
+const { v4: uuidv4 } = require('uuid');
 const validation = require('../validation');
 
-const createBill = (req, res) => {
-    // TODO: Validation
-    // TODO: error handling
+const createTransaction = (req, res) => {
+    //TODO Validation
+    //TODO: error handling
     validation(req, res);
 
-    const billObject = createItem('billsRecurring', req.body);
-    if (billObject) {
-        res.status(200).send(billObject);
+    const transaction = createItem('transactions', req.body);
+    if (transaction) {
+        res.status(200).send(transaction);
     } else {
         res.status(400).send({ ok: false });
     }
-}
-
-const createIncome = (req, res) => {
-// TODO: Validation
-// TODO: error handling
-    validation(req, res);
-
-    const incomeObject = createItem('incomesRecurring', req.body);
-    if (incomeObject) {
-        res.status(200).send(incomeObject);
-    } else {
-        res.status(400).send({ ok: false });
-    }
-}
+};
 
 const createItem = (key, body) => {
     const dbData = db.getData();
@@ -48,6 +35,33 @@ const createItem = (key, body) => {
 }
 
 module.exports = {
-    createBill,
-    createIncome
+    createTransaction
+    // createBill,
+    // createIncome,
 }
+
+// const createBill = (req, res) => {
+//     // TODO: Validation
+//     // TODO: error handling
+//     validation(req, res);
+
+//     const billObject = createItem('billsRecurring', req.body);
+//     if (billObject) {
+//         res.status(200).send(billObject);
+//     } else {
+//         res.status(400).send({ ok: false });
+//     }
+// }
+
+// const createIncome = (req, res) => {
+//     // TODO: Validation
+//     // TODO: error handling
+//     validation(req, res);
+
+//     const incomeObject = createItem('incomesRecurring', req.body);
+//     if (incomeObject) {
+//         res.status(200).send(incomeObject);
+//     } else {
+//         res.status(400).send({ ok: false });
+//     }
+// }
