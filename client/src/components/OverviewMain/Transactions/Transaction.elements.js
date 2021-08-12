@@ -41,3 +41,52 @@ export const CardHeader = styled.div`
   display: flex;
   justify-content: space-between;
 `;
+
+export const DetailsAccount = styled.tr`
+display: flex;
+flex-direction: column;
+justify-content: flex-start;
+align-items: center;
+`;
+
+export const AccountName = styled.thead`
+margin-top: 20px;
+font: 700 25px/28px normal Roboto;
+`;
+
+export const InfoDiv = styled.tr`
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+margin: 10px 20px 0px 20px;
+font: 700 20px/24px normal Roboto;
+`;
+
+export const DetailsName = styled.td``;
+
+export const DetailsNumber = styled.td``;
+
+export const DetailsDate = styled.td``;
+
+export const ButtonDiv = styled.div`
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  padding: 15px 0 15px 0;
+`;
+
+export const Button = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  width: 30%;
+  height: 30px;
+  background: #3f51b5;
+  font: 700 16px/16px Roboto;
+  letter-spacing: 0.75px;
+  text-transform: uppercase;
+  color: #ffffff;
+  text-decoration: none;
+`;

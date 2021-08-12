@@ -1,11 +1,46 @@
 import React, { useState } from "react";
-
 import styled from "styled-components";
-import { Amount, Date, Name, CardHeader } from "./Transaction.elements";
+
+import {
+  Amount,
+  Date,
+  Name,
+  CardHeader,
+  DetailsAccount,
+  AccountName,
+  InfoDiv,
+  DetailsName,
+  DetailsNumber,
+  DetailsDate,
+  Button,
+  ButtonDiv
+} from "./Transaction.elements";
+import { ModalEditIncome } from "./EditTransaction/ModalEditIncome";
 
 function IncomeCard() {
   const [color, setColor] = useState("#F0FFF0");
-  const toggleButton = () => {
+  const [details, setDetails] = useState(false);
+  const [showEditIncome, setShowEditIncome] = useState(false);
+
+  const handleButtonClick = (e) => {
+    e.stopPropagation();
+  }
+
+  const closeModalIncome = (e) => {
+    handleButtonClick(e);
+    setShowEditIncome(false)
+  };
+
+  const openModalIncome = (e) => {
+    handleButtonClick(e);
+    setShowEditIncome(true)
+  };
+
+  const onClick = () => {
+    setDetails(!details);
+  };
+
+  const toggleColor = () => {
     if (color === "#F0FFF0") {
       setColor("rgba(0, 0, 0, 0.3)");
     } else {
@@ -14,15 +49,54 @@ function IncomeCard() {
   };
 
   return (
-    <IncomeDiv color={color} onClick={toggleButton}>
-      <CardHeader>
-        <Amount>+ $1,110</Amount>
-        <Date>January 21, 2921</Date>
-      </CardHeader>
-      <Name>Jason Pay</Name>
-    </IncomeDiv>
-  );
+    <>
+      <ModalEditIncome
+        showModal={showEditIncome}
+        setShowModal={closeModalIncome}>
+      </ModalEditIncome>
+      {
+        details &&
+        <DetailsIncomeDiv color={color} onClick={onClick}>
+          <DetailsAccount>
+            <AccountName>Jason Pay</AccountName>
+          </DetailsAccount>
+          <InfoDiv>
+            <DetailsName>Amount:</DetailsName>
+            <DetailsNumber>$148</DetailsNumber>
+          </InfoDiv>
+          <InfoDiv>
+            <DetailsName>Pay Date:</DetailsName>
+            <DetailsDate>Monthly on the 15th and 30th</DetailsDate>
+          </InfoDiv>
+          <ButtonDiv>
+            <Button onClick={toggleColor}>Paid</Button>
+            <Button onClick={openModalIncome}>Edit</Button>
+          </ButtonDiv>
+        </DetailsIncomeDiv>
+      }
+      {
+        !details &&
+        <IncomeDiv color={color} onClick={onClick}>
+          <CardHeader>
+            <Amount>+ $1,110</Amount>
+            <Date>January 21, 2921</Date>
+          </CardHeader>
+          <Name>Jason Pay</Name>
+        </IncomeDiv>
+      }
+    </>
+  )
 }
+
+const DetailsIncomeDiv = styled.table`
+  margin-top: 10px;
+  height: 170px;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
+  border-radius: 2px;
+  background: #F0FFF0;
+  width: 100%;
+  background: ${({ color }) => color};
+`;
 
 const IncomeDiv = styled.div`
   margin-top: 10px;
