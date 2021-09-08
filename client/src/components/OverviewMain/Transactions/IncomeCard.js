@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
 
 import {
   Amount,
@@ -17,10 +18,13 @@ import {
 } from "./Transaction.elements";
 import { ModalEditIncome } from "./EditTransaction/ModalEditIncome";
 
-function IncomeCard() {
+function IncomeCard(props) {
+  const { transaction } = props;
+  const [isPaid, setIsPaid] = useState(true);
   const [color, setColor] = useState("#F0FFF0");
   const [details, setDetails] = useState(false);
   const [showEditIncome, setShowEditIncome] = useState(false);
+
 
   const handleButtonClick = (e) => {
     e.stopPropagation();
@@ -41,11 +45,12 @@ function IncomeCard() {
   };
 
   const toggleColor = () => {
-    if (color === "#F0FFF0") {
-      setColor("rgba(0, 0, 0, 0.3)");
-    } else {
-      setColor("#F0FFF0");
-    }
+    setIsPaid(!isPaid);
+    // if (color === "#F0FFF0") {
+    //   setColor("rgba(0, 0, 0, 0.3)");
+    // } else {
+    //   setColor("#F0FFF0");
+    // }
   };
 
   return (
@@ -56,17 +61,20 @@ function IncomeCard() {
       </ModalEditIncome>
       {
         details &&
-        <DetailsIncomeDiv color={color} onClick={onClick}>
+        <DetailsIncomeDiv isPaid={isPaid} onClick={onClick}>
           <DetailsAccount>
-            <AccountName>Jason Pay</AccountName>
+            <AccountName>{transaction.payFrom}</AccountName>
+            {/* <AccountName>Jason Pay</AccountName> */}
           </DetailsAccount>
           <InfoDiv>
             <DetailsName>Amount:</DetailsName>
-            <DetailsNumber>$148</DetailsNumber>
+            <DetailsNumber>{transaction.amount}</DetailsNumber>
+            {/* <DetailsNumber>$148</DetailsNumber> */}
           </InfoDiv>
           <InfoDiv>
             <DetailsName>Pay Date:</DetailsName>
-            <DetailsDate>Monthly on the 15th and 30th</DetailsDate>
+            <DetailsDate>{transaction.dueDate}</DetailsDate>
+            {/* <DetailsDate>Monthly on the 15th and 30th</DetailsDate> */}
           </InfoDiv>
           <ButtonDiv>
             <Button onClick={toggleColor}>Paid</Button>
@@ -76,12 +84,15 @@ function IncomeCard() {
       }
       {
         !details &&
-        <IncomeDiv color={color} onClick={onClick}>
+        <IncomeDiv isPaid={isPaid} onClick={onClick}>
           <CardHeader>
-            <Amount>+ $1,110</Amount>
-            <Date>January 21, 2921</Date>
+            {/* <Amount>+ $1,110</Amount> */}
+            <Amount>{transaction.amount}</Amount>
+            {/* <Date>January 21, 2921</Date> */}
+            <Date>{transaction.dueDate}</Date>
           </CardHeader>
-          <Name>Jason Pay</Name>
+          {/* <Name>Jason Pay</Name> */}
+          <Name>{transaction.payFrom}</Name>
         </IncomeDiv>
       }
     </>
@@ -95,7 +106,8 @@ const DetailsIncomeDiv = styled.table`
   border-radius: 2px;
   background: #F0FFF0;
   width: 100%;
-  background: ${({ color }) => color};
+  /* background: ${({ color }) => color}; */
+  background: ${({ isPaid }) => isPaid ? "#F0FFF0" : "rgba(0, 0, 0, 0.3)"};
 `;
 
 const IncomeDiv = styled.div`
@@ -103,7 +115,8 @@ const IncomeDiv = styled.div`
   height: 80px;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
   border-radius: 2px;
-  background: ${({ color }) => color};
+  /* background: ${({ color }) => color}; */
+  background: ${({ isPaid }) => isPaid ? "#F0FFF0" : "rgba(0, 0, 0, 0.3)"};
 `;
 
 export default IncomeCard;

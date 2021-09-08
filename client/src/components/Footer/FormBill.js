@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
+import { addBill } from "../../store/reducers/billSlice";
+import { useSelector, useDispatch } from "react-redux";
 import {
   Title,
   Heading,
@@ -7,36 +9,62 @@ import {
   Input,
   SelectOption,
 } from "./Footer.elements";
+import { useForm } from "react-hook-form";
 
-function FormBill() {
+const FormBill = () => {
+  const dispatch = useDispatch();
+  const { register, handleSubmit } = useForm();
+  const onSubmit = (data) => dispatch(addBill(data));
+
+  // const [values, setValues] = useState({
+  //   dueDate: '', payTo: '', address: '', account: '', amount: '', recurring: ''
+  // });
+
+  // const set = name => {
+  //   return ({ target: { value } }) => {
+  //     setValues(oldValues => ({ ...oldValues, [name]: value }));
+  //   }
+  // };
+
+  // const onSubmit = async (e) => {
+  //   e.preventDefault();
+  //   setValues({
+  //     dueDate: '', payTo: '', address: '', account: '', amount: '', recurring: ''
+  //   });
+  // }
+
   return (
-    <Form>
+    <Form
+      onSubmit={handleSubmit(onSubmit)}>
       <Title>Add Bill</Title>
       <Heading>
         <label>Due Date:</label>
       </Heading>
-      <Input type="date" name="dueDate" required />
+      <Input {...register("dueDate")} />
       <Heading>
         <label>Pay To:</label>
       </Heading>
-      <Input type="text" name="payTo" required />
+      <Input {...register("payTo")} />
       <Heading>
         <label>Payee Address:</label>
       </Heading>
-      <Input type="text" name="address" required />
+      <Input {...register("address")} />
+      <Heading>
+        <label>Payee City/State/Zip:</label>
+      </Heading>
+      <Input {...register("cityStateZip")} />
       <Heading>
         <label>Account #:</label>
       </Heading>
-      <Input type="text" name="account" />
+      <Input {...register("account")} />
       <Heading>
         <label>Amount:</label>
       </Heading>
-      <Input type="number" name="amount" />
+      <Input {...register("amount")} />
       <Heading>
         <label>Recurring:</label>
       </Heading>
-      {/* <SelectOption value="Monthly" options={options} onChange={(values) => this.setValues(values)}> */}
-      <SelectOption value="Monthly">
+      <SelectOption {...register("frequency")}>
         <option value="Monthly">Monthly</option>
         <option value="BiMonthly">BiMonthly</option>
         <option value="Weekly">Weekly</option>

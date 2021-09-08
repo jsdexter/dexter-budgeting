@@ -42,19 +42,26 @@ export const CardHeader = styled.div`
   justify-content: space-between;
 `;
 
-export const DetailsAccount = styled.tr`
+// export const DetailsAccount = styled.tr`
+// display: flex;
+// flex-direction: column;
+// justify-content: flex-start;
+// align-items: center;
+// `;
+
+export const DetailsAccount = styled.thead`
 display: flex;
 flex-direction: column;
 justify-content: flex-start;
 align-items: center;
 `;
 
-export const AccountName = styled.thead`
+export const AccountName = styled.th`
 margin-top: 20px;
 font: 700 25px/28px normal Roboto;
 `;
 
-export const InfoDiv = styled.tr`
+export const InfoDiv = styled.tbody`
 display: flex;
 flex-direction: row;
 justify-content: space-between;
@@ -68,14 +75,14 @@ export const DetailsNumber = styled.td``;
 
 export const DetailsDate = styled.td``;
 
-export const ButtonDiv = styled.div`
+export const ButtonDiv = styled.tbody`
   display: flex;
   justify-content: space-around;
   flex-direction: row;
   padding: 15px 0 15px 0;
 `;
 
-export const Button = styled.div`
+export const Button = styled.td`
   display: flex;
   flex-direction: row;
   align-items: center;
