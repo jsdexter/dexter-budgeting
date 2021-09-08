@@ -15,15 +15,17 @@ const Transactions = () => {
 
     return data.map((item) => {
       return {
+        type: item.type,
         id: item.id,
-        payTo: item.name,
-        payFrom: item.name,
+        name: item.name,
         address: item.address,
-        cityStateZip: `${item.city} ${item.state} ${item.zip}`,
-        amount: item.amountDue,
+        city: item.city,
+        state: item.state,
+        zip: item.zip,
+        amountDue: item.amountDue,
         dueDate: item.dueDate,
-        account: item.accountNumber,
-        frequency: item.month,
+        accountNumber: item.accountNumber,
+        month: item.month,
       };
     });
   };
@@ -33,7 +35,7 @@ const Transactions = () => {
   if (error) {
     console.log(error)
   } else {
-    console.log(data)
+    console.log("This is the transactions file console.log")
   }
 
   if (!data) {
@@ -42,6 +44,8 @@ const Transactions = () => {
     );
   }
 
+
+
   return (
     <TransactionDiv >
       <TransactionHeader></TransactionHeader>
@@ -49,8 +53,7 @@ const Transactions = () => {
         {/* Figure out how to call the cards */}
         {/* <IncomeCard></IncomeCard> */}
         {data.map((transaction, id) => {
-          console.log(transaction.amount)
-          if (transaction.amount < 0) {
+          if (transaction.type === 'bill') {
             return <BillCard transaction={transaction} key={id} />
           } else {
             return <IncomeCard transaction={transaction} key={id} />

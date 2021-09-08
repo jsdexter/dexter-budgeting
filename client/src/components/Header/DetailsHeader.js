@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { Link, useHistory } from "react-router-dom";
 
-import MonthDropdown from "./MonthDropdown";
 
 const DetailsHeader = () => {
   const history = useHistory();
@@ -16,7 +15,6 @@ const DetailsHeader = () => {
       >
         Back
       </BackButton>
-      <MonthDropdown>January 2021</MonthDropdown>
       <EditDetails>Edit</EditDetails>
     </TopBar>
   );

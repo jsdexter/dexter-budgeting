@@ -21,7 +21,7 @@ export const ModalBill = ({ showModal, setShowModal }) => {
               X
             </CloseModalButton>
             <ModalContent>
-              <FormBill></FormBill>
+              <FormBill onSubmit={() => setShowModal(false)} />
             </ModalContent>
           </ModalWrapper>
         </ModalBackground>

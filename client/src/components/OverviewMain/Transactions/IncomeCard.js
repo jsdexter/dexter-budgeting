@@ -21,10 +21,10 @@ import { ModalEditIncome } from "./EditTransaction/ModalEditIncome";
 function IncomeCard(props) {
   const { transaction } = props;
   const [isPaid, setIsPaid] = useState(true);
-  const [color, setColor] = useState("#F0FFF0");
+  // const [color, setColor] = useState("#F0FFF0");
   const [details, setDetails] = useState(false);
   const [showEditIncome, setShowEditIncome] = useState(false);
-
+  const locale = "en-US"
 
   const handleButtonClick = (e) => {
     e.stopPropagation();
@@ -53,6 +53,8 @@ function IncomeCard(props) {
     // }
   };
 
+  const currency = new Intl.NumberFormat(locale, { style: 'currency', currency: 'USD' }).format(transaction.amount);
+
   return (
     <>
       <ModalEditIncome
@@ -68,7 +70,7 @@ function IncomeCard(props) {
           </DetailsAccount>
           <InfoDiv>
             <DetailsName>Amount:</DetailsName>
-            <DetailsNumber>{transaction.amount}</DetailsNumber>
+            <DetailsNumber>{currency}</DetailsNumber>
             {/* <DetailsNumber>$148</DetailsNumber> */}
           </InfoDiv>
           <InfoDiv>
@@ -87,7 +89,7 @@ function IncomeCard(props) {
         <IncomeDiv isPaid={isPaid} onClick={onClick}>
           <CardHeader>
             {/* <Amount>+ $1,110</Amount> */}
-            <Amount>{transaction.amount}</Amount>
+            <Amount>{currency}</Amount>
             {/* <Date>January 21, 2921</Date> */}
             <Date>{transaction.dueDate}</Date>
           </CardHeader>

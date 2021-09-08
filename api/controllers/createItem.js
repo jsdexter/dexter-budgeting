@@ -8,7 +8,7 @@ const createTransaction = (req, res) => {
     //TODO: error handling
     validation(req, res);
 
-    const transaction = createItem('transactions', req.body);
+    const transaction = createItem('transactionsRecurring', req.body);
     if (transaction) {
         res.status(200).send(transaction);
     } else {
@@ -31,6 +31,9 @@ const createItem = (key, body) => {
         [key]: collection,
     });
 
+    console.log("Dexter")
+    console.log(body)
+    console.log(body.id);
     return body;
 }
 

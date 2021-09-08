@@ -28,6 +28,7 @@ function BillCard(props) {
   const [details, setDetails] = useState(false);
   const [showEditBill, setShowEditBill] = useState(false);
   const dispatch = useDispatch();
+  const locale = "en-US"
 
   const handleButtonClick = (e) => {
     e.stopPropagation();
@@ -63,6 +64,8 @@ function BillCard(props) {
     setValue(e.target.value);
   }
 
+  const currency = new Intl.NumberFormat(locale, { style: 'currency', currency: 'USD' }).format(transaction.amountDue);
+
   if (details) {
     return (
       <>
@@ -74,36 +77,45 @@ function BillCard(props) {
           <DetailsBillDiv isPaid={isPaid} onClick={onClick}>
             <DetailsAccount>
               <tr>
-                <AccountName>{transaction.payTo}</AccountName>
+                <AccountName>{transaction.name}</AccountName>
               </tr>
               <tr>
                 <DetailsAddress>{transaction.address}</DetailsAddress>
                 {/* <DetailsAddress>123 Main St.</DetailsAddress> */}
               </tr>
               <tr>
-                <DetailsAddress>{transaction.cityStateZip}</DetailsAddress>
+                <DetailsAddress>{transaction.city}{transaction.state}{transaction.zip}</DetailsAddress>
                 {/* <DetailsAddress>Naperville, IL. 60540</DetailsAddress> */}
               </tr>
             </DetailsAccount>
             <InfoDiv>
-              <td>Account #</td>
-              <DetailsNumber>{transaction.account}</DetailsNumber>
-              {/* <DetailsNumber>1283921327</DetailsNumber> */}
+              <tr>
+                <td>Account #</td>
+                <DetailsNumber>{transaction.accountNumber}</DetailsNumber>
+                {/* <DetailsNumber>1283921327</DetailsNumber> */}
+              </tr>
             </InfoDiv>
             <InfoDiv>
-              <td>Amount:</td>
-              <DetailsNumber>{transaction.amount}</DetailsNumber>
-              {/* <DetailsNumber>$148</DetailsNumber> */}
+              <tr>
+                <td>Amount:</td>
+                {/* <DetailsNumber>{transaction.amount}</DetailsNumber> */}
+                <DetailsNumber>{currency}</DetailsNumber>
+                {/* <DetailsNumber>$148</DetailsNumber> */}
+              </tr>
             </InfoDiv>
             <InfoDiv>
-              <DetailsName>Due Date:</DetailsName>
-              <DetailsDate>{transaction.frequency}</DetailsDate>
-              {/* <DetailsDate>Monthly on the 15th</DetailsDate> */}
+              <tr>
+                <DetailsName>Due Date:</DetailsName>
+                <DetailsDate>{transaction.dueDate}</DetailsDate>
+                {/* <DetailsDate>Monthly on the 15th</DetailsDate> */}
+              </tr>
             </InfoDiv>
             <ButtonDiv>
-              <Button onClick={toggleColor}>Paid</Button>
-              <Button onClick={openModalBill}>Edit</Button>
-              <Button onClick={deleteBill}>Delete</Button>
+              <tr>
+                <Button onClick={toggleColor}>Paid</Button>
+                <Button onClick={openModalBill}>Edit</Button>
+                <Button onClick={deleteBill}>Delete</Button>
+              </tr>
             </ButtonDiv>
           </DetailsBillDiv>
         }
@@ -166,10 +178,10 @@ function BillCard(props) {
     <BillDiv isPaid={isPaid} onClick={onClick}>
       {/* <pre>{JSON.stringify(isBillState, null, 2)}</pre> */}
       <CardHeader>
-        <Amount>{transaction.amount}</Amount>
+        <Amount>{new Intl.NumberFormat(locale, { style: 'currency', currency: 'USD' }).format(transaction.amountDue)}</Amount>
         <Date>{transaction.dueDate}</Date>
       </CardHeader>
-      <Name>{transaction.payTo}</Name>
+      <Name>{transaction.name}</Name>
     </BillDiv>
   );
 }

@@ -19,12 +19,12 @@ function Footer() {
   return (
     <FooterDiv>
       <ButtonContainer>
-        <FooterButton onClick={openModalBill}>Add Bill</FooterButton>
+        <FooterButton onClick={openModalBill}>Add Item</FooterButton>
         <ModalBill
           showModal={showModalBill}
           setShowModal={setShowModalBill}
         ></ModalBill>
-        <FooterButton onClick={openModalIncome}>Add Income</FooterButton>
+        {/* <FooterButton onClick={openModalIncome}>Add Income</FooterButton> */}
         <ModalIncome
           showModal={showModalIncome}
           setShowModal={setShowModalIncome}
