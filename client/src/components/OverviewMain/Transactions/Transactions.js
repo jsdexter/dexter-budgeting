@@ -50,8 +50,6 @@ const Transactions = () => {
     <TransactionDiv >
       <TransactionHeader></TransactionHeader>
       <TransactionList>
-        {/* Figure out how to call the cards */}
-        {/* <IncomeCard></IncomeCard> */}
         {data.map((transaction, id) => {
           if (transaction.type === 'bill') {
             return <BillCard transaction={transaction} key={id} />

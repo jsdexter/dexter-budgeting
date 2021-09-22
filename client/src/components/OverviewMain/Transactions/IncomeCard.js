@@ -53,10 +53,10 @@ function IncomeCard(props) {
     // }
   };
 
-  const currency = new Intl.NumberFormat(locale, { style: 'currency', currency: 'USD' }).format(transaction.amount);
+  const currency = new Intl.NumberFormat(locale, { style: 'currency', currency: 'USD' }).format(transaction.amountDue);
 
   return (
-    <>
+    <div>
       <ModalEditIncome
         showModal={showEditIncome}
         setShowModal={closeModalIncome}>
@@ -65,22 +65,34 @@ function IncomeCard(props) {
         details &&
         <DetailsIncomeDiv isPaid={isPaid} onClick={onClick}>
           <DetailsAccount>
-            <AccountName>{transaction.payFrom}</AccountName>
-            {/* <AccountName>Jason Pay</AccountName> */}
+            <tr>
+              <AccountName>{transaction.name}</AccountName>
+            </tr>
           </DetailsAccount>
           <InfoDiv>
-            <DetailsName>Amount:</DetailsName>
-            <DetailsNumber>{currency}</DetailsNumber>
-            {/* <DetailsNumber>$148</DetailsNumber> */}
+            <tr>
+              <td>Amount:</td>
+            </tr>
+            <tr>
+              <DetailsNumber>{currency}</DetailsNumber>
+            </tr>
           </InfoDiv>
           <InfoDiv>
-            <DetailsName>Pay Date:</DetailsName>
-            <DetailsDate>{transaction.dueDate}</DetailsDate>
+            <tr>
+              <DetailsName>Pay Date:</DetailsName>
+            </tr>
+            <tr>
+              <DetailsDate>{transaction.dueDate}</DetailsDate>
+            </tr>
             {/* <DetailsDate>Monthly on the 15th and 30th</DetailsDate> */}
           </InfoDiv>
           <ButtonDiv>
-            <Button onClick={toggleColor}>Paid</Button>
-            <Button onClick={openModalIncome}>Edit</Button>
+            <tr>
+              <Button onClick={toggleColor}>Paid</Button>
+            </tr>
+            <tr>
+              <Button onClick={openModalIncome}>Edit</Button>
+            </tr>
           </ButtonDiv>
         </DetailsIncomeDiv>
       }
@@ -94,10 +106,10 @@ function IncomeCard(props) {
             <Date>{transaction.dueDate}</Date>
           </CardHeader>
           {/* <Name>Jason Pay</Name> */}
-          <Name>{transaction.payFrom}</Name>
+          <Name>{transaction.name}</Name>
         </IncomeDiv>
       }
-    </>
+    </div>
   )
 }
 

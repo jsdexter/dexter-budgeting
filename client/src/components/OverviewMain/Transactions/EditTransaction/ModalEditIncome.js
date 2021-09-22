@@ -10,7 +10,7 @@ import FormEditIncome from "./FormEditIncome";
 
 export const ModalEditIncome = ({ showModal, setShowModal }) => {
     return ReactDOM.createPortal(
-        <>
+        <div>
             {showModal ? (
                 <ModalBackground>
                     <ModalWrapper showModal={showModal}>
@@ -19,14 +19,14 @@ export const ModalEditIncome = ({ showModal, setShowModal }) => {
                             onClick={setShowModal}
                         >
                             X
-            </CloseModalButton>
+                        </CloseModalButton>
                         <ModalContent>
                             <FormEditIncome></FormEditIncome>
                         </ModalContent>
                     </ModalWrapper>
                 </ModalBackground>
             ) : null}
-        </>,
+        </div>,
         document.getElementById("portal")
     );
 };

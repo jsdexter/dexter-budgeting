@@ -6,7 +6,7 @@ const validation = require('../validation');
 const createTransaction = (req, res) => {
     //TODO Validation
     //TODO: error handling
-    validation(req, res);
+    // validation(req, res);
 
     const transaction = createItem('transactionsRecurring', req.body);
     if (transaction) {
@@ -31,40 +31,9 @@ const createItem = (key, body) => {
         [key]: collection,
     });
 
-    console.log("Dexter")
-    console.log(body)
-    console.log(body.id);
     return body;
 }
 
 module.exports = {
     createTransaction
-    // createBill,
-    // createIncome,
 }
-
-// const createBill = (req, res) => {
-//     // TODO: Validation
-//     // TODO: error handling
-//     validation(req, res);
-
-//     const billObject = createItem('billsRecurring', req.body);
-//     if (billObject) {
-//         res.status(200).send(billObject);
-//     } else {
-//         res.status(400).send({ ok: false });
-//     }
-// }
-
-// const createIncome = (req, res) => {
-//     // TODO: Validation
-//     // TODO: error handling
-//     validation(req, res);
-
-//     const incomeObject = createItem('incomesRecurring', req.body);
-//     if (incomeObject) {
-//         res.status(200).send(incomeObject);
-//     } else {
-//         res.status(400).send({ ok: false });
-//     }
-// }

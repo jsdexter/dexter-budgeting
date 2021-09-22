@@ -1,7 +1,6 @@
 import React from "react";
 
-import { ModalBill } from "./Footer/ModalBill";
-import { ModalIncome } from "./Footer/ModalIncome";
+import { ModalTransaction } from "./Footer/ModalTransaction";
 import { ModalEditBill } from "./OverviewMain/Transactions/EditTransaction/ModalEditBill";
 import { ModalEditIncome } from "./OverviewMain/Transactions/EditTransaction/ModalEditIncome";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -20,10 +19,9 @@ const App = () => {
             <Route path="/" component={Login} />
           </Switch>
         </div>
-        <ModalEditBill></ModalEditBill>
-        <ModalBill></ModalBill>
-        <ModalEditIncome></ModalEditIncome>
-        <ModalIncome></ModalIncome>
+        {/* <ModalEditBill></ModalEditBill> */}
+        <ModalTransaction></ModalTransaction>
+        {/* <ModalEditIncome></ModalEditIncome> */}
       </Router>
     </IntlProvider>
   );

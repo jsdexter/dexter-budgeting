@@ -6,27 +6,27 @@ import {
   CloseModalButton,
   ModalContent,
 } from "./Footer.elements";
-import FormIncome from "./FormIncome";
+import FormTransaction from "./FormTransaction";
 
-export const ModalIncome = ({ showModal, setShowModal }) => {
+export const ModalTransaction = ({ showModal, setShowModal }) => {
   return ReactDOM.createPortal(
-    <>
+    <div>
       {showModal ? (
         <ModalBackground>
           <ModalWrapper showModal={showModal}>
             <CloseModalButton
-              aria-label="Close modal"
+              aria-label="close modal"
               onClick={() => setShowModal((prev) => !prev)}
             >
               X
             </CloseModalButton>
             <ModalContent>
-              <FormIncome></FormIncome>
+              <FormTransaction onSubmit={() => setShowModal(false)} />
             </ModalContent>
           </ModalWrapper>
         </ModalBackground>
       ) : null}
-    </>,
+    </div>,
     document.getElementById("portal")
   );
 };

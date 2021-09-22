@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { addBill, deleteBill } from "../../../store/reducers/billSlice";
 
-
 import {
   Amount,
   CardHeader,
@@ -18,15 +17,15 @@ import {
   ButtonDiv,
   Button
 } from "./Transaction.elements";
-import { ModalEditBill } from "./EditTransaction/ModalEditBill";
+import { ModalTransaction } from "../../Footer/ModalTransaction";
 
 function BillCard(props) {
-  // const { bill } = props;
   const { transaction } = props;
 
   const [isPaid, setIsPaid] = useState(true);
   const [details, setDetails] = useState(false);
-  const [showEditBill, setShowEditBill] = useState(false);
+  const [showModalTransaction, setShowModalTransaction] = useState(false);
+
   const dispatch = useDispatch();
   const locale = "en-US"
 
@@ -34,14 +33,13 @@ function BillCard(props) {
     e.stopPropagation();
   }
 
-  const closeModalBill = (e) => {
-    handleButtonClick(e);
-    setShowEditBill(false);
+  const closeModalTransaction = (e) => {
+    setShowModalTransaction(false);
   };
 
-  const openModalBill = (e) => {
+  const openModalTransaction = (e) => {
     handleButtonClick(e);
-    setShowEditBill(true);
+    setShowModalTransaction(true);
   };
 
   const onClick = () => {
@@ -50,7 +48,6 @@ function BillCard(props) {
 
   const deleteBill = () => {
     alert("Delete Button Clicked");
-
   }
 
   const toggleColor = () => {
@@ -68,11 +65,11 @@ function BillCard(props) {
 
   if (details) {
     return (
-      <>
-        <ModalEditBill
-          showModal={showEditBill}
-          setShowModal={closeModalBill}>
-        </ModalEditBill>
+      <div>
+        <ModalTransaction
+          showModal={showModalTransaction}
+          setShowModal={closeModalTransaction}>
+        </ModalTransaction>
         {
           <DetailsBillDiv isPaid={isPaid} onClick={onClick}>
             <DetailsAccount>
@@ -81,102 +78,54 @@ function BillCard(props) {
               </tr>
               <tr>
                 <DetailsAddress>{transaction.address}</DetailsAddress>
-                {/* <DetailsAddress>123 Main St.</DetailsAddress> */}
               </tr>
               <tr>
-                <DetailsAddress>{transaction.city}{transaction.state}{transaction.zip}</DetailsAddress>
-                {/* <DetailsAddress>Naperville, IL. 60540</DetailsAddress> */}
+                <DetailsAddress>{transaction.city} {transaction.state} {transaction.zip}</DetailsAddress>
               </tr>
             </DetailsAccount>
             <InfoDiv>
               <tr>
                 <td>Account #</td>
+              </tr>
+              <tr>
                 <DetailsNumber>{transaction.accountNumber}</DetailsNumber>
-                {/* <DetailsNumber>1283921327</DetailsNumber> */}
               </tr>
             </InfoDiv>
             <InfoDiv>
               <tr>
                 <td>Amount:</td>
-                {/* <DetailsNumber>{transaction.amount}</DetailsNumber> */}
+              </tr>
+              <tr>
                 <DetailsNumber>{currency}</DetailsNumber>
-                {/* <DetailsNumber>$148</DetailsNumber> */}
               </tr>
             </InfoDiv>
             <InfoDiv>
               <tr>
                 <DetailsName>Due Date:</DetailsName>
+              </tr>
+              <tr>
                 <DetailsDate>{transaction.dueDate}</DetailsDate>
-                {/* <DetailsDate>Monthly on the 15th</DetailsDate> */}
               </tr>
             </InfoDiv>
             <ButtonDiv>
               <tr>
                 <Button onClick={toggleColor}>Paid</Button>
-                <Button onClick={openModalBill}>Edit</Button>
+              </tr>
+              <tr>
+                <Button onClick={openModalTransaction}>Edit</Button>
+              </tr>
+              <tr>
                 <Button onClick={deleteBill}>Delete</Button>
               </tr>
             </ButtonDiv>
           </DetailsBillDiv>
         }
-      </>
+      </div>
     );
   }
 
-  // if (details) {
-  //   return (
-  //     <>
-  //       <ModalEditBill
-  //         showModal={showEditBill}
-  //         setShowModal={closeModalBill}>
-  //       </ModalEditBill>
-  //       {
-  //         <DetailsBillDiv isBill={isBill} onClick={onClick}>
-  //           <DetailsAccount>
-  //             <tr>
-  //               <AccountName value={value} onChange={onChange}></AccountName>
-  //               {/* <AccountName value={value} onChange={onChange}></AccountName> */}
-  //               {/* <AccountName>City of Naperville Utilities</AccountName> */}
-  //             </tr>
-  //             <tr>
-  //               <DetailsAddress value={value} onChange={onChange}></DetailsAddress>
-  //               {/* <DetailsAddress>123 Main St.</DetailsAddress> */}
-  //             </tr>
-  //             <tr>
-  //               <DetailsAddress value={value} onChange={onChange}></DetailsAddress>
-  //               {/* <DetailsAddress>Naperville, IL. 60540</DetailsAddress> */}
-  //             </tr>
-  //           </DetailsAccount>
-  //           <InfoDiv>
-  //             <td>Account #</td>
-  //             <DetailsNumber value={value} onChange={onChange}></DetailsNumber>
-  //             {/* <DetailsNumber>1283921327</DetailsNumber> */}
-  //           </InfoDiv>
-  //           <InfoDiv>
-  //             <td>Amount:</td>
-  //             <DetailsNumber value={value} onChange={onChange}></DetailsNumber>
-  //             {/* <DetailsNumber>$148</DetailsNumber> */}
-  //           </InfoDiv>
-  //           <InfoDiv>
-  //             <DetailsName>Due Date:</DetailsName>
-  //             <DetailsDate value={value} onChange={onChange}></DetailsDate>
-  //             {/* <DetailsDate>Monthly on the 15th</DetailsDate> */}
-  //           </InfoDiv>
-  //           <ButtonDiv>
-  //             <Button onClick={toggleColor}>Paid</Button>
-  //             <Button onClick={openModalBill}>Edit</Button>
-  //             <Button onClick={deleteBill}>Delete</Button>
-  //           </ButtonDiv>
-  //         </DetailsBillDiv>
-  //       }
-  //     </>
-  //   )
-  // }
-
-
   return (
     <BillDiv isPaid={isPaid} onClick={onClick}>
-      {/* <pre>{JSON.stringify(isBillState, null, 2)}</pre> */}
       <CardHeader>
         <Amount>{new Intl.NumberFormat(locale, { style: 'currency', currency: 'USD' }).format(transaction.amountDue)}</Amount>
         <Date>{transaction.dueDate}</Date>
@@ -206,24 +155,6 @@ background: ${({ isPaid }) => isPaid ? "#FFE3E3" : "rgba(0, 0, 0, 0.3)"};
 const DetailsAddress = styled.th`
 font: 700 20px/24px normal Roboto;
 margin-top: 10px;
-`;
-
-const DetailsIncomeDiv = styled.table`
-  margin-top: 10px;
-  height: 170px;
-  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
-  border-radius: 2px;
-  background: #F0FFF0;
-  width: 100%;
-  background: ${({ isPaid }) => isPaid ? "#F0FFF0" : "rgba(0, 0, 0, 0.3)"};
-`;
-
-const IncomeDiv = styled.div`
-  margin-top: 10px;
-  height: 80px;
-  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
-  border-radius: 2px;
-  background: ${({ isPaid }) => isPaid ? "#F0FFF0" : "rgba(0, 0, 0, 0.3)"}
 `;
 
 export default BillCard;

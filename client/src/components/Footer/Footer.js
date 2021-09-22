@@ -1,34 +1,33 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-import { ModalBill } from "./ModalBill";
-import { ModalIncome } from "./ModalIncome";
+import { ModalTransaction } from "./ModalTransaction";
+// import { ModalIncome } from "./ModalIncome";
 
 function Footer() {
-  const [showModalBill, setShowModalBill] = useState(false);
-  const [showModalIncome, setShowModalIncome] = useState(false);
+  const [showModalTransaction, setShowModalTransaction] = useState(false);
+  // const [showModalIncome, setShowModalIncome] = useState(false);
 
-  const openModalBill = () => {
-    setShowModalBill((prev) => !prev);
+  const openModalTransaction = () => {
+    setShowModalTransaction((prev) => !prev);
   };
 
-  const openModalIncome = () => {
-    setShowModalIncome((prev) => !prev);
-  };
+  // const openModalIncome = () => {
+  //   setShowModalIncome((prev) => !prev);
+  // };
 
   return (
     <FooterDiv>
       <ButtonContainer>
-        <FooterButton onClick={openModalBill}>Add Item</FooterButton>
-        <ModalBill
-          showModal={showModalBill}
-          setShowModal={setShowModalBill}
-        ></ModalBill>
-        {/* <FooterButton onClick={openModalIncome}>Add Income</FooterButton> */}
-        <ModalIncome
+        <FooterButton onClick={openModalTransaction}>Add Item</FooterButton>
+        <ModalTransaction
+          showModal={showModalTransaction}
+          setShowModal={setShowModalTransaction}
+        ></ModalTransaction>
+        {/* <ModalIncome
           showModal={showModalIncome}
           setShowModal={setShowModalIncome}
-        ></ModalIncome>
+        ></ModalIncome> */}
       </ButtonContainer>
     </FooterDiv>
   );
