@@ -55,11 +55,11 @@ function BillCard(props) {
     setIsPaid(!isPaid);
   };
 
-  const [value, setValue] = useState('');
+  // const [value, setValue] = useState('');
 
-  const onChange = (e) => {
-    setValue(e.target.value);
-  }
+  // const onChange = (e) => {
+  //   setValue(e.target.value);
+  // }
 
   const currency = new Intl.NumberFormat(locale, { style: 'currency', currency: 'USD' }).format(transaction.amountDue);
 
@@ -68,7 +68,9 @@ function BillCard(props) {
       <div>
         <ModalTransaction
           showModal={showModalTransaction}
-          setShowModal={closeModalTransaction}>
+          setShowModal={closeModalTransaction}
+          transaction={transaction}
+        >
         </ModalTransaction>
         {
           <DetailsBillDiv isPaid={isPaid} onClick={onClick}>

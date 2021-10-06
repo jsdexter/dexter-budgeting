@@ -1,51 +1,12 @@
 {
   "transactionsRecurring": [
     {
-      "type": "bill",
-      "month": 2,
-      "name": "Car",
-      "address": "123 Main St.",
-      "city": "Naperville",
-      "state": "Il.",
-      "zip": "61540",
-      "accountNumber": 12345,
-      "amountDue": -123.48,
-      "dueDate": "weekly",
-      "id": "959561b5-c556-443d-8015-3754e4c0c00b"
-    },
-    {
       "type": "income",
       "id": "959561b5-c556-443d-8015-3754e4e3c00b",
       "month": 4,
       "name": "Gretchen Pay",
       "amountDue": 2000,
       "dueDate": "biweekly on the 15th and 30th"
-    },
-    {
-      "type": "bill",
-      "month": 2,
-      "name": "Trucking Company",
-      "address": "4578 Monticello Rd.",
-      "city": "Napererdkve",
-      "state": "Il.",
-      "zip": "61654",
-      "accountNumber": 12544345,
-      "amountDue": 789.48,
-      "dueDate": "monthly",
-      "id": "de189ff1-ac62-44f5-bfbf-dbcc6db96f3e"
-    },
-    {
-      "dueDate": "02/21/2021",
-      "name": "Jason Dexter",
-      "address": "124 Thrush Ln.",
-      "city": "Naperville",
-      "state": "ILLINOIS",
-      "zip": "60540",
-      "accountNumber": "",
-      "amountDue": "",
-      "month": "Monthly",
-      "type": "bill",
-      "id": "88193df1-23c6-4f09-9df0-5ba9357065a5"
     },
     {
       "dueDate": "6/30/2000",
@@ -59,19 +20,6 @@
       "month": "Monthly",
       "type": "bill",
       "id": "81615b8d-3c15-47a8-ab92-c0d1f065ce09"
-    },
-    {
-      "dueDate": "2021-02-21T05:00:00.000Z",
-      "name": "test test",
-      "address": "123 main",
-      "city": "test",
-      "state": "Alabama",
-      "zip": "23456",
-      "accountNumber": "23",
-      "amountDue": "",
-      "month": "Monthly",
-      "type": "bill",
-      "id": "c7636f29-f498-4478-93ff-1270d7062cc9"
     },
     {
       "dueDate": "2009/02/05",
@@ -100,17 +48,17 @@
       "id": "29da26bf-e0e7-4ab1-a352-cca23f2ed74f"
     },
     {
-      "dueDate": "2021/10/25",
-      "name": "ajklh",
-      "address": "123jasdkjfl ",
-      "city": "Testin",
-      "state": "IL",
-      "zip": "45678",
-      "accountNumber": "1231",
-      "amountDue": "123",
-      "month": "Monthly",
-      "type": "bill",
-      "id": "7d162e09-7548-4aca-ad37-8397d95f5038"
+      "dueDate": "2021/11/03",
+      "name": "It's Payday Bitches",
+      "address": "",
+      "city": "",
+      "state": "",
+      "zip": "",
+      "accountNumber": "",
+      "amountDue": "145.23",
+      "month": "Weekly",
+      "type": "income",
+      "id": "1f687030-2fc6-41ce-85a6-ff12417c4ad5"
     }
   ]
 }

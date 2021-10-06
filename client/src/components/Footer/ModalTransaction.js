@@ -8,7 +8,7 @@ import {
 } from "./Footer.elements";
 import FormTransaction from "./FormTransaction";
 
-export const ModalTransaction = ({ showModal, setShowModal }) => {
+export const ModalTransaction = ({ showModal, setShowModal, transaction }) => {
   return ReactDOM.createPortal(
     <div>
       {showModal ? (
@@ -21,7 +21,10 @@ export const ModalTransaction = ({ showModal, setShowModal }) => {
               X
             </CloseModalButton>
             <ModalContent>
-              <FormTransaction onSubmit={() => setShowModal(false)} />
+              <FormTransaction
+                onSubmit={() => setShowModal(false)}
+                transaction={transaction}
+              />
             </ModalContent>
           </ModalWrapper>
         </ModalBackground>

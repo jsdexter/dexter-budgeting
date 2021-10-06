@@ -16,28 +16,27 @@ import {
   Button,
   ButtonDiv
 } from "./Transaction.elements";
-import { ModalEditIncome } from "./EditTransaction/ModalEditIncome";
+import { ModalTransaction } from "../../Footer/ModalTransaction";
 
 function IncomeCard(props) {
   const { transaction } = props;
   const [isPaid, setIsPaid] = useState(true);
   // const [color, setColor] = useState("#F0FFF0");
   const [details, setDetails] = useState(false);
-  const [showEditIncome, setShowEditIncome] = useState(false);
+  const [showModalTransaction, setShowModalTransaction] = useState(false);
   const locale = "en-US"
 
   const handleButtonClick = (e) => {
     e.stopPropagation();
   }
 
-  const closeModalIncome = (e) => {
-    handleButtonClick(e);
-    setShowEditIncome(false)
+  const closeModalTransaction = (e) => {
+    setShowModalTransaction(false);
   };
 
-  const openModalIncome = (e) => {
+  const openModalTransaction = (e) => {
     handleButtonClick(e);
-    setShowEditIncome(true)
+    setShowModalTransaction(true);
   };
 
   const onClick = () => {
@@ -46,21 +45,18 @@ function IncomeCard(props) {
 
   const toggleColor = () => {
     setIsPaid(!isPaid);
-    // if (color === "#F0FFF0") {
-    //   setColor("rgba(0, 0, 0, 0.3)");
-    // } else {
-    //   setColor("#F0FFF0");
-    // }
   };
 
   const currency = new Intl.NumberFormat(locale, { style: 'currency', currency: 'USD' }).format(transaction.amountDue);
 
   return (
     <div>
-      <ModalEditIncome
-        showModal={showEditIncome}
-        setShowModal={closeModalIncome}>
-      </ModalEditIncome>
+      <ModalTransaction
+        showModal={showModalTransaction}
+        setShowModal={closeModalTransaction}
+        transaction={transaction}
+      >
+      </ModalTransaction>
       {
         details &&
         <DetailsIncomeDiv isPaid={isPaid} onClick={onClick}>
@@ -91,7 +87,7 @@ function IncomeCard(props) {
               <Button onClick={toggleColor}>Paid</Button>
             </tr>
             <tr>
-              <Button onClick={openModalIncome}>Edit</Button>
+              <Button onClick={openModalTransaction}>Edit</Button>
             </tr>
           </ButtonDiv>
         </DetailsIncomeDiv>
@@ -100,12 +96,9 @@ function IncomeCard(props) {
         !details &&
         <IncomeDiv isPaid={isPaid} onClick={onClick}>
           <CardHeader>
-            {/* <Amount>+ $1,110</Amount> */}
             <Amount>{currency}</Amount>
-            {/* <Date>January 21, 2921</Date> */}
             <Date>{transaction.dueDate}</Date>
           </CardHeader>
-          {/* <Name>Jason Pay</Name> */}
           <Name>{transaction.name}</Name>
         </IncomeDiv>
       }

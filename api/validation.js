@@ -1,18 +1,32 @@
 const { check, validationResult } = require('express-validator');
 
 let validation = [
-    check('name')
-        .notEmpty()
-        .withMessage('The PayTo Name cannot be empty'),
     check('dueDate')
         .notEmpty()
         .isDate()
         .isAfter()
         .withMessage('Must be a valid date'),
+    check('name')
+        .isString()
+        .notEmpty()
+        .withMessage('The PayTo Name cannot be empty'),
+    check('address')
+        .isString(),
+    check('city')
+        .isString(),
+    check('state')
+        .isString(),
     check('zip')
-        .isPostalCode('US'),
+        .isString(),
+    // .isPostalCode('US'),
+    check('accountNumber')
+        .isString(),
     check('amountDue')
         .isNumeric(),
+    check('month')
+        .isString(),
+    check('type')
+        .isString(),
     (req, res, next) => {
         const errors = validationResult(req);
         if (!errors.isEmpty())
