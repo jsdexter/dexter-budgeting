@@ -4,6 +4,7 @@ let validation = [
     check('dueDate')
         .notEmpty()
         .isDate()
+        // .isISO8601()
         .isAfter()
         .withMessage('Must be a valid date'),
     check('name')
