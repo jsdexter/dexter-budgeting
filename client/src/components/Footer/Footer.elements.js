@@ -49,7 +49,6 @@ export const ModalWrapper = styled.div`
   color: #000000;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  /* position: relative; */
   z-index: 10;
   border-radius: 10px;
   display: flex;

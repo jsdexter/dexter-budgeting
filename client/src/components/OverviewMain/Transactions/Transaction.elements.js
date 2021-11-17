@@ -42,13 +42,6 @@ export const CardHeader = styled.div`
   justify-content: space-between;
 `;
 
-// export const DetailsAccount = styled.tr`
-// display: flex;
-// flex-direction: column;
-// justify-content: flex-start;
-// align-items: center;
-// `;
-
 export const DetailsAccount = styled.thead`
 display: flex;
 flex-direction: column;

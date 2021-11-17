@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { addBill, deleteBill } from "../../../store/reducers/billSlice";
+import axios from "axios";
+import { deleteTransaction } from "../../../store/reducers/transactionSlice";
 
 import {
   Amount,
@@ -19,7 +20,7 @@ import {
 } from "./Transaction.elements";
 import { ModalTransaction } from "../../Footer/ModalTransaction";
 
-function BillCard(props) {
+function BillCard(props, id) {
   const { transaction } = props;
 
   const [isPaid, setIsPaid] = useState(true);
@@ -40,26 +41,32 @@ function BillCard(props) {
   const openModalTransaction = (e) => {
     handleButtonClick(e);
     setShowModalTransaction(true);
+    // changeTransaction();
   };
 
   const onClick = () => {
     setDetails(!details);
   };
 
-  const deleteBill = () => {
-    alert("Delete Button Clicked");
-  }
+  // const changeTransaction = async () => {
+  //   await axios.put(`http://localhost:3070/api/transactions/${transaction.id}`)
+  //     .catch((err) => {
+  //       console.log("Error: ", err)
+  //     });
+  //   dispatch(updateTransaction(transaction));
+  // };
 
-  const toggleColor = () => {
-    // setIsBill(!isBill)
-    setIsPaid(!isPaid);
+  const removeTransaction = async () => {
+    await axios.delete(`http://localhost:3070/api/transactions/${transaction.id}`)
+      .catch((err) => {
+        console.log("Error: ", err)
+      });
+    dispatch(deleteTransaction(transaction));
   };
 
-  // const [value, setValue] = useState('');
-
-  // const onChange = (e) => {
-  //   setValue(e.target.value);
-  // }
+  const toggleColor = () => {
+    setIsPaid(!isPaid);
+  };
 
   const currency = new Intl.NumberFormat(locale, { style: 'currency', currency: 'USD' }).format(transaction.amountDue);
 
@@ -117,7 +124,7 @@ function BillCard(props) {
                 <Button onClick={openModalTransaction}>Edit</Button>
               </tr>
               <tr>
-                <Button onClick={deleteBill}>Delete</Button>
+                <Button onClick={removeTransaction}>Delete</Button>
               </tr>
             </ButtonDiv>
           </DetailsBillDiv>

@@ -6,7 +6,6 @@ import {
   CloseModalButton,
   ModalContent,
 } from "./ModalEdit.elements";
-import FormEditBill from "./FormEditBill";
 import FormTransaction from "../../../Footer/FormTransaction";
 
 export const ModalEditBill = ({ showModal, setShowModal }) => {

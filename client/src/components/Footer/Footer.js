@@ -2,19 +2,13 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 import { ModalTransaction } from "./ModalTransaction";
-// import { ModalIncome } from "./ModalIncome";
 
 function Footer() {
   const [showModalTransaction, setShowModalTransaction] = useState(false);
-  // const [showModalIncome, setShowModalIncome] = useState(false);
 
   const openModalTransaction = () => {
     setShowModalTransaction((prev) => !prev);
   };
-
-  // const openModalIncome = () => {
-  //   setShowModalIncome((prev) => !prev);
-  // };
 
   return (
     <FooterDiv>
@@ -24,10 +18,6 @@ function Footer() {
           showModal={showModalTransaction}
           setShowModal={setShowModalTransaction}
         ></ModalTransaction>
-        {/* <ModalIncome
-          showModal={showModalIncome}
-          setShowModal={setShowModalIncome}
-        ></ModalIncome> */}
       </ButtonContainer>
     </FooterDiv>
   );

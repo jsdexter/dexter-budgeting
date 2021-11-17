@@ -1,11 +1,10 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { createStore, combineReducers } from "redux";
+import { transactionSlice } from "./reducers/transactionSlice";
 
-import billReducer from "./reducers/billSlice";
-
-const store = configureStore({
-    reducer: {
-        bill: billReducer,
-    }
+export const reducer = combineReducers({
+    transaction: transactionSlice.reducer,
 });
+
+const store = createStore(reducer);
 
 export default store;

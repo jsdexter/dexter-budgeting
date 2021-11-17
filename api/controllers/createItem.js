@@ -1,12 +1,10 @@
 const db = require('../db');
 
 const { v4: uuidv4 } = require('uuid');
-const validation = require('../validation');
 
 const createTransaction = (req, res) => {
-    //TODO Validation
+    //TODO: Validation
     //TODO: error handling
-    // validation(req, res);
 
     const transaction = createItem('transactionsRecurring', req.body);
     if (transaction) {

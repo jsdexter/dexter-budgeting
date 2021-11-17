@@ -1,9 +1,6 @@
-import React, { useState } from "react";
-import Transactions from "../OverviewMain/Transactions/Transactions";
-import useSWR from 'swr';
-import billSlice, { addBill } from "../../store/reducers/billSlice";
-import { useSelector, useDispatch } from "react-redux";
-import styled from "styled-components";
+import React, { useState, useEffect } from "react";
+import { useDispatch  } from "react-redux";
+import { addTransaction, changeTransaction } from "../../store/reducers/transactionSlice";
 import {
   Title,
   Heading,
@@ -14,14 +11,14 @@ import {
 } from "./Footer.elements";
 import { useForm } from "react-hook-form";
 
-const FormTransaction = ({ onSubmit, transaction = {} }) => {
+const FormTransaction = ({ onSubmit: closeModal, transaction = {} }) => {
+  const dispatch = useDispatch();
   const [error, setError] = useState();
   const { register, handleSubmit } = useForm();
 
   const finishSubmit = (data) => {
     if (transaction.id) {
-      // update
-      updateTransaction(data, transaction.id);
+      updateTransaction(data);
     } else {
       newTransaction(data);
     }
@@ -42,17 +39,14 @@ const FormTransaction = ({ onSubmit, transaction = {} }) => {
       }
 
       await response.json();
-      onSubmit();
+      dispatch(addTransaction(item));
+      closeModal();
     } catch (err) {
       setError("Something broke");
-
-      // if (err.response === 422 && err.response.body.errors) {
-      //   setError(err.response.body.error);
-      // }
     }
   }
 
-  const updateTransaction = async (item, id) => {
+  const updateTransaction = async (item) => {
     const requestOptions = {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
@@ -61,19 +55,17 @@ const FormTransaction = ({ onSubmit, transaction = {} }) => {
 
     try {
       setError(); // reset error
-      const response = await fetch([`http://localhost:3070/api/transactions/${id}`], requestOptions);
+      const response = await fetch([`http://localhost:3070/api/transactions/${transaction.id}`], requestOptions);
       if (response.status === 422) {
         throw new Error();
       }
 
       await response.json();
-      onSubmit();
+      dispatch(changeTransaction({ ...item, id: transaction.id }));
+      closeModal();
+      // debugger;
     } catch (err) {
       setError("Something broke");
-
-      // if (err.response === 422 && err.response.body.errors) {
-      //   setError(err.response.body.error);
-      // }
     }
   }
 

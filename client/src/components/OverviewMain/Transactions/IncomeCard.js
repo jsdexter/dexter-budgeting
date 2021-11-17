@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
+import axios from "axios";
+import { deleteTransaction } from "../../../store/reducers/transactionSlice";
 
 import {
   Amount,
@@ -21,16 +23,24 @@ import { ModalTransaction } from "../../Footer/ModalTransaction";
 function IncomeCard(props) {
   const { transaction } = props;
   const [isPaid, setIsPaid] = useState(true);
-  // const [color, setColor] = useState("#F0FFF0");
   const [details, setDetails] = useState(false);
   const [showModalTransaction, setShowModalTransaction] = useState(false);
+  const dispatch = useDispatch();
   const locale = "en-US"
+
+  const removeTransaction = async () => {
+    await axios.delete(`http://localhost:3070/api/transactions/${transaction.id}`)
+      .catch((err) => {
+        console.log("Error: ", err)
+      });
+    dispatch(deleteTransaction(transaction));
+  };
 
   const handleButtonClick = (e) => {
     e.stopPropagation();
   }
 
-  const closeModalTransaction = (e) => {
+  const closeModalTransaction = () => {
     setShowModalTransaction(false);
   };
 
@@ -80,7 +90,6 @@ function IncomeCard(props) {
             <tr>
               <DetailsDate>{transaction.dueDate}</DetailsDate>
             </tr>
-            {/* <DetailsDate>Monthly on the 15th and 30th</DetailsDate> */}
           </InfoDiv>
           <ButtonDiv>
             <tr>
@@ -88,6 +97,9 @@ function IncomeCard(props) {
             </tr>
             <tr>
               <Button onClick={openModalTransaction}>Edit</Button>
+            </tr>
+            <tr>
+              <Button onClick={removeTransaction}>Delete</Button>
             </tr>
           </ButtonDiv>
         </DetailsIncomeDiv>

@@ -1,16 +1,4 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
-
-// export const TopBar = styled.div`
-//     display: flex;
-//     flex-direction: row;
-//     justify-content: space-around;
-//     align-items: center;
-//     width: 100%;
-//     height: 80px;
-//     background: #6D9406;
-//     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.4);
-// `;
 
 export const MonthHeader = styled.div`
   font-family: Roboto;
@@ -23,11 +11,6 @@ export const MonthHeader = styled.div`
 `;
 
 export const Main = styled.div`
-  /* z-index: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: black; */
 `;
 
 export const DropDownContainer = styled.div`
@@ -78,16 +61,6 @@ export const MonthDropDown = styled.div`
 `;
 
 export const DropDownList = styled.ul`
-  /* background: #ffffff;
-    background: pink; */
-  /* border: 1px solid #000000; */
-  /* box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-    border-radius: 2px;
-    box-sizing: border-box;
-    font: 400 16px/20px Roboto;
-    &:first-child {
-        padding-top: 0.8em;
-  } */
 `;
 
 export const ListItem = styled.li`

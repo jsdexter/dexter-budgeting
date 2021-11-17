@@ -13,35 +13,19 @@ function find(collection, id) {
   }
 }
 
-  //delete a bill
-  const deleteBill = (req, res) => {
-    const billObject = getCollection('billsRecurring');
-    const billIndex = find(billObject, req.params.id);
-  
-    if (typeof billIndex !== 'undefined') {
-      billObject.splice(billIndex, 1);
-      db.patchData({ billsRecurring: billObject });
-      res.status(200).send({ ok: true });
-    } else {
-      res.status(400).send({ ok: false });
-    }
-  };
+//delete a transaction
+const deleteTransaction = (req, res) => {
+  const transactionObject = getCollection('transactionsRecurring');
+  const transactionIndex = find(transactionObject, req.params.id);
 
-  //delete an income
-const deleteIncome = (req, res) => {
-    const incomeObject = getCollection('incomesRecurring');
-    const incomeIndex = find(incomeObject, req.params.id);
-
-    if (typeof incomeIndex !== "undefined") {
-      incomeObject.splice(incomeIndex, 1);
-      db.patchData({ incomesRecurring: incomeObject });
-      res.status(200).send({ ok: true });
-    } else {
-      res.status(400).send({ ok: false });
-    }
-  };
-
-  module.exports = {
-      deleteBill, 
-      deleteIncome
+  if (typeof transactionIndex !== 'undefined') {
+    db.patchData({ transactionsRecurring: transactionObject })
+    res.status(200).send({ ok: true });
+  } else {
+    res.status(400).send({ ok: false });
   }
+};
+
+module.exports = {
+  deleteTransaction
+}

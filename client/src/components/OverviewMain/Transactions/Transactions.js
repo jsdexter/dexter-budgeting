@@ -1,50 +1,48 @@
-import React from "react";
+import React, { useEffect } from "react";
+import axios from "axios";
 import styled from "styled-components";
-import { useSelector } from 'react-redux';
-import useSWR from 'swr';
+import { useDispatch, useSelector } from "react-redux";
+import { loadTransactions } from '../../../store/reducers/transactionSlice';
 
 import TransactionHeader from "./TransactionHeader";
 import IncomeCard from "./IncomeCard";
 import BillCard from "./BillCard";
 
-const Transactions = () => {
-  // const billState = useSelector((state) => state.bill.bill);
-  const fetcher = async (...args) => {
-    const res = await fetch(...args);
-    const data = await res.json();
+const getTransactionMonth = () => {
+  // const date = new Date();
+  // const newDate = new Date();
+  // const nextMonth = newDate.setMonth(newDate.getMonth() + 1, 1);
+  // const dt = new Date(nextMonth);
+  // const monthYear = { month: "long", year: "numeric" };
+  // const thisMonth = new Intl.DateTimeFormat("en-US", monthYear).format(date);
+  // console.log(thisMonth);
+  // console.log(dt);
+};
 
-    return data.map((item) => {
-      return {
-        type: item.type,
-        id: item.id,
-        name: item.name,
-        address: item.address,
-        city: item.city,
-        state: item.state,
-        zip: item.zip,
-        amountDue: item.amountDue,
-        dueDate: item.dueDate,
-        accountNumber: item.accountNumber,
-        month: item.month,
-      };
-    });
+const Transactions = () => {
+  const data = useSelector((state) => state.transaction.transaction);
+  const dispatch = useDispatch();
+
+  const fetchTransactions = async () => {
+    const response = await axios.get('http://localhost:3070/api/transactions')
+      .catch((err) => {
+        console.log("Error: ", err)
+      });
+    dispatch(loadTransactions(response.data));
+    // getTransactionMonth();
+    // console.log("Response Data: " + response.data[0].dueDate);
+    // debugger;
   };
 
-  const { data, error } = useSWR('http://localhost:3070/api/transactions', fetcher);
+  useEffect(() => {
+    fetchTransactions();
+  }, []);
 
-  if (error) {
-    console.log(error)
-  } else {
-    console.log("This is the transactions file console.log")
-  }
-
-  if (!data) {
+  if (data.length === 0) {
     return (
       <div>Loading</div>
     );
   }
-
-
 
   return (
     <TransactionDiv >
