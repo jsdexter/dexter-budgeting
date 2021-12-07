@@ -1,12 +1,16 @@
-FROM node:16
+FROM node:lts-alpine
 
 WORKDIR /client
 
 COPY package*.json ./
 
+RUN ls -l
+
 RUN npm install
 
 COPY . /client/
+
+RUN ls -l
 
 EXPOSE 3000
 

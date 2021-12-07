@@ -1,4 +1,4 @@
-FROM node:16
+FROM node:lts-alpine
 
 WORKDIR /server
 
@@ -9,5 +9,7 @@ RUN npm install
 COPY . /server/
 
 EXPOSE 3070
+
+RUN ls -l
 
 CMD [ "npm", "start" ]
