@@ -1,23 +1,20 @@
-# syntax=docker/dockerfile:1
-FROM node:16 AS ui-build
+FROM node:16
 
-WORKDIR /app
+WORKDIR /client
 
-ENV PATH /app/node_modules/.bin:$PATH
+COPY package*.json ./
 
-COPY /client/package.json ./
-COPY /client/package-lock.json ./
+RUN npm install
 
-RUN npm install 
-
-COPY . ./
+COPY . /client/
 
 EXPOSE 3000
 
-CMD [ "npm", "start" ]
+# RUN npm ci --only=production
 # ENV NODE_ENV=production
 
-# WORKDIR /usr/src/index.js
+CMD [ "npm", "start" ]
+
 # COPY ["client/package.json", "client/package-lock.json*", "./"]
 # COPY client/package.json /my-app/client/package.json
 # COPY client/package*.json ./
