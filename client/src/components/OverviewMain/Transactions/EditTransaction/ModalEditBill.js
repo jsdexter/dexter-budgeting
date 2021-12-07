@@ -6,11 +6,11 @@ import {
   CloseModalButton,
   ModalContent,
 } from "./ModalEdit.elements";
-import FormEditBill from "./FormEditBill";
+import FormTransaction from "../../../Footer/FormTransaction";
 
 export const ModalEditBill = ({ showModal, setShowModal }) => {
   return ReactDOM.createPortal(
-    <>
+    <div>
       {showModal ? (
         <ModalBackground>
           <ModalWrapper showModal={showModal}>
@@ -21,12 +21,12 @@ export const ModalEditBill = ({ showModal, setShowModal }) => {
               X
             </CloseModalButton>
             <ModalContent>
-              <FormEditBill>Testing</FormEditBill>
+              <FormTransaction>Testing</FormTransaction>
             </ModalContent>
           </ModalWrapper>
         </ModalBackground>
       ) : null}
-    </>,
+    </div>,
     document.getElementById("portal")
   );
 };

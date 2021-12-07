@@ -3,7 +3,6 @@ const router = express.Router();
 
 const updateController = require('../controllers/updateItem');
 
-router.put('/bills/:id', updateController.updateBill);
-router.put('/incomes/:id', updateController.updateIncome);
+router.put('/transactions/:id', updateController.updateTransaction);
 
-  module.exports = router;
+module.exports = router;

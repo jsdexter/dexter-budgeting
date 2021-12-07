@@ -43,13 +43,12 @@ export const ModalBackground = styled.div`
 
 export const ModalWrapper = styled.div`
   width: 90%;
-  height: 500px;
+  height: 680px;
   box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
   background: #ffffff;
   color: #000000;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  /* position: relative; */
   z-index: 10;
   border-radius: 10px;
   display: flex;

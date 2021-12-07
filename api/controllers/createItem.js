@@ -1,14 +1,12 @@
 const db = require('../db');
 
 const { v4: uuidv4 } = require('uuid');
-const validation = require('../validation');
 
 const createTransaction = (req, res) => {
-    //TODO Validation
+    //TODO: Validation
     //TODO: error handling
-    validation(req, res);
 
-    const transaction = createItem('transactions', req.body);
+    const transaction = createItem('transactionsRecurring', req.body);
     if (transaction) {
         res.status(200).send(transaction);
     } else {
@@ -36,32 +34,4 @@ const createItem = (key, body) => {
 
 module.exports = {
     createTransaction
-    // createBill,
-    // createIncome,
 }
-
-// const createBill = (req, res) => {
-//     // TODO: Validation
-//     // TODO: error handling
-//     validation(req, res);
-
-//     const billObject = createItem('billsRecurring', req.body);
-//     if (billObject) {
-//         res.status(200).send(billObject);
-//     } else {
-//         res.status(400).send({ ok: false });
-//     }
-// }
-
-// const createIncome = (req, res) => {
-//     // TODO: Validation
-//     // TODO: error handling
-//     validation(req, res);
-
-//     const incomeObject = createItem('incomesRecurring', req.body);
-//     if (incomeObject) {
-//         res.status(200).send(incomeObject);
-//     } else {
-//         res.status(400).send({ ok: false });
-//     }
-// }

@@ -27,7 +27,6 @@ function FormEditIncome() {
             <Heading>
                 <label>Recurring:</label>
             </Heading>
-            {/* <SelectOption value="Monthly" options={options} onChange={(values) => this.setValues(values)}> */}
             <SelectOption value="BiMonthly">
                 <option value="Monthly">Monthly</option>
                 <option value="BiMonthly">BiMonthly</option>

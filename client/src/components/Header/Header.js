@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 import ArchiveDropdown from "./ArchiveDropdown";
 import MonthDropdown from "./MonthDropdown";
@@ -17,7 +17,7 @@ const Header = () => {
       >
         Back
       </BackButton>
-      <MonthDropdown>January 2021</MonthDropdown>
+      <MonthDropdown></MonthDropdown>
       <ArchiveDropdown></ArchiveDropdown>
     </TopBar>
   );

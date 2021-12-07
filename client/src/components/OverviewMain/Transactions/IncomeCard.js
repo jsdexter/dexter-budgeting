@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
+import axios from "axios";
+import { deleteTransaction } from "../../../store/reducers/transactionSlice";
 
 import {
   Amount,
@@ -16,28 +18,35 @@ import {
   Button,
   ButtonDiv
 } from "./Transaction.elements";
-import { ModalEditIncome } from "./EditTransaction/ModalEditIncome";
+import { ModalTransaction } from "../../Footer/ModalTransaction";
 
 function IncomeCard(props) {
   const { transaction } = props;
   const [isPaid, setIsPaid] = useState(true);
-  const [color, setColor] = useState("#F0FFF0");
   const [details, setDetails] = useState(false);
-  const [showEditIncome, setShowEditIncome] = useState(false);
+  const [showModalTransaction, setShowModalTransaction] = useState(false);
+  const dispatch = useDispatch();
+  const locale = "en-US"
 
+  const removeTransaction = async () => {
+    await axios.delete(`http://localhost:3070/api/transactions/${transaction.id}`)
+      .catch((err) => {
+        console.log("Error: ", err)
+      });
+    dispatch(deleteTransaction(transaction));
+  };
 
   const handleButtonClick = (e) => {
     e.stopPropagation();
   }
 
-  const closeModalIncome = (e) => {
-    handleButtonClick(e);
-    setShowEditIncome(false)
+  const closeModalTransaction = () => {
+    setShowModalTransaction(false);
   };
 
-  const openModalIncome = (e) => {
+  const openModalTransaction = (e) => {
     handleButtonClick(e);
-    setShowEditIncome(true)
+    setShowModalTransaction(true);
   };
 
   const onClick = () => {
@@ -46,39 +55,52 @@ function IncomeCard(props) {
 
   const toggleColor = () => {
     setIsPaid(!isPaid);
-    // if (color === "#F0FFF0") {
-    //   setColor("rgba(0, 0, 0, 0.3)");
-    // } else {
-    //   setColor("#F0FFF0");
-    // }
   };
 
+  const currency = new Intl.NumberFormat(locale, { style: 'currency', currency: 'USD' }).format(transaction.amountDue);
+
   return (
-    <>
-      <ModalEditIncome
-        showModal={showEditIncome}
-        setShowModal={closeModalIncome}>
-      </ModalEditIncome>
+    <div>
+      <ModalTransaction
+        showModal={showModalTransaction}
+        setShowModal={closeModalTransaction}
+        transaction={transaction}
+      >
+      </ModalTransaction>
       {
         details &&
         <DetailsIncomeDiv isPaid={isPaid} onClick={onClick}>
           <DetailsAccount>
-            <AccountName>{transaction.payFrom}</AccountName>
-            {/* <AccountName>Jason Pay</AccountName> */}
+            <tr>
+              <AccountName>{transaction.name}</AccountName>
+            </tr>
           </DetailsAccount>
           <InfoDiv>
-            <DetailsName>Amount:</DetailsName>
-            <DetailsNumber>{transaction.amount}</DetailsNumber>
-            {/* <DetailsNumber>$148</DetailsNumber> */}
+            <tr>
+              <td>Amount:</td>
+            </tr>
+            <tr>
+              <DetailsNumber>{currency}</DetailsNumber>
+            </tr>
           </InfoDiv>
           <InfoDiv>
-            <DetailsName>Pay Date:</DetailsName>
-            <DetailsDate>{transaction.dueDate}</DetailsDate>
-            {/* <DetailsDate>Monthly on the 15th and 30th</DetailsDate> */}
+            <tr>
+              <DetailsName>Pay Date:</DetailsName>
+            </tr>
+            <tr>
+              <DetailsDate>{transaction.dueDate}</DetailsDate>
+            </tr>
           </InfoDiv>
           <ButtonDiv>
-            <Button onClick={toggleColor}>Paid</Button>
-            <Button onClick={openModalIncome}>Edit</Button>
+            <tr>
+              <Button onClick={toggleColor}>Paid</Button>
+            </tr>
+            <tr>
+              <Button onClick={openModalTransaction}>Edit</Button>
+            </tr>
+            <tr>
+              <Button onClick={removeTransaction}>Delete</Button>
+            </tr>
           </ButtonDiv>
         </DetailsIncomeDiv>
       }
@@ -86,16 +108,13 @@ function IncomeCard(props) {
         !details &&
         <IncomeDiv isPaid={isPaid} onClick={onClick}>
           <CardHeader>
-            {/* <Amount>+ $1,110</Amount> */}
-            <Amount>{transaction.amount}</Amount>
-            {/* <Date>January 21, 2921</Date> */}
+            <Amount>{currency}</Amount>
             <Date>{transaction.dueDate}</Date>
           </CardHeader>
-          {/* <Name>Jason Pay</Name> */}
-          <Name>{transaction.payFrom}</Name>
+          <Name>{transaction.name}</Name>
         </IncomeDiv>
       }
-    </>
+    </div>
   )
 }
 

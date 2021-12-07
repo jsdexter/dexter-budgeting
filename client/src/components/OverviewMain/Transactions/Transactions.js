@@ -1,42 +1,44 @@
-import React from "react";
+import React, { useEffect } from "react";
+import axios from "axios";
 import styled from "styled-components";
-import { useSelector } from 'react-redux';
-import useSWR from 'swr';
+import { useDispatch, useSelector } from "react-redux";
+import { loadTransactions } from '../../../store/reducers/transactionSlice';
 
 import TransactionHeader from "./TransactionHeader";
 import IncomeCard from "./IncomeCard";
 import BillCard from "./BillCard";
 
-const Transactions = () => {
-  // const billState = useSelector((state) => state.bill.bill);
-  const fetcher = async (...args) => {
-    const res = await fetch(...args);
-    const data = await res.json();
+const getTransactionMonth = () => {
+  // const date = new Date();
+  // const newDate = new Date();
+  // const nextMonth = newDate.setMonth(newDate.getMonth() + 1, 1);
+  // const dt = new Date(nextMonth);
+  // const monthYear = { month: "long", year: "numeric" };
+  // const thisMonth = new Intl.DateTimeFormat("en-US", monthYear).format(date);
+  // console.log(thisMonth);
+  // console.log(dt);
+};
 
-    return data.map((item) => {
-      return {
-        id: item.id,
-        payTo: item.name,
-        payFrom: item.name,
-        address: item.address,
-        cityStateZip: `${item.city} ${item.state} ${item.zip}`,
-        amount: item.amountDue,
-        dueDate: item.dueDate,
-        account: item.accountNumber,
-        frequency: item.month,
-      };
-    });
+const Transactions = () => {
+  const data = useSelector((state) => state.transaction.transaction);
+  const dispatch = useDispatch();
+
+  const fetchTransactions = async () => {
+    const response = await axios.get('http://localhost:3070/api/transactions')
+      .catch((err) => {
+        console.log("Error: ", err)
+      });
+    dispatch(loadTransactions(response.data));
+    // getTransactionMonth();
+    // console.log("Response Data: " + response.data[0].dueDate);
+    // debugger;
   };
 
-  const { data, error } = useSWR('http://localhost:3070/api/transactions', fetcher);
+  useEffect(() => {
+    fetchTransactions();
+  }, []);
 
-  if (error) {
-    console.log(error)
-  } else {
-    console.log(data)
-  }
-
-  if (!data) {
+  if (data.length === 0) {
     return (
       <div>Loading</div>
     );
@@ -46,11 +48,8 @@ const Transactions = () => {
     <TransactionDiv >
       <TransactionHeader></TransactionHeader>
       <TransactionList>
-        {/* Figure out how to call the cards */}
-        {/* <IncomeCard></IncomeCard> */}
         {data.map((transaction, id) => {
-          console.log(transaction.amount)
-          if (transaction.amount < 0) {
+          if (transaction.type === 'bill') {
             return <BillCard transaction={transaction} key={id} />
           } else {
             return <IncomeCard transaction={transaction} key={id} />

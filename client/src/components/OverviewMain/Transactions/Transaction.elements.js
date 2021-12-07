@@ -42,13 +42,6 @@ export const CardHeader = styled.div`
   justify-content: space-between;
 `;
 
-// export const DetailsAccount = styled.tr`
-// display: flex;
-// flex-direction: column;
-// justify-content: flex-start;
-// align-items: center;
-// `;
-
 export const DetailsAccount = styled.thead`
 display: flex;
 flex-direction: column;
@@ -88,7 +81,6 @@ export const Button = styled.td`
   align-items: center;
   justify-content: center;
   margin-top: 10px;
-  width: 30%;
   height: 30px;
   background: #3f51b5;
   font: 700 16px/16px Roboto;
@@ -96,4 +88,5 @@ export const Button = styled.td`
   text-transform: uppercase;
   color: #ffffff;
   text-decoration: none;
+  padding: 2px 30px 2px 30px;
 `;

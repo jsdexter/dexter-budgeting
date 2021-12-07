@@ -1,11 +1,9 @@
 const express = require('express');
 const router = express.Router();
+const validation = require('../validation');
 
 const createController = require('../controllers/createItem');
 
-router.post('/transactions', createController.createTransaction);
-// router.post('/bills', createController.createBill);
-// router.post('/incomes', createController.createIncome);
-// router.post('/bills', createController.createItem);
+router.post('/transactions', validation, createController.createTransaction);
 
 module.exports = router;
