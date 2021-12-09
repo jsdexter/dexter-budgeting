@@ -42,6 +42,7 @@ jobs:
            repository: jsdexter/budgeting-server
            dockerfile: api/Dockerfile
            tags: latest
+           
 # deploy: 
 #   runs-on: ubuntu-latest
 #   needs: [build]
