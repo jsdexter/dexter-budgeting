@@ -1,0 +1,16 @@
+{
+  "name": "budgeting-webhooks",
+  "version": "1.0.0",
+  "main": "shell.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "github-webhook-handler": "^1.0.0",
+    "shelljs": "^0.8.4"
+  },
+  "devDependencies": {},
+  "description": ""
+}
