@@ -1,0 +1,13 @@
+#!/bin/bash
+echo "Deploying stage dexter-budgeting"
+
+cd ~/stage/dexter-budgeting \
+&& git checkout dev \
+&& git pull \
+&& npm i \
+&& npm run build \
+&& (pm2 stop dexter-budgeting_stage || true) \
+&& echo 'Installing:  done.' \
+&& (pm2 delete dexter-budgeting_stage || true) \
+&& NODE_ENV=development pm2 --name dexter-budgeting_stage start npm -- start \
+&& echo "dexter-budgeting deployed successfully"
