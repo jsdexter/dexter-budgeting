@@ -1,4 +1,4 @@
-FROM amd64/node:lts-alpine
+FROM arm64/node:lts-alpine
 
 WORKDIR /server
 
