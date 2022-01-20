@@ -9,4 +9,4 @@ services:
     build: ./client
     container_name: client
     ports:
-      - 3000:3000
+      - 3070:3070
