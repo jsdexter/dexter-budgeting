@@ -12,9 +12,9 @@ const App = () => {
       <Router>
         <div className="App">
           <Switch>
-            <Route path="/login:3070" component={Login} />
-            <Route path="/main/transactions:3070" component={Main} />
-            <Route path="/:3070" component={Login} />
+            <Route path="/login" component={Login} />
+            <Route path="/main" component={Main} />
+            <Route path="/" component={Login} />
           </Switch>
         </div>
         <ModalTransaction></ModalTransaction>
