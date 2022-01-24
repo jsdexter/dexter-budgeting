@@ -10,6 +10,7 @@ import {
   SelectOption,
 } from "./Footer.elements";
 import { useForm } from "react-hook-form";
+import { SERVER_ADDRESS } from "../../constants";
 
 const FormTransaction = ({ onSubmit: closeModal, transaction = {} }) => {
   const dispatch = useDispatch();
@@ -33,7 +34,7 @@ const FormTransaction = ({ onSubmit: closeModal, transaction = {} }) => {
 
     try {
       setError(); // reset error
-      const response = await fetch(['http://localhost:3070/api/transactions'], requestOptions);
+      const response = await fetch([`${SERVER_ADDRESS}/api/transactions`], requestOptions);
       if (response.status === 422) {
         throw new Error();
       }
@@ -55,7 +56,7 @@ const FormTransaction = ({ onSubmit: closeModal, transaction = {} }) => {
 
     try {
       setError(); // reset error
-      const response = await fetch([`http://localhost:3070/api/transactions/${transaction.id}`], requestOptions);
+      const response = await fetch([`${SERVER_ADDRESS}/api/transactions/${transaction.id}`], requestOptions);
       if (response.status === 422) {
         throw new Error();
       }

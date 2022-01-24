@@ -33,14 +33,14 @@ jobs:
           push: true
           context: client
 
-      - name: Build and Push Docker Image Server
+      - name: Build and Push Docker Image API
         uses: docker/build-push-action@v2
         with:
           platforms: linux/amd64,linux/arm64,linux/arm/v7
           builder: ${{ steps.buildx.outputs.name }}
-          tags: ghcr.io/${{ github.repository }}/server:${{ github.sha }},ghcr.io/${{ github.repository }}/server:latest
+          tags: ghcr.io/${{ github.repository }}/api:${{ github.sha }},ghcr.io/${{ github.repository }}/api:latest
           push: true
-          context: server
+          context: api
 
   deploy:
     runs-on: ubuntu-latest

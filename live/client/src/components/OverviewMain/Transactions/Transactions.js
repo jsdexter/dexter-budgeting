@@ -7,6 +7,7 @@ import { loadTransactions } from '../../../store/reducers/transactionSlice';
 import TransactionHeader from "./TransactionHeader";
 import IncomeCard from "./IncomeCard";
 import BillCard from "./BillCard";
+import { SERVER_ADDRESS } from "../../constants";
 
 const getTransactionMonth = () => {
   // const date = new Date();
@@ -24,7 +25,7 @@ const Transactions = () => {
   const dispatch = useDispatch();
 
   const fetchTransactions = async () => {
-    const response = await axios.get('http://localhost:3070/api/transactions')
+    const response = await axios.get(`${SERVER_ADDRESS}/api/transactions`)
       .catch((err) => {
         console.log("Error: ", err)
       });

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import { deleteTransaction } from "../../../store/reducers/transactionSlice";
+import { SERVER_ADDRESS } from "../../constants";
 
 import {
   Amount,
@@ -29,7 +30,7 @@ function IncomeCard(props) {
   const locale = "en-US"
 
   const removeTransaction = async () => {
-    await axios.delete(`http://localhost:3070/api/transactions/${transaction.id}`)
+    await axios.delete(`${SERVER_ADDRESS}/api/transactions/${transaction.id}`)
       .catch((err) => {
         console.log("Error: ", err)
       });

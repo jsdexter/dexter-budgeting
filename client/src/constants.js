@@ -1,0 +1,1 @@
+export const SERVER_ADDRESS = `http://${window.location.hostname}:3070`;
