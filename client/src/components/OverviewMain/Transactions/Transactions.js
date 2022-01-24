@@ -8,17 +8,6 @@ import TransactionHeader from "./TransactionHeader";
 import IncomeCard from "./IncomeCard";
 import BillCard from "./BillCard";
 
-const getTransactionMonth = () => {
-  // const date = new Date();
-  // const newDate = new Date();
-  // const nextMonth = newDate.setMonth(newDate.getMonth() + 1, 1);
-  // const dt = new Date(nextMonth);
-  // const monthYear = { month: "long", year: "numeric" };
-  // const thisMonth = new Intl.DateTimeFormat("en-US", monthYear).format(date);
-  // console.log(thisMonth);
-  // console.log(dt);
-};
-
 const Transactions = () => {
   const data = useSelector((state) => state.transaction.transaction);
   const dispatch = useDispatch();
@@ -29,9 +18,6 @@ const Transactions = () => {
         console.log("Error: ", err)
       });
     dispatch(loadTransactions(response.data));
-    // getTransactionMonth();
-    // console.log("Response Data: " + response.data[0].dueDate);
-    // debugger;
   };
 
   useEffect(() => {
