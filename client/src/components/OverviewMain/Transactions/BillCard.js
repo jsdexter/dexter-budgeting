@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import { deleteTransaction } from "../../../store/reducers/transactionSlice";
-import { SERVER_ADDRESS } from "../../constants";
+import { SERVER_ADDRESS } from "../.../../constants";
 
 import {
   Amount,

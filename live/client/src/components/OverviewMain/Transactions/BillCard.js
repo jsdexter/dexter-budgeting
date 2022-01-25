@@ -19,7 +19,7 @@ import {
   Button
 } from "./Transaction.elements";
 import { ModalTransaction } from "../../Footer/ModalTransaction";
-import { SERVER_ADDRESS } from "../../constants";
+import { SERVER_ADDRESS } from "../.../../constants";
 
 function BillCard(props, id) {
   const { transaction } = props;
