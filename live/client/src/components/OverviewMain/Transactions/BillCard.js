@@ -42,20 +42,11 @@ function BillCard(props, id) {
   const openModalTransaction = (e) => {
     handleButtonClick(e);
     setShowModalTransaction(true);
-    // changeTransaction();
   };
 
   const onClick = () => {
     setDetails(!details);
   };
-
-  // const changeTransaction = async () => {
-  //   await axios.put(`${SERVER_ADDRESS}/api/transactions/${transaction.id}`)
-  //     .catch((err) => {
-  //       console.log("Error: ", err)
-  //     });
-  //   dispatch(updateTransaction(transaction));
-  // };
 
   const removeTransaction = async () => {
     await axios.delete(`${SERVER_ADDRESS}/api/transactions/${transaction.id}`)
