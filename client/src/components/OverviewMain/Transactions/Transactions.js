@@ -7,7 +7,7 @@ import { loadTransactions } from '../../../store/reducers/transactionSlice';
 import TransactionHeader from "./TransactionHeader";
 import IncomeCard from "./IncomeCard";
 import BillCard from "./BillCard";
-import { SERVER_ADDRESS } from "../../.../../constants";
+import { SERVER_ADDRESS } from "../../../constants";
 
 const Transactions = () => {
   const data = useSelector((state) => state.transaction.transaction);

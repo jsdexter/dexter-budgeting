@@ -7,7 +7,7 @@ import { loadTransactions } from '../../../store/reducers/transactionSlice';
 import TransactionHeader from "./TransactionHeader";
 import IncomeCard from "./IncomeCard";
 import BillCard from "./BillCard";
-import { SERVER_ADDRESS } from "../.../../constants";
+import { SERVER_ADDRESS } from "../../../../../../client/src/constants";
 
 const getTransactionMonth = () => {
   // const date = new Date();

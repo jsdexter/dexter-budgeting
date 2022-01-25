@@ -19,7 +19,7 @@ import {
   ButtonDiv
 } from "./Transaction.elements";
 import { ModalTransaction } from "../../Footer/ModalTransaction";
-import { SERVER_ADDRESS } from "../.../../constants";
+import { SERVER_ADDRESS } from "../../../../../../client/src/constants";
 
 function IncomeCard(props) {
   const { transaction } = props;

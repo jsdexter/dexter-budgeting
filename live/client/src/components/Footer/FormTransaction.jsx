@@ -10,7 +10,7 @@ import {
   SelectOption,
 } from "./Footer.elements";
 import { useForm } from "react-hook-form";
-import { SERVER_ADDRESS } from "../.../../constants";
+import { SERVER_ADDRESS } from "../../../../../client/src/constants";
 
 const FormTransaction = ({ onSubmit: closeModal, transaction = {} }) => {
   const dispatch = useDispatch();
