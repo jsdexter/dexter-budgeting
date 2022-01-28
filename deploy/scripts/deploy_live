@@ -1,5 +1,6 @@
 #!/bin/bash
 echo "Deploying stage dexter-budgeting"
+console.log('JasonJasonJasonJasonJasonJasonJasonJasonJasonJason');
 
 cd ~/live/dexter-budgeting \
 && git checkout dev \
