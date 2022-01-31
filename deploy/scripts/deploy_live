@@ -6,8 +6,10 @@ cd ~/live/dexter-budgeting \
 && git pull \
 && npm i \
 && npm run build \
-&& (pm2 stop dexter-budgeting_live || true) \
+# && (pm2 stop dexter-budgeting_live || true) \
+&& (docker stop dexter-budgeting_live || true) \
 && echo 'Installing:  done.' \
-&& (pm2 delete dexter-budgeting_live || true) \
+# && (pm2 delete dexter-budgeting_live || true) \
+&& (docker delete dexter-budgeting_live || true) \
 && NODE_ENV=development pm2 --name dexter-budgeting_live start npm -- start \
 && echo "dexter-budgeting deployed successfully"
