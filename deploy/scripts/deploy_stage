@@ -3,11 +3,16 @@ echo "Deploying stage dexter-budgeting"
 
 cd ~/stage/dexter-budgeting \
 && git checkout dev \
+console.log("Stage Step 1")
 && git pull \
+console.log("Stage Step 2")
 && npm i \
+console.log("Stage Step 3")
 && npm run build \
+console.log("Stage Step 4")
 # && (pm2 stop dexter-budgeting_stage || true) \
 && (docker stop dexter-budgeting_stage || true) \
+console.log("Stage Step 1")
 && echo 'Installing:  done.' \
 # && (pm2 delete dexter-budgeting_stage || true) \
 && (docker delete dexter-budgeting_stage || true) \
