@@ -12,6 +12,8 @@ const PORT = process.env.PORT || 6767;
 
 var handler = createHandler({ path: '/', secret: MY_SECRET })
 
+console.log('Dexter Dexter');
+
 http.createServer(function (req, res) {
   handler(req, res, function (err) {
     res.statusCode = 404
@@ -30,9 +32,8 @@ handler.on('workflow_run', function (event) {
   console.log('Received a Pull Request for %s to %s', repository, action);
   // the action of closed on pull_request event means either it is merged or declined
   if (repository === REPO_NAME && action === 'completed') {
-    console.log('Winner winner chicken dinner');
     // we should deploy now
-    shell.cd('..');
+    // shell.cd('..');
     shell.exec('~/scripts/deploy_stage');
   }
 });
