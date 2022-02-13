@@ -2,6 +2,7 @@ const http = require('http');
 const createHandler = require('github-webhook-handler');
 const shell = require('shelljs');
 
+
 // We avoid to hardcode the secret in the code, you should provide it with an ENV variable before running this script
 const { MY_SECRET } = process.env;
 // You might use the same script for multiple repositories, this is only one of them
@@ -29,6 +30,7 @@ handler.on('workflow_run', function (event) {
   console.log('Received a Pull Request for %s to %s', repository, action);
   // the action of closed on pull_request event means either it is merged or declined
   if (repository === REPO_NAME && action === 'completed') {
+    console.log('Winner winner chicken dinner');
     // we should deploy now
     shell.cd('..');
     shell.exec('~/scripts/deploy_stage');
