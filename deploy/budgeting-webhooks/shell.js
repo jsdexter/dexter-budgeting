@@ -34,7 +34,7 @@ handler.on('workflow_run', function (event) {
   if (repository === REPO_NAME && action === 'completed') {
     // we should deploy now
     shell.cd('..');
-    console.log("Jason Dexter ...........................")
+    console.log("Jason Dexter .....................................")
     shell.exec('~/scripts/deploy_stage');
   }
 });
