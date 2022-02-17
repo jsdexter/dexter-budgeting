@@ -33,7 +33,7 @@ handler.on('workflow_run', function (event) {
   // the action of closed on pull_request event means either it is merged or declined
   if (repository === REPO_NAME && action === 'completed') {
     // we should deploy now
-    // shell.cd('..');
+    shell.cd('..');
     console.log("Jason Dexter ...................")
     shell.exec('~/scripts/deploy_stage');
   }
