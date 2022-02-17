@@ -12,8 +12,6 @@ const PORT = process.env.PORT || 6767;
 
 var handler = createHandler({ path: '/', secret: MY_SECRET })
 
-console.log('Dexter Dexter');
-
 http.createServer(function (req, res) {
   handler(req, res, function (err) {
     res.statusCode = 404
@@ -34,7 +32,6 @@ handler.on('workflow_run', function (event) {
   if (repository === REPO_NAME && action === 'completed') {
     // we should deploy now
     shell.cd('..');
-    console.log("Jason Dexter .....................................")
     shell.exec('~/scripts/deploy_stage');
   }
 });
