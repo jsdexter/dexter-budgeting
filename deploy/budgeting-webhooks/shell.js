@@ -33,6 +33,6 @@ handler.on('workflow_run', function (event) {
     // we should deploy now
     shell.cd('..');
     shell.exec('~/scripts/deploy_stage');
-    console.log('This is most likely not the finale part 5!!!')
+    console.log('This is most likely not the finale part 6!!!')
   }
 });
