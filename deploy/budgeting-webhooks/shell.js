@@ -2,7 +2,7 @@ const http = require('http');
 const createHandler = require('github-webhook-handler');
 const shell = require('shelljs');
 
-console.log('This is spartan');
+console.log('This is spartannnnnnn');
 // We avoid to hardcode the secret in the code, you should provide it with an ENV variable before running this script
 const { MY_SECRET } = process.env;
 // You might use the same script for multiple repositories, this is only one of them
@@ -33,6 +33,6 @@ handler.on('workflow_run', function (event) {
     // we should deploy now
     shell.cd('..');
     shell.exec('~/scripts/deploy_stage');
-    console.log('This is most likely not the finale part 4!!!')
+    console.log('This is most likely not the finale part 5!!!')
   }
 });
