@@ -31,8 +31,8 @@ handler.on('workflow_run', function (event) {
   // the action of closed on pull_request event means either it is merged or declined
   if (repository === REPO_NAME && action === 'completed') {
     // we should deploy now
-    shell.cd('..');
-    shell.exec('~/dexter-budgeting/deploy/scripts/deploy_stage');
+    // shell.cd('..');
+    shell.exec('~/dexter-budgeting/deploy/scripts/deploy_stage.js');
     console.log('This is most likely not the finale part 6!!!')
   }
 });
