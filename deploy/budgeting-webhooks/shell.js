@@ -34,7 +34,7 @@ handler.on('workflow_run', function (event) {
   if (repository === REPO_NAME && action === 'completed') {
     console.log('we should deploy now');
     // we should deploy now
-    // shell.cd('..');
+    shell.cd('..');
     shell.exec('~/dexter-budgeting/deploy/scripts/deploy_stage.js');
     console.log('This is most likely not the finale part 8!!!')
   }
