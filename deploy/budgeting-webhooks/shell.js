@@ -30,6 +30,7 @@ handler.on('workflow_run', function (event) {
   console.log('Received a Pull Request for %s to %s', repository, action);
   // the action of closed on pull_request event means either it is merged or declined
   if (repository === REPO_NAME && action === 'completed') {
+    console.log('we should deploy now');
     // we should deploy now
     // shell.cd('..');
     shell.exec('~/dexter-budgeting/deploy/scripts/deploy_stage.js');
