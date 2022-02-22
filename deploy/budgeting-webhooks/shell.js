@@ -36,6 +36,6 @@ handler.on('workflow_run', function (event) {
     // we should deploy now
     // shell.cd('..');
     shell.exec('~/dexter-budgeting/deploy/scripts/deploy_stage.js');
-    console.log('This is most likely not the finale part 7!!!')
+    console.log('This is most likely not the finale part 8!!!')
   }
 });
