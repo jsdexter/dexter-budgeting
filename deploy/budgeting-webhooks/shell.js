@@ -29,6 +29,8 @@ handler.on('workflow_run', function (event) {
 
   console.log('Received a Pull Request for %s to %s', repository, action);
   // the action of closed on pull_request event means either it is merged or declined
+  console.log('Here is the repo name: ' + REPO_NAME);
+  console.log('Here is the action: ' + action);
   if (repository === REPO_NAME && action === 'completed') {
     console.log('we should deploy now');
     // we should deploy now
