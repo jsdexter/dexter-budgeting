@@ -35,7 +35,7 @@ handler.on('workflow_run', function (event) {
     console.log('we should deploy now');
     // we should deploy now
     shell.cd('..');
-    shell.exec('~/stage/deploy_stage.js');
+    shell.exec('~/stage/deploy_stage');
     console.log('This is most likely not the finale part 10!!!')
   }
 });
