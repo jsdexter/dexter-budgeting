@@ -10,7 +10,7 @@
   "dependencies": {
     "buildx": "^0.1.1",
     "github-webhook-handler": "^1.0.0",
-    "shelljs": "^0.8.4"
+    "shelljs": "^0.8.5"
   },
   "devDependencies": {},
   "description": ""
