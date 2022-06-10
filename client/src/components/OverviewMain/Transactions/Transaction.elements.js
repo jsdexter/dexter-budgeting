@@ -42,7 +42,7 @@ export const CardHeader = styled.div`
   justify-content: space-between;
 `;
 
-export const DetailsAccount = styled.thead`
+export const DetailsAccount = styled.div`
 display: flex;
 flex-direction: column;
 justify-content: flex-start;
@@ -54,7 +54,7 @@ margin-top: 20px;
 font: 700 25px/28px normal Roboto;
 `;
 
-export const InfoDiv = styled.tbody`
+export const InfoDiv = styled.div`
 display: flex;
 flex-direction: row;
 justify-content: space-between;
@@ -62,20 +62,20 @@ margin: 10px 20px 0px 20px;
 font: 700 20px/24px normal Roboto;
 `;
 
-export const DetailsName = styled.td``;
+export const DetailsName = styled.div``;
 
-export const DetailsNumber = styled.td``;
+export const DetailsNumber = styled.div``;
 
-export const DetailsDate = styled.td``;
+export const DetailsDate = styled.div``;
 
-export const ButtonDiv = styled.tbody`
+export const ButtonDiv = styled.div`
   display: flex;
   justify-content: space-around;
   flex-direction: row;
   padding: 15px 0 15px 0;
 `;
 
-export const Button = styled.td`
+export const Button = styled.button`
   display: flex;
   flex-direction: row;
   align-items: center;

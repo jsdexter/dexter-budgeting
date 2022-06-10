@@ -11,21 +11,27 @@ import {
 } from "./Footer.elements";
 import { useForm } from "react-hook-form";
 import { SERVER_ADDRESS } from "../../constants";
+import { itemDueDate } from "../../services";
 
 const FormTransaction = ({ onSubmit: closeModal, transaction = {} }) => {
   const dispatch = useDispatch();
   const [error, setError] = useState();
   const { register, handleSubmit } = useForm();
 
+  // const finishSubmit = (data) => {
+  //   if (transaction.id) {
+  //     updateTransaction(data);
+  //   } else {
+  //     newTransaction(data);
+  //   }
+  // };
+
   const finishSubmit = (data) => {
-    if (transaction.id) {
-      updateTransaction(data);
-    } else {
-      newTransaction(data);
-    }
-  };
+    newTransaction(data);
+  }
 
   const newTransaction = async (item) => {
+    item.dueDate = new Date(item.dueDate).toISOString();
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -47,28 +53,30 @@ const FormTransaction = ({ onSubmit: closeModal, transaction = {} }) => {
     }
   }
 
-  const updateTransaction = async (item) => {
-    const requestOptions = {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(item)
-    };
+  // const updateTransaction = async (item) => {
+  //   item.dueDate = item.dueDate;
+  //   console.log("This is the transaction.type: " + item.type);
+  //   const requestOptions = {
+  //     method: 'PUT',
+  //     headers: { 'Content-Type': 'application/json' },
+  //     body: JSON.stringify(item)
+  //   };
 
-    try {
-      setError(); // reset error
-      const response = await fetch([`${SERVER_ADDRESS}/api/transactions/${transaction.id}`], requestOptions);
-      if (response.status === 422) {
-        throw new Error();
-      }
+  //   try {
+  //     setError(); // reset error
+  //     const response = await fetch([`${SERVER_ADDRESS}/api/transactions/${transaction.id}`], requestOptions);
+  //     if (response.status === 422) {
+  //       throw new Error();
+  //     }
 
-      await response.json();
-      dispatch(changeTransaction({ ...item, id: transaction.id }));
-      closeModal();
-      // debugger;
-    } catch (err) {
-      setError("Something broke");
-    }
-  }
+  //     await response.json();
+  //     dispatch(changeTransaction({ ...item, id: transaction.id }));
+  //     closeModal();
+  //     // debugger;
+  //   } catch (err) {
+  //     setError("Something broke");
+  //   }
+  // }
 
   return (
     <div>

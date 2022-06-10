@@ -1,12 +1,14 @@
 import React, { useEffect } from "react";
 import axios from "axios";
+import { formatISO } from "date-fns";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { loadTransactions } from '../../../store/reducers/transactionSlice';
 
 import TransactionHeader from "./TransactionHeader";
-import IncomeCard from "./IncomeCard";
-import BillCard from "./BillCard";
+import TransactionCard from "./TransactionCard";
+// import IncomeCard from "./IncomeCard";
+// import BillCard from "./BillCard";
 import { SERVER_ADDRESS } from "../../../constants";
 
 const Transactions = () => {
@@ -36,10 +38,8 @@ const Transactions = () => {
       <TransactionHeader></TransactionHeader>
       <TransactionList>
         {data.map((transaction, id) => {
-          if (transaction.type === 'bill') {
-            return <BillCard transaction={transaction} key={id} />
-          } else {
-            return <IncomeCard transaction={transaction} key={id} />
+          {
+            return <TransactionCard transaction={transaction} key={id} />
           }
         })}
       </TransactionList>

@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import axios from "axios";
 import { deleteTransaction } from "../../../store/reducers/transactionSlice";
 import { SERVER_ADDRESS } from "../../../constants";
+import { itemDueDate, currency } from "../../../services";
 
 import {
   Amount,
@@ -58,8 +59,6 @@ function IncomeCard(props) {
     setIsPaid(!isPaid);
   };
 
-  const currency = new Intl.NumberFormat(locale, { style: 'currency', currency: 'USD' }).format(transaction.amountDue);
-
   return (
     <div>
       <ModalTransaction
@@ -81,7 +80,7 @@ function IncomeCard(props) {
               <td>Amount:</td>
             </tr>
             <tr>
-              <DetailsNumber>{currency}</DetailsNumber>
+              <DetailsNumber>{currency(transaction.amountDue)}</DetailsNumber>
             </tr>
           </InfoDiv>
           <InfoDiv>
@@ -89,7 +88,7 @@ function IncomeCard(props) {
               <DetailsName>Pay Date:</DetailsName>
             </tr>
             <tr>
-              <DetailsDate>{transaction.dueDate}</DetailsDate>
+              <DetailsDate>{itemDueDate(transaction.dueDate)}</DetailsDate>
             </tr>
           </InfoDiv>
           <ButtonDiv>
@@ -109,8 +108,8 @@ function IncomeCard(props) {
         !details &&
         <IncomeDiv isPaid={isPaid} onClick={onClick}>
           <CardHeader>
-            <Amount>{currency}</Amount>
-            <Date>{transaction.dueDate}</Date>
+            <Amount>{currency(transaction.amountDue)}</Amount>
+            <Date>{itemDueDate(transaction.dueDate)}</Date>
           </CardHeader>
           <Name>{transaction.name}</Name>
         </IncomeDiv>

@@ -4,11 +4,12 @@ import { useDispatch } from "react-redux";
 import axios from "axios";
 import { deleteTransaction } from "../../../store/reducers/transactionSlice";
 import { SERVER_ADDRESS } from "../../../constants";
+import { currency, itemDueDate } from "../../../services";
 
 import {
   Amount,
   CardHeader,
-  Date,
+  Date as DateView,
   Name,
   DetailsAccount,
   AccountName,
@@ -29,7 +30,6 @@ function BillCard(props, id) {
   const [showModalTransaction, setShowModalTransaction] = useState(false);
 
   const dispatch = useDispatch();
-  const locale = "en-US"
 
   const handleButtonClick = (e) => {
     e.stopPropagation();
@@ -49,14 +49,6 @@ function BillCard(props, id) {
     setDetails(!details);
   };
 
-  // const changeTransaction = async () => {
-  //   await axios.put(`${SERVER_ADDRESS}/api/transactions/${transaction.id}`)
-  //     .catch((err) => {
-  //       console.log("Error: ", err)
-  //     });
-  //   dispatch(updateTransaction(transaction));
-  // };
-
   const removeTransaction = async () => {
     await axios.delete(`${SERVER_ADDRESS}/api/transactions/${transaction.id}`)
       .catch((err) => {
@@ -68,8 +60,6 @@ function BillCard(props, id) {
   const toggleColor = () => {
     setIsPaid(!isPaid);
   };
-
-  const currency = new Intl.NumberFormat(locale, { style: 'currency', currency: 'USD' }).format(transaction.amountDue);
 
   if (details) {
     return (
@@ -106,7 +96,7 @@ function BillCard(props, id) {
                 <td>Amount:</td>
               </tr>
               <tr>
-                <DetailsNumber>{currency}</DetailsNumber>
+                <DetailsNumber>{currency(transaction.amountDue)}</DetailsNumber>
               </tr>
             </InfoDiv>
             <InfoDiv>
@@ -114,7 +104,7 @@ function BillCard(props, id) {
                 <DetailsName>Due Date:</DetailsName>
               </tr>
               <tr>
-                <DetailsDate>{transaction.dueDate}</DetailsDate>
+                <DetailsDate>{itemDueDate(transaction.dueDate)}</DetailsDate>
               </tr>
             </InfoDiv>
             <ButtonDiv>
@@ -137,8 +127,8 @@ function BillCard(props, id) {
   return (
     <BillDiv isPaid={isPaid} onClick={onClick}>
       <CardHeader>
-        <Amount>{new Intl.NumberFormat(locale, { style: 'currency', currency: 'USD' }).format(transaction.amountDue)}</Amount>
-        <Date>{transaction.dueDate}</Date>
+        <Amount>{currency(transaction.amountDue)}</Amount>
+        <DateView>{itemDueDate(transaction.dueDate)}</DateView>
       </CardHeader>
       <Name>{transaction.name}</Name>
     </BillDiv>

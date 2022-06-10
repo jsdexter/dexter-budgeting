@@ -3,7 +3,7 @@ const { check, validationResult } = require('express-validator');
 let validation = [
     check('dueDate')
         .notEmpty()
-        .isDate()
+        // .isDate()
         // .isISO8601()
         .isAfter()
         .withMessage('Must be a valid date'),
