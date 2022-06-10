@@ -6,8 +6,9 @@ const pool = createPool({
     password: "D3xt3r15gr8@23",
     connectionLimit: 10,
     database: "transactions",
-    dateStrings: true,
 });
+
+// dateStrings: true,
 
 module.exports = pool;
 
