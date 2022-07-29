@@ -21,6 +21,7 @@ export const Button = styled.button`
 
 export const Input = styled.input`
   width: 80vw;
+  background: ${({ isPaid }) => isPaid ? "#FFE3E3" : "rgba(0, 0, 0, 0.3)"};
 `;
 
 export const SelectOption = styled.select`

@@ -37,11 +37,3 @@ const deleteTransaction = transactionSlice.actions.deleteTransaction;
 const loadTransactions = transactionSlice.actions.loadTransactions;
 const changeTransaction = transactionSlice.actions.changeTransaction;
 export { addTransaction, deleteTransaction, loadTransactions, changeTransaction };
-
-
-// 2021-11-12T00:00:
-
-// const t = new Date('2021-11-05');
-// t.toISOString(); // 2018-06-13T12:11:13+05:00
-
-// t.getMonth() // 11

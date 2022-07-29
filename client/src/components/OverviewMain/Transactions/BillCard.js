@@ -28,7 +28,6 @@ function BillCard(props, id) {
   const [isPaid, setIsPaid] = useState(true);
   const [details, setDetails] = useState(false);
   const [showModalTransaction, setShowModalTransaction] = useState(false);
-
   const dispatch = useDispatch();
 
   const handleButtonClick = (e) => {
@@ -143,7 +142,7 @@ const BillDiv = styled.div`
   background: ${({ isPaid }) => isPaid ? "#FFE3E3" : "rgba(0, 0, 0, 0.3)"};
 `;
 
-const DetailsBillDiv = styled.table`
+const DetailsBillDiv = styled.div`
 margin-top: 10px;
 height: 250px;
 box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
