@@ -37,7 +37,11 @@ function TransactionCard(props, id) {
     const dispatch = useDispatch();
 
     const finishSubmit = (data) => {
-        updateTransaction(data);
+        console.log("Here is my data: " + JSON.stringify(data));
+        let type = transaction.type;
+        let paid = transaction.isPaid
+        let updatedTransaction = { ...data, isPaid: paid, type: type }
+        updateTransaction(updatedTransaction);
         onClick();
     };
 
@@ -216,8 +220,7 @@ const CardInput = styled.input`
 font: 700 20px/24px normal Roboto;
 text-align: center;
 border: none;
-background: #FFE3E3;
-background: ${({ isPaid }) => isPaid ? "rgba(0, 0, 0, 0.3)" : "#FFE3E3"};
+background: ${({ isPaid }) => isPaid ? "rgba(0, 0, 0, .001)" : "#FFE3E3"};
 `
 
 const CityStateZip = styled.input`
@@ -226,12 +229,11 @@ text-align: center;
 border: none;
 background: #FFE3E3;
 width: 15%;
-background: ${({ isPaid }) => isPaid ? "rgba(0, 0, 0, 0.3)" : "#FFE3E3"};
+background: ${({ isPaid }) => isPaid ? "rgba(0, 0, 0, .001)" : "#FFE3E3"};
 `
 
 const TransactionCity = styled.div`
     text-align: center;
-    /* background: ${({ isPaid }) => isPaid ? "#FFE3E3" : "rgba(0, 0, 0, 0.3)"}; */
 `
 
 const Button = styled.button`

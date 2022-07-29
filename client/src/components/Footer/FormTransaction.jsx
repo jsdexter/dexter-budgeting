@@ -128,8 +128,8 @@ const FormTransaction = ({ onSubmit: closeModal, transaction = {} }) => {
           <label>Type:</label>
         </Heading>
         <SelectOption defaultValue={transaction.type} {...register("type")}>
-          <option value="bill">Bill</option>
-          <option value="income">Income</option>
+          <option value="Bill">Bill</option>
+          <option value="Income">Income</option>
         </SelectOption>
         <Button type="submit">Save</Button>
       </Form>
