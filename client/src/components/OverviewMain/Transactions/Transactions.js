@@ -7,8 +7,8 @@ import { loadTransactions } from '../../../store/reducers/transactionSlice';
 
 import TransactionHeader from "./TransactionHeader";
 import TransactionCard from "./TransactionCard";
-// import IncomeCard from "./IncomeCard";
-// import BillCard from "./BillCard";
+import IncomeCard from "./IncomeCard";
+import BillCard from "./BillCard";
 import { SERVER_ADDRESS } from "../../../constants";
 
 const Transactions = () => {

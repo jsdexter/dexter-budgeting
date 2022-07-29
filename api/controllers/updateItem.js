@@ -26,8 +26,8 @@ const updateTransaction = async (req, res) => {
 
       await promisePool(`UPDATE transactions.transactionsRecurring SET name="${updated.name}", dueDate="${updated.dueDate}", 
         address="${updated.address}", city="${updated.city}", state="${updated.state}", zip="${updated.zip}",
-        accountNumber="${updated.accountNumber}", amountDue="${updated.amountDue}", month="${updated.month}", type="${req.params.type}"
-        WHERE id="${req.params.id}";`);
+        accountNumber="${updated.accountNumber}", amountDue="${updated.amountDue}", month="${updated.month}", type="${updated.type}", 
+        isPaid="${updated.isPaid}" WHERE id="${req.params.id}";`);
 
       res.status(200).send({ updated });
     }

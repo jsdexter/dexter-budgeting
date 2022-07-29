@@ -31,7 +31,8 @@ const FormTransaction = ({ onSubmit: closeModal, transaction = {} }) => {
   }
 
   const newTransaction = async (item) => {
-    item.dueDate = new Date(item.dueDate).toISOString();
+    // item.dueDate = new Date(item.dueDate).toISOString();
+    item.isPaid = 0;
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
