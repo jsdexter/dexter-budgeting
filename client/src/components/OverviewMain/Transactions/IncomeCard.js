@@ -28,7 +28,6 @@ function IncomeCard(props) {
   const [details, setDetails] = useState(false);
   const [showModalTransaction, setShowModalTransaction] = useState(false);
   const dispatch = useDispatch();
-  const locale = "en-US"
 
   const removeTransaction = async () => {
     await axios.delete(`${SERVER_ADDRESS}/api/transactions/${transaction.id}`)
@@ -125,7 +124,6 @@ const DetailsIncomeDiv = styled.table`
   border-radius: 2px;
   background: #F0FFF0;
   width: 100%;
-  /* background: ${({ color }) => color}; */
   background: ${({ isPaid }) => isPaid ? "#F0FFF0" : "rgba(0, 0, 0, 0.3)"};
 `;
 
@@ -134,7 +132,6 @@ const IncomeDiv = styled.div`
   height: 80px;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
   border-radius: 2px;
-  /* background: ${({ color }) => color}; */
   background: ${({ isPaid }) => isPaid ? "#F0FFF0" : "rgba(0, 0, 0, 0.3)"};
 `;
 

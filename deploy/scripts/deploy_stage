@@ -11,10 +11,3 @@ docker container rm budget-api
 
 docker run --name budget-client -p 3000:3000 -d ghcr.io/jsdexter/dexter-budgeting/client:latest
 docker run --name budget-api -p 3070:3070 -d ghcr.io/jsdexter/dexter-budgeting/api:latest
-
-
-# Homework
-# 1. commit this and make sure in repo done
-# 2. on Rasp pi run shell.js done
-# 3. Set up webhook workflow_run step 4 of tutorial 
-# 4. commit something to make sure script will work. 

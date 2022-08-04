@@ -90,36 +90,3 @@ const NumericInput = styled.input`
 `;
 
 export default LoginText;
-
-// function LoginText() {
-//     const [value, onChange] = useState('');
-//     const digits = useDigitInput({
-//         acceptedCharacters: /^[0-9]$/,
-//         length: 6,
-//         value,
-//         onChange,
-//     });
-
-//     return (
-//         <Container>
-//             <Header>Log in to your account</Header>
-//             <SubHeader>Enter your 6-digit login code</SubHeader>
-//             <PasswordInput>
-//                 <Input1 inputMode="decimal" autoFocus {...digits[0] } />
-//                 <Input1 inputMode="decimal"  {...digits[1] } />
-//                 <Input1 inputMode="decimal"  {...digits[2] } />
-//                 <Input1 inputMode="decimal"  {...digits[3] } />
-//                 <Input1 inputMode="decimal"  {...digits[4] } />
-//                 <Input1 inputMode="decimal"  {...digits[5] } />
-//                 {/* <Input1>1</Input1> */}
-//                 {/* <Input1>1</Input1> */}
-//                 {/* <Input1>1</Input1> */}
-//                 {/* <Input1>1</Input1> */}
-//                 {/* <Input1>1</Input1> */}
-//             </PasswordInput>
-//             <pre>
-//                 <code>{value}</code>
-//             </pre>
-//         </Container>
-//     );
-// }

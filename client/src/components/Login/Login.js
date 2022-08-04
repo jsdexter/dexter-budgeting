@@ -11,7 +11,6 @@ function Login() {
       </TopBar>
       <LoginContainer>
         <LoginText></LoginText>
-        {/* <LoginButton></LoginButton> */}
       </LoginContainer>
     </Background>
   );

@@ -22,7 +22,7 @@ import {
 } from "./Transaction.elements";
 import { ModalTransaction } from "../../Footer/ModalTransaction";
 
-function BillCard(props, id) {
+function BillCard(props) {
   const { transaction } = props;
 
   const [isPaid, setIsPaid] = useState(true);
@@ -41,7 +41,6 @@ function BillCard(props, id) {
   const openModalTransaction = (e) => {
     handleButtonClick(e);
     setShowModalTransaction(true);
-    // changeTransaction();
   };
 
   const onClick = () => {

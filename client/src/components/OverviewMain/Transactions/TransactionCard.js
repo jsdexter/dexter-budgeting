@@ -7,7 +7,6 @@ import { deleteTransaction } from "../../../store/reducers/transactionSlice";
 import { SERVER_ADDRESS } from "../../../constants";
 import { currency, itemDueDate } from "../../../services";
 import { useForm } from "react-hook-form";
-// import { Button, Input } from "../../Footer/Footer.elements";
 
 import {
     Amount,
@@ -15,24 +14,17 @@ import {
     Date as DateView,
     Name,
     DetailsAccount,
-    AccountName,
     InfoDiv,
     DetailsName,
-    DetailsNumber,
-    DetailsDate,
     ButtonDiv,
-    // Button 
 } from "./Transaction.elements";
 
 function TransactionCard(props, id) {
     const { transaction } = props;
     const { register, handleSubmit } = useForm();
-    // const [isPaid, setIsPaid] = useState(transaction.isPaid);
     const [isPaid, setIsPaid] = useState(!!transaction.isPaid);
-    // console.log("Up High Console.log transaction.isPaid: " + transaction.isPaid);
     const [details, setDetails] = useState(false);
     const [error, setError] = useState();
-    // const [showModalTransaction, setShowModalTransaction] = useState(false);
 
     const dispatch = useDispatch();
 
@@ -47,10 +39,6 @@ function TransactionCard(props, id) {
 
     const onClick = () => {
         setDetails(!details);
-    };
-
-    const handleButtonClick = (e) => {
-        e.stopPropagation();
     };
 
     const updateTransaction = async (item) => {
@@ -68,21 +56,10 @@ function TransactionCard(props, id) {
 
             await response.json();
             dispatch(changeTransaction({ ...item, id: transaction.id }));
-            // closeModal();
         } catch (err) {
             setError("Something broke");
         }
     };
-
-    // const closeModalTransaction = (e) => {
-    //     setShowModalTransaction(false);
-    // };
-
-    // const openModalTransaction = (e) => {
-    //     handleButtonClick(e);
-    //     setShowModalTransaction(true);
-    //     // changeTransaction();
-    // };
 
     const onClickPaid = async () => {
         let type = transaction.type;
@@ -97,11 +74,6 @@ function TransactionCard(props, id) {
         updateTransaction(paidTransaction);
     };
 
-    // const displayPaid = localStoredValues.map((item) => {
-    //     // console.log('Where is my item: ' + item);
-    //     return <DetailsBillDiv key={(item)}>(item)</DetailsBillDiv>
-    // })
-
     const removeTransaction = async () => {
         await axios.delete(`${SERVER_ADDRESS}/api/transactions/${transaction.id}`)
             .catch((err) => {
@@ -110,29 +82,19 @@ function TransactionCard(props, id) {
         dispatch(deleteTransaction(transaction));
     };
 
-    const toggleColor = (item) => {
-        setIsPaid(!isPaid);
-
-        // onClickPaid(item);
-    };
-
     if (details) {
         return (
             <div>
                 {
-                    // <DetailsBillDiv isPaid={isPaid} onClick={onClickPaid}>
                     <DetailsBillDiv isPaid={isPaid} >
                         <DetailsAccount>
                             <div>
-                                {/* <AccountName>{transaction.name}</AccountName> */}
                                 <CardInput isPaid={isPaid} defaultValue={transaction.name} {...register("name")} />
                             </div>
                             <div>
-                                {/* <CardInput>{transaction.address}</CardInput> */}
                                 <CardInput isPaid={isPaid} defaultValue={transaction.address} {...register("address")} />
                             </div>
                             <TransactionCity isPaid={isPaid}>
-                                {/* <DetailsAddress>{transaction.city} {transaction.state} {transaction.zip}</DetailsAddress> */}
                                 <CityStateZip isPaid={isPaid} defaultValue={transaction.city} {...register("city")} />
                                 <CityStateZip isPaid={isPaid} defaultValue={transaction.state} {...register("state")} />
                                 <CityStateZip isPaid={isPaid} defaultValue={transaction.zip} {...register("zip")} />
@@ -143,7 +105,6 @@ function TransactionCard(props, id) {
                                 <div>Account #</div>
                             </div>
                             <div>
-                                {/* <DetailsNumber>{transaction.accountNumber}</DetailsNumber> */}
                                 <CardInput isPaid={isPaid} defaultValue={transaction.accountNumber} {...register("accountNumber")} />
                             </div>
                         </InfoDiv>
@@ -152,7 +113,6 @@ function TransactionCard(props, id) {
                                 <div>Amount:</div>
                             </div>
                             <div>
-                                {/* <DetailsNumber>{currency(transaction.amountDue)}</DetailsNumber> */}
                                 <CardInput isPaid={isPaid} defaultValue={transaction.amountDue} {...register("amountDue")} />
                             </div>
                         </InfoDiv>
@@ -161,7 +121,6 @@ function TransactionCard(props, id) {
                                 <DetailsName>Due Date:</DetailsName>
                             </div>
                             <div>
-                                {/* <DetailsDate>{itemDueDate(transaction.dueDate)}</DetailsDate> */}
                                 <CardInput isPaid={isPaid} defaultValue={itemDueDate(transaction.dueDate)} {...register("dueDate")} />
                             </div>
                         </InfoDiv>
@@ -170,7 +129,6 @@ function TransactionCard(props, id) {
                                 <Button onClick={onClickPaid} >Paid</Button>
                             </div>
                             <div>
-                                {/* <Button type="submit">Save</Button> */}
                                 <Button onClick={handleSubmit(finishSubmit)}>Save</Button>
                             </div>
                             <div>
@@ -209,11 +167,6 @@ box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
 border-radius: 2px;
 width: 100%;
 background: ${({ isPaid }) => isPaid ? "rgba(0, 0, 0, 0.3)" : "#FFE3E3"};
-`;
-
-const DetailsAddress = styled.th`
-font: 700 20px/24px normal Roboto;
-margin-top: 10px;
 `;
 
 const CardInput = styled.input`

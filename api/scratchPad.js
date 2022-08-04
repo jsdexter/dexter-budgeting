@@ -328,3 +328,412 @@
   //         res.status(400).send({ ok: false });
   //       }
   // }
+
+  //CreateItem
+  // const createTransaction = (req, res) => {
+//     //TODO: Validation
+//     //TODO: error handling
+
+//     const transaction = createItem('transactionsRecurring', req.body);
+//     if (transaction) {
+//         res.status(200).send(transaction);
+//     } else {
+//         res.status(400).send({ ok: false });
+//     }
+// };
+
+
+// const id = uuidv4();
+// body.id = id;
+
+// collection.push(body);
+// db.patchData({
+//     [key]: collection,
+// });
+
+// return body;
+// }
+
+//DeleteItem
+// const getCollection = (key) => {
+//   const dbData = db.getData();
+//   // const dbData = db.dbDeleteItem();
+//   return dbData[key];
+// }
+
+// function find(collection, id) {
+//   for (let i = 0; i < collection.length; i++) {
+//     if (collection[i].id == id) {
+//       return i;
+//     }
+//   }
+// }
+// const transactionObject = getCollection('transactionsRecurring');
+  // const transactionIndex = find(transactionObject, req.params.id);
+
+  // if (typeof transactionIndex !== 'undefined') {
+  //   db.patchData({ transactionsRecurring: transactionObject })
+  //   res.status(200).send({ ok: true });
+  // } else {
+  //   res.status(400).send({ ok: false });
+  // }
+
+  //ReadItem
+  // const dueDateDisplay = async (req, res) => {
+//   // try {
+//   const allDueDates = await promisePool(`SELECT date_format(dueDate, "%y-%m-%d") AS "Due Date" FROM transactions.transactionsRecurring WHERE id="c81ec259-4ac0-410c-9f61-4f2997eef20e";`);
+//   // const allDueDates = await promisePool(`SELECT DATE(dueDate) AS "Due Date" FROM transactions.transactionsRecurring WHERE id="c81ec259-4ac0-410c-9f61-4f2997eef20e";`);
+//   const value = Object.values(allDueDates[0]);
+
+
+//   // const date = new Date(JSON.stringify(allDueDates));
+//   // const latestDate = date.getDate() + "/" + (date.getMonth() + 1) + "/" + (date.getFullYear());
+//   // const getDate = console.log("This is the new Date::::::::::::::::: " + )
+//   //   const transactionItem = transactionObject[0];
+
+//   //   if (typeof transactionItem !== "undefined") {
+//   //     res.status(200).send(transactionItem);
+//   //   } else {
+//   //     res.status(400).send({ ok: false });
+//   //   }
+//   // } catch (err) {
+//   //   console.log(err);
+//   //   res.status(400).send({ ok: false });
+//   // }
+//   return value;
+// }
+
+//UpdateItem
+// const updateTransactions = (req, res) => {
+//   const transactionObject = getCollection('transactionsRecurring');
+//   const transactionIndex = find(transactionObject, req.params.id);
+
+//   if (typeof transactionIndex !== "undefined") {
+//     transactionObject[transactionIndex] = {
+//       ...transactionObject[transactionIndex],
+//       ...req.body
+//     };
+//     // db.patchData({ transactionsRecurring: transactionObject });
+//     promisePool(`UPDATE transactions.transactionsRecurring SET name="${transactionItem.name}", dueDate="${transactionItem.dueDate}", 
+//     address="${transactionItem.address}", city="${transactionItem.city}", state="${transactionItem.state}", zip="${transactionItem.zip}",
+//     accountNumber="${transactionItem.accountNumber}", amountDue="${transactionItem.amountDue}", month="${transactionItem.month}", type="${transactionItem.type}"
+//     id="${transactionItem.id}" WHERE id="${transactionItem.id}";`);
+//     res.status(200).send({ ok: true });
+//   } else {
+//     res.status(400).send({ ok: false })
+//   }
+// };
+// function find(collection, id) {
+//   for (let i = 0; i < collection.length; i++) {
+//     if (collection[i].id == id) {
+//       return i;
+//     }
+//   }
+// }
+
+// const getCollection = (key) => {
+//   const dbData = db.getData();
+//   return dbData[key];
+// }
+
+//db.js
+// const db = new AbstractJsonHandler('../db.json');
+
+// const dbReadAll = (callback) => {
+//     pool.query(`SELECT * FROM transactions.transactionsRecurring;`, callback);
+// };
+
+// async function dbReadAll() {
+//     return new Promise((resolve, reject) => {
+//         pool.query(`SELECT * FROM transactions.transactionsRecurring;`, (err, result) => {
+//             if (err) {
+//                 reject(err);
+//             } else {
+//                 resolve(result);
+//             }
+//         });
+//     });
+// };
+
+// async function dbReadAll() {
+//     return util.promisify(pool.query.bind(this, `SELECT * FROM transactions.transactionsRecurring;`));
+// };
+
+//server.js
+// function runMigrations() {
+//     const data = dbReadAll;
+//     // if (!data.transactionsRecurring) {
+//     //     db.patchData({ transactionsRecurring: [] });
+//     // }
+// }
+// const mysql = require('mysql2');
+// const { Client } = require('ssh2');
+
+// const sshClient = new Client();
+
+// const dbServer = {
+//     host: process.env.DB_HOST,
+//     port: process.env.DB_PORT,
+//     user: process.env.DB_USERNAME,
+//     password: process.env.DB_PASSWORD,
+//     database: process.env.DB_DATABASE
+// };
+
+// const tunnelConfig = {
+//     // host: process.env.DB_SSH_HOST,
+//     host: '192.168.68.145',
+//     port: 22,
+//     // username: process.env.DB_SSH_USER,
+//     username: 'jasonpi',
+//     // password: process.env.DB_SSH_PASSWORD
+//     password: 'D3xt3r15gr8@23'
+// };
+
+// const forwardConfig = {
+//     srcHost: '127.0.0.1',
+//     srcPort: 3306,
+//     dstHost: dbServer.host,
+//     dstPort: dbServer.port
+// };
+
+// const SSHConnection = new Promise((resolve, reject) => {
+//     sshClient.on('ready', () => {
+//         sshClient.forwardOut(
+//             forwardConfig.srcHost,
+//             forwardConfig.srcPort,
+//             forwardConfig.dstHost,
+//             forwardConfig.dstPort,
+//             (err, stream) => {
+//                 if (err) reject(err);
+//                 const updatedDbServer = {
+//                     ...dbServer,
+//                     stream
+//                 };
+//                 const connection =
+//                     mysql.createConnection(updatedDbServer);
+//                 connection.connect((error) => {
+//                     if (error) {
+//                         reject(error);
+//                     }
+//                     resolve(connection);
+//                 });
+//             });
+//     }).connect(tunnelConfig);
+// });
+
+// const dbMysql = mysql.createConnection({
+//     host: "localhost",
+//     user: "jdexter",
+//     password: "D3xt3r15gr8@23",
+//     database: "transactions"
+// });
+
+// dbMysql.connect((err) => {
+//     if (err) {
+//         throw err;
+//     }
+//     console.log("MySql Connected");
+// });
+
+// const app = express();
+
+// app.get("/createdb", (req, res) => {
+//     let sql = "CREATE Dexter Transactions";
+//     dbMysql.query(sql, (err) => {
+//         if (err) {
+//             throw err;
+//         }
+//         res.send("Database Created");
+//     });
+// });
+
+// app.get("/createtransactions", (req, res) => {
+//     let sql =
+//         "CREATE TABLE transactions(dueDate date, name VARCHAR(25), address VARCHAR(50), city VARCHAR(20), state CHAR(2), zip INT(5), accountNumber VARCHAR(30), amountDue INT(20), month CHAR(12), type CHAR(6))";
+
+//     dbMysql.query(sql, (err) => {
+//         if (err) {
+//             throw err;
+//         }
+//         res.send("Transactions Table Created");
+//     });
+// });
+
+// app.get("/transaction1", (req, res) => {
+//     let post = {
+//         dueDate: "2022/04/05", name: "March 26th transaction", address: "1111 Main St.", city: "AAAAABB", state: "AZ", zip: "32322", accountNumber: "445544",
+//         amountDue: "113.44", month: "Monthly", type: "Bill"
+//     };
+//     let sql = "INSERT INTO transactions SET?";
+//     let query = dbMysql.query(sql, post, (err) => {
+//         if (err) {
+//             throw err;
+//         }
+//         res.send("Transaction 1 added");
+//     });
+// });
+
+// app.listen("3000", () => {
+//     console.log("Server started on port 3000");
+// });
+
+// const connection = mysql.createConnection({
+//     host: "localhost",
+//     user: "jdexter",
+//     password: "D3xt3r15gr8@23",
+//     connectionLimit: 10,
+//     database: "transactions",
+// });
+
+// connection.connect(err => {
+//     if (err) {
+//         throw err;
+//     }
+//     console.log('MySQL Connected');
+//     connection.query(sql, function (err, result) {
+//         if(err) throw err;
+//         console.log("Result: " + result);
+//     });
+// });
+
+//MonthDropdown.js
+  // const months = {}
+  // transactions.forEach((transaction) => {
+  //   const date = new Date(transaction.dueDate);
+  //   const key = new Intl.DateTimeFormat("en-US", monthYear).format(date);
+  //   months[key] = `${date.getMonth()}-${date.getDate()}`;
+  // });
+
+  // { 'March 2021': '03-2021' }
+
+
+  // const months = transactions.map((transaction) => {
+  //   return new Intl.DateTimeFormat("en-US", monthYear).format(
+  //     new Date(transaction.dueDate)
+  //   );
+  // });
+
+  // months = [ March 2021, March 2021, March 2021, April 2021, April 2021 ]
+
+  // function onlyUnique(value, index, self) {
+  //   return self.indexOf(value) === index;
+  // }
+
+  // // usage example:
+  // var a = ["a", 1, "a", 2, "1"];
+  // var unique = a.filter(onlyUnique);
+
+  // console.log(unique); // ['a', 1, 2, '1']
+
+  // // _.unique(months)
+
+
+  // Generate last 12 months
+
+  // let months = [];
+  // let now = Date.now(); // 56465453132154
+
+  // let monthDuration = 1000 * 60 * 60 * 24 * 30.5;
+  // for (let i = 0; i <= 12; i++) {
+  //   // 0, 1, 2, 3, 4, 5 ... 12
+
+  //   const newDate = new Intl.DateTimeFormat("en-US", monthYear).format(new Date(now - (monthDuration * i)));
+  //   months.push(newDate);
+  // }
+
+
+  // _.map(months, (key, val) => {
+
+  // });
+
+  //FormEditBill.js
+  // function FormEditBill() {
+//     return (
+//         <Form>
+//             <Title>Edit Bill</Title>
+//             <Heading>
+//                 <label>Due Date:</label>
+//             </Heading>
+//             <Input type="date" name="dueDate" required></Input>
+//             <Heading>
+//                 <label>Pay To:</label>
+//             </Heading>
+//             <Input type="text" name="payTo" value="City of Naperville Utilities" required />
+//             <Heading>
+//                 <label>Payee Address:</label>
+//             </Heading>
+//             <Input type="text" name="address" required value="123 Main Naperville, IL. 60540" />
+//             <Heading>
+//                 <label>Account #:</label>
+//             </Heading>
+//             <Input type="text" name="account" value="1283921327" />
+//             <Heading>
+//                 <label>Amount:</label>
+//             </Heading>
+//             <Input type="number" name="amount" value="148.00" />
+//             <Heading>
+//                 <label>Recurring:</label>
+//             </Heading>
+//             <SelectOption value="Monthly">
+//                 <option value="Monthly">Monthly</option>
+//                 <option value="BiMonthly">BiMonthly</option>
+//                 <option value="Weekly">Weekly</option>
+//             </SelectOption>
+//             <Button type="submit">Save</Button>
+//         </Form>
+//     );
+// }
+
+//FormEditIncome.js
+// function FormEditIncome() {
+//     return (
+//         <Form>
+//             <Title>Edit Income</Title>
+//             <Heading>
+//                 <label>Name:</label>
+//             </Heading>
+//             <Input type="text" name="name" value="Jason Pay" required />
+//             <Heading>
+//                 <label>Pay Date:</label>
+//             </Heading>
+//             <Input type="date" name="dueDate" required />
+//             <Heading>
+//                 <label>Amount:</label>
+//             </Heading>
+//             <Input type="number" name="amount" value="148.00" />
+//             <Heading>
+//                 <label>Recurring:</label>
+//             </Heading>
+//             <SelectOption value="BiMonthly">
+//                 <option value="Monthly">Monthly</option>
+//                 <option value="BiMonthly">BiMonthly</option>
+//                 <option value="Radish">Weekly</option>
+//             </SelectOption>
+//             <Button type="submit">Save</Button>
+//         </Form>
+//     );
+// }
+
+//ModelEditBill.js
+// export const ModalEditBill = ({ showModal, setShowModal }) => {
+//   return ReactDOM.createPortal(
+//     <div>
+//       {showModal ? (
+//         <ModalBackground>
+//           <ModalWrapper showModal={showModal}>
+//             <CloseModalButton
+//               aria-label="close modal"
+//               onClick={setShowModal}
+//             >
+//               X
+//             </CloseModalButton>
+//             <ModalContent>
+//               <FormTransaction>Testing</FormTransaction>
+//             </ModalContent>
+//           </ModalWrapper>
+//         </ModalBackground>
+//       ) : null}
+//     </div>,
+//     document.getElementById("portal")
+//   );
+// };
