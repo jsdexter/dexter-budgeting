@@ -19,7 +19,7 @@
     "react-intl": "^5.23.0",
     "react-redux": "^7.2.4",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "^1.1.5",
+    "react-scripts": "^5.0.1",
     "styled-components": "^5.2.1",
     "swr": "^0.5.6",
     "validator": "^13.6.0",
@@ -31,7 +31,8 @@
     "format": "prettier --write \"src/**/*.{js,jsx}\"",
     "lint": "eslint \"src/**/*.{js,jsx}\" --quiet",
     "eject": "react-scripts eject",
-    "dev": "parcel client/index.html"
+    "dev": "parcel client/index.html",
+    "preinstall": "npx only-allow pnpm"
   },
   "eslintConfig": {
     "extends": [
