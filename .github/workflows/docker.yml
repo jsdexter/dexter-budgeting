@@ -23,8 +23,8 @@ jobs:
           version: 6.x
           run_install: true
 
-      # - name: CI
-      #   run: pnpm run ci
+      - name: CI
+        run: pnpm run ci
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
