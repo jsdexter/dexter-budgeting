@@ -6,7 +6,7 @@ COPY package*.json ./
 
 RUN ls -l
 
-RUN npm install
+RUN pnpm install
 
 COPY . /client/
 
