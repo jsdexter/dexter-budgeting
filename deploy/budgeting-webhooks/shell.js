@@ -3,6 +3,7 @@ const createHandler = require('github-webhook-handler');
 const shell = require('shelljs');
 
 console.log('This is spartann');
+console.log('ANother log statement for testing');
 // We avoid to hardcode the secret in the code, you should provide it with an ENV variable before running this script
 const { MY_SECRET } = process.env;
 // You might use the same script for multiple repositories, this is only one of them
