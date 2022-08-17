@@ -9,7 +9,7 @@ const { MY_SECRET } = process.env;
 // You might use the same script for multiple repositories, this is only one of them
 const REPO_NAME = 'dexter-budgeting';
 // port is default on 6767
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 6767;
 
 var handler = createHandler({ path: '/', secret: MY_SECRET })
 
