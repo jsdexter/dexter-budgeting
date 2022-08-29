@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import useDigitInput from "react-digit-input";
-import { useHistory } from "react-router";
+import { useHistory } from "react-router-dom";
 
 import styled from "styled-components";
 

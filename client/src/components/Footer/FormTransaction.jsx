@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch  } from "react-redux";
-import { addTransaction, changeTransaction } from "../../store/reducers/transactionSlice";
+import { addTransaction } from "../../store/reducers/transactionSlice";
 import {
   Title,
   Heading,
@@ -11,7 +11,6 @@ import {
 } from "./Footer.elements";
 import { useForm } from "react-hook-form";
 import { SERVER_ADDRESS } from "../../constants";
-import { itemDueDate } from "../../services";
 
 const FormTransaction = ({ onSubmit: closeModal, transaction = {} }) => {
   const dispatch = useDispatch();

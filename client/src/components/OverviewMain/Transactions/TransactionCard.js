@@ -29,10 +29,9 @@ function TransactionCard(props, id) {
     const dispatch = useDispatch();
 
     const finishSubmit = (data) => {
-        console.log("Here is my data: " + JSON.stringify(data));
-        let type = transaction.type;
         let paid = transaction.isPaid
-        let updatedTransaction = { ...data, isPaid: paid, type: type }
+        let updatedTransaction = { ...data, isPaid: paid }
+
         updateTransaction(updatedTransaction);
         onClick();
     };
@@ -62,11 +61,8 @@ function TransactionCard(props, id) {
     };
 
     const onClickPaid = async () => {
-        let type = transaction.type;
-        let paid = (transaction.isPaid == 0) ? 1 : 0;
-        let paidTransaction = { ...transaction, isPaid: paid, type: type }
-        //Fix this below
-        dispatch(...transaction, paidTransaction);
+        let paid = (transaction.isPaid === 0) ? 1 : 0;
+        let paidTransaction = { ...transaction, isPaid: paid }
 
         setIsPaid(!isPaid);
         setDetails(!details);
@@ -79,6 +75,7 @@ function TransactionCard(props, id) {
             .catch((err) => {
                 console.log("Error: ", err)
             });
+        setDetails(!details);
         dispatch(deleteTransaction(transaction));
     };
 
@@ -140,7 +137,6 @@ function TransactionCard(props, id) {
             </div>
         );
     }
-
     return (
         <BillDiv isPaid={isPaid} onClick={onClick}>
             <CardHeader>
@@ -150,7 +146,7 @@ function TransactionCard(props, id) {
             <Name>{transaction.name}</Name>
         </BillDiv>
     );
-}
+};
 
 const BillDiv = styled.div`
   margin-top: 10px;

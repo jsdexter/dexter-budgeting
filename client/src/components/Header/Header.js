@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 
-import ArchiveDropdown from "./ArchiveDropdown";
 import MonthDropdown from "./MonthDropdown";
 
 const Header = () => {
@@ -18,7 +17,7 @@ const Header = () => {
         Back
       </BackButton>
       <MonthDropdown></MonthDropdown>
-      <ArchiveDropdown></ArchiveDropdown>
+      <div></div>
     </TopBar>
   );
 };

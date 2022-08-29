@@ -4,7 +4,6 @@ import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { loadTransactions } from '../../../store/reducers/transactionSlice';
 
-import TransactionHeader from "./TransactionHeader";
 import TransactionCard from "./TransactionCard";
 import { SERVER_ADDRESS } from "../../../constants";
 
@@ -32,12 +31,9 @@ const Transactions = () => {
 
   return (
     <TransactionDiv >
-      <TransactionHeader></TransactionHeader>
       <TransactionList>
         {data.map((transaction, id) => {
-          {
-            return <TransactionCard transaction={transaction} key={id} />
-          }
+          return <TransactionCard transaction={transaction} key={id} />
         })}
       </TransactionList>
     </TransactionDiv>
@@ -49,7 +45,6 @@ const TransactionDiv = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 55px;
 `;
 
 const TransactionList = styled.div`
