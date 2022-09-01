@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+// looks like nothing in this file is being used
 export const MonthHeader = styled.div`
   font-family: Roboto;
   font-style: normal;

@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 
+// what is DetailsHeader vs Header? Just an edit button? DRY
 
 const DetailsHeader = () => {
   const history = useHistory();

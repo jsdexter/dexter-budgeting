@@ -18,10 +18,10 @@ const FormTransaction = ({ onSubmit: closeModal, transaction = {} }) => {
   const { register, handleSubmit } = useForm();
 
   const finishSubmit = (data) => {
-    newTransaction(data);
+    newTransaction(data); // what if we just provided newTransaction where we used finishSubmit?
   }
 
-  const newTransaction = async (item) => {
+  const newTransaction = async (item) => { // this should be abstracted out, we shouldn't mix display and data logic
     item.isPaid = 0;
     const requestOptions = {
       method: 'POST',

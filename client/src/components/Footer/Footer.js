@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import { ModalTransaction } from "./ModalTransaction";
 
+// why is there a modal for a footer?
 function Footer() {
   const [showModalTransaction, setShowModalTransaction] = useState(false);
 

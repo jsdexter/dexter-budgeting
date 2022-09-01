@@ -1,5 +1,8 @@
 import styled from "styled-components";
 
+// consider more tightly coupling this with the usage
+// think of UI as blocks with multiple levels -- lookup atomic design
+
 export const Form = styled.form`
   display: flex;
   flex-direction: column;

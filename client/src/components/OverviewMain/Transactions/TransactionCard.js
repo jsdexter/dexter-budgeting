@@ -1,3 +1,5 @@
+// im not sure if you are running the linter on these, I am seeing quote inconsistency
+
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
@@ -40,7 +42,7 @@ function TransactionCard(props, id) {
         setDetails(!details);
     };
 
-    const updateTransaction = async (item) => {
+    const updateTransaction = async (item) => { // same comment about abstracting the data logic
         const requestOptions = {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
@@ -68,9 +70,11 @@ function TransactionCard(props, id) {
         setDetails(!details);
 
         updateTransaction(paidTransaction);
+        // general thought question - what if the server is down?
     };
 
     const removeTransaction = async () => {
+        // wrap in a try/catch instead of .catch for await, abstract data logic
         await axios.delete(`${SERVER_ADDRESS}/api/transactions/${transaction.id}`)
             .catch((err) => {
                 console.log("Error: ", err)
@@ -80,7 +84,7 @@ function TransactionCard(props, id) {
     };
 
     if (details) {
-        return (
+        return ( // indentation, linter should fix this
             <div>
                 {
                     <DetailsBillDiv isPaid={isPaid} >

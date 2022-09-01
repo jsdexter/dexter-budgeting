@@ -8,7 +8,7 @@ export const transactionSlice = createSlice({
 
     reducers: {
         addTransaction: (state, action) => {
-            state.id = state.id;
+            state.id = state.id; // this is a no op line
             state.transaction.push(action.payload);
         },
         deleteTransaction: (state, action) => {

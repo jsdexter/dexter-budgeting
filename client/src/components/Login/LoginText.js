@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 
 import styled from "styled-components";
 
+// perhaps change the name of this component to be more meaningful
 const LoginText = () => {
   const [value, onChange] = useState("");
   const digits = useDigitInput({
