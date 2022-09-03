@@ -12,11 +12,13 @@ const Transactions = () => {
   const dispatch = useDispatch();
 
   const fetchTransactions = async () => {
+    // if you are using await, you need to do try/catch rather than .catch
     const response = await axios.get(`${SERVER_ADDRESS}/api/transactions`)
       .catch((err) => {
         console.log("Error: ", err)
       });
     dispatch(loadTransactions(response.data));
+    // do we want to load transactions every time someone hits this page? cache?
   };
 
   useEffect(() => {
@@ -24,6 +26,7 @@ const Transactions = () => {
   }, []);
 
   if (data.length === 0) {
+    // will this just show loading for first time users?
     return (
       <div>Loading</div>
     );

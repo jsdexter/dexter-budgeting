@@ -18,6 +18,7 @@ const ButtonContainer = styled.div`
   height: 25%;
 `;
 
+// could we reuse buttons? maybe create a "generic" folder for all the reusables?
 const Button = styled.div`
   font: 600 18px/24px Roboto;
   color: #ffffff;

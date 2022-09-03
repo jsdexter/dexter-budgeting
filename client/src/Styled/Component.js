@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+// looks like these arent being used anywhere
+
 export const AppContainer = styled.div`
   text-align: center;
 `;
