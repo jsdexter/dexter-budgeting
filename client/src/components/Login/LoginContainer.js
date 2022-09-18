@@ -4,8 +4,7 @@ import { useHistory } from "react-router-dom";
 
 import styled from "styled-components";
 
-// perhaps change the name of this component to be more meaningful
-const LoginText = () => {
+const LoginContainer = () => {
   const [value, onChange] = useState("");
   const digits = useDigitInput({
     acceptedCharacters: /^[0-9]$/,
@@ -90,4 +89,4 @@ const NumericInput = styled.input`
   text-align: center;
 `;
 
-export default LoginText;
+export default LoginContainer;

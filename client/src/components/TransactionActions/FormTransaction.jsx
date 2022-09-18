@@ -1,14 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch  } from "react-redux";
 import { addTransaction } from "../../store/reducers/transactionSlice";
-import {
-  Title,
-  Heading,
-  Form,
-  Button,
-  Input,
-  SelectOption,
-} from "./Footer.elements";
+import styled from "styled-components";
+import { Button } from "../../styles";
 import { useForm } from "react-hook-form";
 import { SERVER_ADDRESS } from "../../constants";
 
@@ -101,5 +95,28 @@ const FormTransaction = ({ onSubmit: closeModal, transaction = {} }) => {
     </div>
   );
 }
+
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+`;
+
+const Heading = styled.h4`
+  display: flex;
+  align-self: flex-start;
+`;
+
+const Title = styled.h1``;
+
+const Input = styled.input`
+  width: 80vw;
+`;
+
+const SelectOption = styled.select`
+  width: 80vw;
+`;
 
 export default FormTransaction;

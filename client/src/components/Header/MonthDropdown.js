@@ -1,9 +1,5 @@
 import React, { useState } from "react";
-
-import {
-  Main,
-  Month,
-} from "./Header.elements";
+import styled from "styled-components";
 
 // when we do dropdowns, we usually want to just pass it an array of options, not figuring out how to render it
 // we also would need to worry about duplicates for each item passed
@@ -20,6 +16,16 @@ const MonthDropdown = () => {
       </Month>
     </Main>
   );
-};;
+};
+
+const Main = styled.div`
+`;
+
+const Month = styled.div`
+  font-weight: 500;
+  font-size: 1.3rem;
+  color: #ffffff;
+  text-decoration: none;
+`;
 
 export default MonthDropdown;

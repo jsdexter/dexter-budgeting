@@ -1,9 +1,9 @@
 import React from "react";
 
-import { ModalTransaction } from "./Footer/ModalTransaction";
+import { ModalTransaction } from "./TransactionActions/ModalTransaction";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Main from "./OverviewMain/Main";
-import Login from "./Login/Login";
+import LoginPage from "./Login/LoginPage";
 import { IntlProvider } from "react-intl";
 
 const App = () => {
@@ -12,9 +12,9 @@ const App = () => {
       <Router>
         <div className="App">
           <Switch>
-            <Route path="/login" component={Login} />
+            <Route path="/login" component={LoginPage} />
             <Route path="/main" component={Main} />
-            <Route path="/" component={Login} />
+            <Route path="/" component={LoginPage} />
           </Switch>
         </div>
         <ModalTransaction></ModalTransaction>

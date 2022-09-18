@@ -3,8 +3,7 @@ import styled from "styled-components";
 
 import { ModalTransaction } from "./ModalTransaction";
 
-// why is there a modal for a footer?
-function Footer() {
+function TransactionActionContainer() {
   const [showModalTransaction, setShowModalTransaction] = useState(false);
 
   const openModalTransaction = () => {
@@ -12,19 +11,19 @@ function Footer() {
   };
 
   return (
-    <FooterDiv>
+    <AddTransactionDiv>
       <ButtonContainer>
-        <FooterButton onClick={openModalTransaction}>Add Item</FooterButton>
+        <AddTransactionButton onClick={openModalTransaction}>Add Item</AddTransactionButton>
         <ModalTransaction
           showModal={showModalTransaction}
           setShowModal={setShowModalTransaction}
         ></ModalTransaction>
       </ButtonContainer>
-    </FooterDiv>
+    </AddTransactionDiv>
   );
 }
 
-const FooterDiv = styled.div`
+const AddTransactionDiv = styled.div`
   position: fixed;
   bottom: 0;
   left: 0;
@@ -38,7 +37,7 @@ const ButtonContainer = styled.div`
   justify-content: space-around;
 `;
 
-const FooterButton = styled.div`
+const AddTransactionButton = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -54,4 +53,4 @@ const FooterButton = styled.div`
   text-decoration: none;
 `;
 
-export default Footer;
+export default TransactionActionContainer;

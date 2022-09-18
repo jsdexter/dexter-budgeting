@@ -3,14 +3,14 @@ import React from "react";
 import styled from "styled-components";
 import Header from "../Header/Header";
 import Transactions from "../OverviewMain/Transactions/Transactions";
-import Footer from "../Footer/Footer";
+import TransactionActions from "../TransactionActions/TransactionActionContainer";
 
 function Main() {
   return (
     <Container>
       <Header></Header>
       <Transactions></Transactions>
-      <Footer></Footer>
+      <TransactionActions></TransactionActions>
     </Container>
   );
 }

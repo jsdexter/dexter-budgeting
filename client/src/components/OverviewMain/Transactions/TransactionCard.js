@@ -1,29 +1,29 @@
 // im not sure if you are running the linter on these, I am seeing quote inconsistency
 
-import React, { useState } from "react";
+import React, { Children, useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { changeTransaction } from "../../../store/reducers/transactionSlice";
 import axios from "axios";
 import { deleteTransaction } from "../../../store/reducers/transactionSlice";
 import { SERVER_ADDRESS } from "../../../constants";
+import TransactionInformation from "./TransactionInformation";
+import TransactionAccountContainer from "./TransactionAccountContainer";
 import { currency, itemDueDate } from "../../../services";
-import { useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 
 import {
     Amount,
     CardHeader,
     Date as DateView,
     Name,
-    DetailsAccount,
-    InfoDiv,
-    DetailsName,
     ButtonDiv,
 } from "./Transaction.elements";
 
-function TransactionCard(props, id) {
+function TransactionCard(props) {
     const { transaction } = props;
-    const { register, handleSubmit } = useForm();
+    const methods = useForm();
+    const { register, handleSubmit } = methods;
     const [isPaid, setIsPaid] = useState(!!transaction.isPaid);
     const [details, setDetails] = useState(false);
     const [error, setError] = useState();
@@ -32,7 +32,10 @@ function TransactionCard(props, id) {
 
     const finishSubmit = (data) => {
         let paid = transaction.isPaid
-        let updatedTransaction = { ...data, isPaid: paid }
+        let updatedTransaction = { ...transaction, isPaid: paid }
+        console.log("Here is the transaction: " + JSON.stringify(transaction))
+        console.log("Here is the data: " + JSON.stringify(data));
+        //Need to figure out what "data" is. 
 
         updateTransaction(updatedTransaction);
         onClick();
@@ -54,7 +57,6 @@ function TransactionCard(props, id) {
             if (response.status === 422) {
                 throw new Error();
             }
-
             await response.json();
             dispatch(changeTransaction({ ...item, id: transaction.id }));
         } catch (err) {
@@ -84,61 +86,81 @@ function TransactionCard(props, id) {
     };
 
     if (details) {
-        return ( // indentation, linter should fix this
+        return (
+            // indentation, linter should fix this
             <div>
                 {
-                    <DetailsBillDiv isPaid={isPaid} >
-                        <DetailsAccount>
-                            <div>
-                                <CardInput isPaid={isPaid} defaultValue={transaction.name} {...register("name")} />
-                            </div>
-                            <div>
-                                <CardInput isPaid={isPaid} defaultValue={transaction.address} {...register("address")} />
-                            </div>
-                            <TransactionCity isPaid={isPaid}>
-                                <CityStateZip isPaid={isPaid} defaultValue={transaction.city} {...register("city")} />
-                                <CityStateZip isPaid={isPaid} defaultValue={transaction.state} {...register("state")} />
-                                <CityStateZip isPaid={isPaid} defaultValue={transaction.zip} {...register("zip")} />
-                            </TransactionCity>
-                        </DetailsAccount>
-                        <InfoDiv>
+                    <FormProvider {...methods}>
+                        <DetailsBillDiv isPaid={isPaid}>
+                            <TransactionInformation
+                                transaction={transaction}
+                                isPaid={isPaid}
+                            />
+                            <TransactionAccountContainer
+                                transaction={transaction}
+                                isPaid={isPaid}
+                                defaultValue={transaction.accountNumber}
+                                title="Account #"
+                                register={register("accountNumber")}
+                            />
+                            <TransactionAccountContainer
+                                transaction={transaction}
+                                isPaid={isPaid}
+                                defaultValue={transaction.amountDue}
+                                title="Amount"
+                                register={register("amountDue")}
+                            />
+                            <TransactionAccountContainer
+                                transaction={transaction}
+                                isPaid={isPaid}
+                                accountInfo={transaction.dueDate}
+                                title="Due Date:"
+                                register={register("dueDate")}
+                            />
+                            {/* <InfoDiv>
                             <div>
                                 <div>Account #</div>
                             </div>
                             <div>
+                            // { onClick: value1, onSubmit: value2 }
+                            // <cardinput .... onClick={value1} onSubmit={value2} />
                                 <CardInput isPaid={isPaid} defaultValue={transaction.accountNumber} {...register("accountNumber")} />
                             </div>
-                        </InfoDiv>
-                        <InfoDiv>
+                        </InfoDiv> */}
+                            {/* <InfoDiv>
                             <div>
                                 <div>Amount:</div>
                             </div>
                             <div>
                                 <CardInput isPaid={isPaid} defaultValue={transaction.amountDue} {...register("amountDue")} />
                             </div>
-                        </InfoDiv>
-                        <InfoDiv>
+                        </InfoDiv> */}
+                            {/* <InfoDiv>
                             <div>
                                 <DetailsName>Due Date:</DetailsName>
                             </div>
                             <div>
                                 <CardInput isPaid={isPaid} defaultValue={itemDueDate(transaction.dueDate)} {...register("dueDate")} />
                             </div>
-                        </InfoDiv>
-                        <ButtonDiv>
-                            <div>
-                                <Button onClick={onClickPaid} >Paid</Button>
-                            </div>
-                            <div>
-                                <Button onClick={handleSubmit(finishSubmit)}>Save</Button>
-                            </div>
-                            <div>
-                                <Button onClick={removeTransaction}>Delete</Button>
-                            </div>
-                        </ButtonDiv>
-                    </DetailsBillDiv>
+                        </InfoDiv> */}
+                            <ButtonDiv>
+                                <div>
+                                    <Button onClick={onClickPaid}>Paid</Button>
+                                </div>
+                                <div>
+                                    <Button onClick={methods.handleSubmit(finishSubmit)}>
+                                        Save
+                                    </Button>
+                                </div>
+                                <div>
+                                    <Button onClick={removeTransaction}>Delete</Button>
+                                </div>
+                            </ButtonDiv>
+                        </DetailsBillDiv>
+                    </FormProvider>
                 }
             </div>
+            // </FormProvider>
         );
     }
     return (
@@ -169,24 +191,12 @@ width: 100%;
 background: ${({ isPaid }) => isPaid ? "rgba(0, 0, 0, 0.3)" : "#FFE3E3"};
 `;
 
+//need to figure out what to do with all the inputs. Maybe put them in a higher section of the code
 const CardInput = styled.input`
 font: 700 20px/24px normal Roboto;
 text-align: center;
 border: none;
 background: ${({ isPaid }) => isPaid ? "rgba(0, 0, 0, .001)" : "#FFE3E3"};
-`
-
-const CityStateZip = styled.input`
-font: 700 20px/24px normal Roboto;
-text-align: center;
-border: none;
-background: #FFE3E3;
-width: 15%;
-background: ${({ isPaid }) => isPaid ? "rgba(0, 0, 0, .001)" : "#FFE3E3"};
-`
-
-const TransactionCity = styled.div`
-    text-align: center;
 `
 
 const Button = styled.button`

@@ -42,12 +42,12 @@ export const CardHeader = styled.div`
   justify-content: space-between;
 `;
 
-export const DetailsAccount = styled.div`
-display: flex;
-flex-direction: column;
-justify-content: flex-start;
-align-items: center;
-`;
+// export const DetailsAccount = styled.div`
+// display: flex;
+// flex-direction: column;
+// justify-content: flex-start;
+// align-items: center;
+// `;
 
 export const AccountName = styled.th`
 margin-top: 20px;

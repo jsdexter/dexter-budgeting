@@ -1,17 +1,17 @@
 import React from "react";
 
 import styled from "styled-components";
-import LoginText from "./LoginText";
+import LoginContainer from "./LoginContainer";
 
-function Login() {
+function LoginPage() {
   return (
     <Background>
       <TopBar>
         <HeaderText>Dexter Bank</HeaderText>
       </TopBar>
-      <LoginContainer>
-        <LoginText></LoginText>
-      </LoginContainer>
+      <LoginDiv>
+        <LoginContainer></LoginContainer>
+      </LoginDiv>
     </Background>
   );
 }
@@ -41,7 +41,7 @@ const HeaderText = styled.div`
   font: 600 24px/25px Roboto;
 `;
 
-const LoginContainer = styled.div`
+const LoginDiv = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -55,4 +55,4 @@ const LoginContainer = styled.div`
   margin-top: 15%;
 `;
 
-export default Login;
+export default LoginPage;

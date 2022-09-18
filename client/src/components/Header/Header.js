@@ -23,6 +23,7 @@ const Header = () => {
 };
 
 const BackButton = styled.div`
+  cursor: pointer;
   font-weight: 500;
   font-size: 1.3rem;
   color: #ffffff;
