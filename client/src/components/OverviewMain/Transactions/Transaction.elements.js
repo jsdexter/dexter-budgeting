@@ -50,16 +50,16 @@ export const CardHeader = styled.div`
 // `;
 
 export const AccountName = styled.th`
-margin-top: 20px;
-font: 700 25px/28px normal Roboto;
+  margin-top: 20px;
+  font: 700 25px/28px normal Roboto;
 `;
 
 export const InfoDiv = styled.div`
-display: flex;
-flex-direction: row;
-justify-content: space-between;
-margin: 10px 20px 0px 20px;
-font: 700 20px/24px normal Roboto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 10px 20px 0px 20px;
+  font: 700 20px/24px normal Roboto;
 `;
 
 export const DetailsName = styled.div``;
@@ -89,4 +89,23 @@ export const Button = styled.button`
   color: #ffffff;
   text-decoration: none;
   padding: 2px 30px 2px 30px;
+`;
+
+export const Spinner = styled.div`
+  border: 16px solid green;
+  border-top: 16px lightgreen solid;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  animation: spin 2s linear infinite;
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
 `;

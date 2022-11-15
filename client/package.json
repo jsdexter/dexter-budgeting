@@ -16,7 +16,7 @@
     "express-validator": "^6.12.1",
     "prop-types": "^15.8.1",
     "react": "^17.0.1",
-    "react-digit-input": "2.1.0",
+    "react-digit-input": "^2.1.0",
     "react-dom": "^17.0.1",
     "react-dropdown-select": "^4.7.4",
     "react-hook-form": "^7.10.1",
