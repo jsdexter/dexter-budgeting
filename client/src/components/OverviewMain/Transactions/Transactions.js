@@ -7,8 +7,7 @@ import {
 } from "../../../store/reducers/transactionSlice";
 import TransactionCard from "./TransactionCard";
 import { ModalTransaction } from "../../TransactionActions/ModalTransaction";
-import { Button } from "./Transaction.elements";
-import { Spinner } from "./Transaction.elements";
+import { Button, Spinner } from "./Transaction.elements";
 import { isPending } from "@reduxjs/toolkit";
 
 export const Transactions = () => {
@@ -42,7 +41,6 @@ export const Transactions = () => {
     return <Spinner></Spinner>;
   } else if (fetchTransactions.fulfilled) {
     return (
-      // <Spinner></Spinner>
       <TransactionDiv>
         <TransactionList>
           {transactions.map((transaction, id) => {

@@ -1,5 +1,3 @@
-// im not sure if you are running the linter on these, I am seeing quote inconsistency - done
-
 import React, { Children, useState, useEffect } from "react";
 import styled from "styled-components";
 import { CardInput } from "../../../styles";
@@ -26,7 +24,6 @@ function TransactionCard(props) {
   const { register, handleSubmit } = methods;
   const [isPaid, setIsPaid] = useState(!!transaction.isPaid);
   const [details, setDetails] = useState(false);
-  const [error, setError] = useState();
 
   const dispatch = useDispatch();
 
