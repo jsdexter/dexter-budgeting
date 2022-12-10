@@ -1,13 +1,13 @@
 {
 	"dependencies": {
-		"@remix-run/node": "^1.8.0",
-		"@remix-run/react": "^1.8.0",
-		"@remix-run/serve": "^1.8.0",
-		"react-redux": "^8.0.4",
-		"redux-thunk": "^2.4.1",
-		"reselect": "^4.1.6"
+		"@remix-run/node": "^1.8.2",
+		"@remix-run/react": "^1.8.2",
+		"@remix-run/serve": "^1.8.2",
+		"react-redux": "^8.0.5",
+		"redux-thunk": "^2.4.2",
+		"reselect": "^4.1.7"
 	},
 	"devDependencies": {
-		"@remix-run/dev": "^1.8.0"
+		"@remix-run/dev": "^1.8.2"
 	}
 }
