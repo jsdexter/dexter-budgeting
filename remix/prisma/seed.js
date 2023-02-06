@@ -1,52 +1,66 @@
-import { PrismaClient } from "@prisma/client";
-import bcrypt from "bcryptjs";
-
-const prisma = new PrismaClient();
+const {PrismaClient} = require('@prisma/client');
+const db = new PrismaClient();
 
 async function seed() {
-  const email = "rachel@remix.run";
-
-  // cleanup the existing database
-  await prisma.user.delete({ where: { email } }).catch(() => {
-    // no worries if it doesn't exist yet
-  });
-  const hashedPassword = await bcrypt.hash("racheliscool", 10);
-
-  const user = await prisma.user.create({
-    data: {
-      email,
-      password: {
-        create: {
-          hash: hashedPassword,
-        },
-      },
-    },
-  });
-
-  await prisma.note.create({
-    data: {
-      title: "My first note",
-      body: "Hello, world!",
-      userId: user.id,
-    },
-  });
-
-  await prisma.note.create({
-    data: {
-      title: "My second note",
-      body: "Hello, world!",
-      userId: user.id,
-    },
-  });
-
-  console.log(`Database has been seeded. 🌱`);
+  await Promise.all(
+    getTransactions().map(transaction => {
+      return db.transaction.create({ data: transaction })
+    })
+  )
 }
 
-seed()
-  .catch((e) => {
-    console.error(e);
-    process.exit(1);
-  })
-  .finally(async () => {
-    await prisma.$disconnect();
-  });
+seed();
+
+function getTransactions() {
+  return [
+    {
+      "name": "First Bill",
+      "address": "123 Main St.",
+      "city": "Santa Monica",
+      "state": "CA",
+      "zip": 58745,
+      "accountNumber": "1321654546",
+      "amountDue": 123.56,
+      "month": "monthly",
+      "type": "Bill",
+      "isPaid": false,
+    },    
+    {
+      "name": "Second Bill",
+      "address": "123 Main St.",
+      "city": "Santa Clara",
+      "state": "CA",
+      "zip": 58745,
+      "accountNumber": "1321654546",
+      "amountDue": 123.56,
+      "month": "monthly",
+      "type": "Bill",
+      "isPaid": false,
+    },
+    {
+      "name": "Third Bill",
+      "address": "123 Main St.",
+      "city": "Santa Clara",
+      "state": "CA",
+      "zip": 58745,
+      "accountNumber": "1321654546",
+      "amountDue": 123.56,
+      "month": "monthly",
+      "type": "Bill",
+      "isPaid": false,
+    },
+  ]
+}
+
+// id              String    @id @default(uuid())
+//   name            String    
+//   dueDate         DateTime
+//   address         String
+//   city            String
+//   state           String
+//   zip             Int
+//   accountNumber   String
+//   amountDue       Int
+//   month           String
+//   type            String
+//   isPaid          Boolean @default(false)

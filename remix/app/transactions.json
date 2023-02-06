@@ -1,0 +1,35 @@
+ [
+  {
+    "id": "0",
+    "name": "First Bill",
+    "amount": 123.56,
+    "date": "1/15/23",
+    "addressStreet": "123 Main St.",
+    "city": "Santa Monica",
+    "state": "CA",
+    "zip": "58745",
+    "accountNumber": "1321654546"
+  },
+  {
+    "id": "1",
+    "name": "Second Bill",
+    "amount": 123.56,
+    "date": "1/15/23",
+    "addressStreet": "123 Main St.",
+    "city": "Santa Monica",
+    "state": "CA",
+    "zip": "58745",
+    "accountNumber": "1321654546"
+  },
+  {
+    "id": "2",
+    "name": "Third Bill",
+    "amount": 123.56,
+    "date": "1/15/23",
+    "addressStreet": "123 Main St.",
+    "city": "Santa Monica",
+    "state": "CA",
+    "zip": "58745",
+    "accountNumber": "1321654546"
+  }
+]
