@@ -8,13 +8,12 @@ export async function loader() {
   const transactions = {
     transactions: await prisma.transaction.findMany({})
   };
-  console.log("Index Trans: " + JSON.stringify(transactions))
+
   return transactions;
 };
 
 function Transactions() {
   const { transactions } = useLoaderData();
-  console.log("Here are my transactions: " + JSON.stringify(transactions))
 
   return (
     <div>

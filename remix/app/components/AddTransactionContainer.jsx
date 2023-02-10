@@ -1,23 +1,4 @@
 import { Form } from "@remix-run/react";
-import { redirect } from "@remix-run/server-runtime";
-
-export const action = async({ request }) => {
-  const formData = await request.formData();
-
-  const name = formData.get("name");
-  const accountNumber = formData.get("accountNumber");
-  const address = formData.get("address");
-  const city = formData.get("city");
-  const state = formData.get("state");
-  const zip = formData.get("zip");
-  const amount = formData.get("amountDue");
-  const date = formData.get("dueDate");
-  const transType = formData.get("transType");
-
-  //once prisma is hooked up, add the rest (import createTransaction from post.server.ts)
-  //await createTransaction({name, accountNumber, address, city, state, zip, amount, date, transType});
-  // return redirect("/transactions");
-}
 
 function AddTransactionContainer() {
 
@@ -52,16 +33,16 @@ function AddTransactionContainer() {
           </div>
           <div className="flex flex-row mb-6 justify-center mx-2">
             <div className="flex flex-col w-1/3 mx-2">
-              <label htmlFor="amount" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">Amount</label>
-              <input type="amount" id="amount" name="amount" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+              <label htmlFor="amountDue" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">Amount</label>
+              <input type="amountDue" id="amountDue" name="amountDue" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
             </div>
             <div className="flex flex-col w-1/3 mx-2">
-              <label htmlFor="date" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">Due Date</label>
-              <input type="date" id="date" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+              <label htmlFor="dueDate" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">Due Date</label>
+              <input type="date" id="date" name="dueDate" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
             </div>
             <div className="flex flex-col w-1/3 mx-2">
-              <label htmlFor="transType" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">Transaction Type</label>
-              <select id="transType" name="transType" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+              <label htmlFor="type" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">Transaction Type</label>
+              <select id="type" name="type" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 <option>Bill</option>
                 <option>Income</option>
               </select>

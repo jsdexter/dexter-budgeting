@@ -1,15 +1,8 @@
-import { redirect } from "@remix-run/server-runtime";
-import { useState } from "react";
-import { json } from "@remix-run/node";
-import { Link, useLoaderData, useNavigate } from "@remix-run/react";
-import { useEffect } from "react";
-
-// export async function loader() {
-//   const transactions = await getTransactions() 
-//     return json({ transactions });
-// }
+import { Link } from "@remix-run/react";
+import {format} from "date-fns"
 
 export const TransactionContainer = ({transactions}) => {
+  const itemDueDate = (transactionDate) => format(new Date(transactionDate), 'yyyy-MM-dd');
   
   const handleClick = (id) => {
     console.log(`Transaction ID: ${id}`)
@@ -32,7 +25,7 @@ export const TransactionContainer = ({transactions}) => {
               Amount: ${transaction.amountDue}
             </h5>
             <h5 className="mb-2 text-right tracking-tight text-gray-900 dark:text-white">
-              Due Date: {transaction.dueDate}
+              Due Date: {itemDueDate(transaction.dueDate)}
             </h5>
           </div>
         </div>

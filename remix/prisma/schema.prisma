@@ -13,14 +13,14 @@ datasource db {
 model Transaction {
   id              String    @id @default(uuid())
   name            String    
-  dueDate         DateTime @default(now())   
+  dueDate         DateTime 
   address         String
   city            String
   state           String
-  zip             Int
+  zip             String
   accountNumber   String
   amountDue       Float
-  month           String
+  month           String    @default("monthly")
   type            String
   isPaid          Boolean @default(false)
 }

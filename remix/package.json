@@ -3,7 +3,7 @@
   "private": true,
   "sideEffects": false,
   "prisma": {
-    "seed": "node prisma/seed"
+    "seed": "node --require tsconfig-paths/register prisma/seed.js"
   },
   "scripts": {
     "build": "run-s build:*",
@@ -38,6 +38,7 @@
     "@remix-run/serve": "^1.8.2",
     "@remix-run/server-runtime": "^1.8.2",
     "bcryptjs": "^2.4.3",
+    "date-fns": "^2.29.3",
     "flowbite": "^1.6.0",
     "isbot": "^3.6.3",
     "react": "^18.2.0",
@@ -84,8 +85,5 @@
   },
   "engines": {
     "node": ">=14"
-  },
-  "prisma": {
-    "seed": "node --require tsconfig-paths/register prisma/seed.js"
   }
 }

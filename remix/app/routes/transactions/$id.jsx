@@ -2,23 +2,28 @@ import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import Header from "~/components/Header";
 import { EditTransactionContainer } from "~/components/EditTransactionContainer";
-const transactions = require("../../transactions.json");
+import { prisma } from "~/db.server";
 
 export async function loader({params}) {
+  const transaction = await prisma.transaction.findUnique({
+    where: { id: params.id}
+  });
 
-  return json(transactions[params.id]);
+  if(!transaction) throw new Error("Transaction not found")
+
+  const data = {transaction};
+  return data
 } 
 
 function EditTransaction() {
-  const loaderData = useLoaderData();
-  console.log(loaderData);
+  const {transaction} = useLoaderData();
 
   return (
     <div className="mt-24">
       <Header />
       {/* <Transactions transactions={loaderData} /> */}
       {/* <Outlet />  */}
-      <EditTransactionContainer transaction={loaderData} /> 
+      <EditTransactionContainer transaction={transaction} /> 
     </div>
   );
 }
