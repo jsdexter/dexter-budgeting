@@ -1,6 +1,6 @@
 import Footer from "~/components/Footer";
 import { TransactionContainer } from "~/components/TransactionContainer";
-import { useLoaderData, Outlet } from "@remix-run/react";
+import { useLoaderData, Outlet, LiveReload } from "@remix-run/react";
 import Header from "~/components/Header";
 import { prisma } from "~/db.server";
 
@@ -20,6 +20,7 @@ function Transactions() {
       <Header />
       <TransactionContainer transactions={transactions} />
       <Outlet />
+      <LiveReload /> 
       <Footer />
     </div>
   );
