@@ -50,7 +50,7 @@ export async function loader({ request, params }) {
   if(!transaction) throw new Error("Transaction not found")
 
   const data = {transaction};
-  return data
+  return data;
 } 
 
 
@@ -61,7 +61,7 @@ function EditTransaction() {
   return (
     <div className="mt-24">
       <Header />
-      <EditTransactionContainer transaction={transaction} data={action}/> 
+      <EditTransactionContainer transaction={transaction} data={action} /> 
     </div>
   );
 }
