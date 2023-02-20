@@ -34,7 +34,19 @@ export async function action({ request, params }) {
     return redirect("/transactions");
   }
 
-  console.log("Here's my transaction: " + transaction)
+  if (intent === "paid") {
+    const isPaid = transaction.isPaid;
+    
+    await prisma.transaction.update({ 
+      where: { 
+        id: params.id,
+      },
+      data: {
+        isPaid: !isPaid,
+      },
+     })
+     return redirect("/transactions");
+  }
 
   if(!transaction) throw new Error("Transaction not found")
 
@@ -42,7 +54,7 @@ export async function action({ request, params }) {
   return data
 } 
 
-export async function loader({ request, params }) {
+export async function loader({ params }) {
     const transaction = await prisma.transaction.findUnique({
     where: { id: params.id}
   });
