@@ -20,7 +20,8 @@ model Transaction {
   zip             String
   accountNumber   String
   amountDue       Float
-  month           String    @default("monthly")
+  frequency       String    @default("monthly")
   type            String
   isPaid          Boolean @default(false)
+  isDeleted       Boolean @default(false)
 }

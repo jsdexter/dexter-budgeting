@@ -25,7 +25,16 @@ export async function action({ request, params }) {
   });
 
   if (intent === "delete") {
-    await prisma.transaction.delete({ where: { id: params.id } })
+    const isDeleted = transaction.isDeleted;
+
+    await prisma.transaction.update({ 
+      where: { 
+        id: params.id,
+      },
+      data: { 
+        isDeleted: !isDeleted,
+      }
+    })
     return redirect("/transactions");
   }
 

@@ -6,7 +6,11 @@ import { prisma } from "~/db.server";
 
 export async function loader() {
   const transactions = {
-    transactions: await prisma.transaction.findMany({})
+    transactions: await prisma.transaction.findMany({
+      where: {
+        isDeleted: false
+      }
+    })
   };
 
   return transactions;
