@@ -5,15 +5,11 @@ import Header from "~/components/Header";
 import { prisma } from "~/db.server";
 
 export async function loader() {
-  const transactions = {
-    transactions: await prisma.transaction.findMany({
-      where: {
-        isDeleted: false
-      }
-    })
+  const recurring = {
+    transactions: await prisma.recurring.findMany({})
   };
 
-  return transactions;
+  return recurring;
 };
 
 function Transactions() {

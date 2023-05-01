@@ -17,29 +17,49 @@ export async function action({ request, params }) {
   const amountDue = parseFloat(formData.get("amountDue"));
   const dueDate = new Date(formData.get("dueDate"));
   const type = formData.get("type");
-
-  const billFields = { name, accountNumber, address, city, state, zip, amountDue, dueDate, type };
+  const frequency = formData.get("frequency".toLowerCase());
 
   const transaction = await prisma.transaction.findUnique({
-    where: { id: params.id}
+    where: { transactionId: params.id}
   });
 
-  if (intent === "delete") {
-    const isDeleted = transaction.isDeleted;
+  const recurringId = transaction.recurringId;
 
+  const billFields = { name, accountNumber, address, city, state, zip, amountDue, dueDate, type, frequency, recurringId, };
+  const recurringFields = { name, dueDate, frequency, }
+
+  if(!transaction) throw new Error("Transaction not found");
+
+  if (intent === "delete") {
     await prisma.transaction.update({ 
       where: { 
-        id: params.id,
+        transactionId: params.id,
       },
-      data: { 
-        isDeleted: !isDeleted,
+      data: {
+        isDeleted: true,
+        recurringId: null,
+      },
+    });
+    await prisma.recurring.delete({
+      where: {
+        id: recurringId
       }
-    })
+    });
     return redirect("/transactions");
   }
 
   if (intent === "update") {
-    await prisma.transaction.update({ data: billFields, where: { id: params.id } })
+    await prisma.transaction.update({ 
+      data: billFields, 
+      where: { 
+        transactionId: params.id,
+       } })
+    await prisma.recurring.update({
+      data: recurringFields,
+      where: {
+        id: recurringId
+      }
+    })
     return redirect("/transactions");
   }
 
@@ -63,9 +83,14 @@ export async function action({ request, params }) {
   return data
 } 
 
+// export async function loader({ params }) {
+//   const transaction = await prisma.recurring.findUnique({
+//     where: { id: params.id}
+//   });
+
 export async function loader({ params }) {
-    const transaction = await prisma.transaction.findUnique({
-    where: { id: params.id}
+  const transaction = await prisma.transaction.findUnique({
+    where: { transactionId: params.id}
   });
 
   if(!transaction) throw new Error("Transaction not found")

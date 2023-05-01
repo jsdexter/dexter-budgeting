@@ -1,4 +1,5 @@
 import { Link } from "@remix-run/react";
+import { monthlyCron } from "cron/node";
 import {format} from "date-fns"
 
 export const TransactionContainer = ({transactions}) => {
@@ -8,6 +9,8 @@ export const TransactionContainer = ({transactions}) => {
     "income": "flex flex-col max-w-screen-2xl mx-2 py-3 px-6 bg-white border border-cyan-200 rounded-lg shadow-md hover:bg-cyan-100 dark:bg-cyan-900 dark:border-cyan-700 dark:hover:bg-cyan-700",
     "isPaid": "flex flex-col max-w-screen-2xl mx-2 py-3 px-6 bg-white border border-gray-200 rounded-lg shadow-md hover:bg-gray-100 dark:bg-slate-400 dark:border-slate-400 dark:hover:bg-gray-700",
   }
+
+  // monthlyCron.start()
 
   const transactionBackground = (transaction) => {
     if (transaction.isPaid === true) {
@@ -23,6 +26,7 @@ export const TransactionContainer = ({transactions}) => {
   }
   
   return transactions.map((transaction) => {
+    console.log("Here is the transactionContainer transaction: " + JSON.stringify(transaction.id))
     return (
       <Link to={`/transactions/${transaction.id}`}
        key={transaction.id}

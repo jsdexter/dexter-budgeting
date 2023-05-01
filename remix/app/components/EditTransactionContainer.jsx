@@ -5,6 +5,7 @@ import { Form } from '@remix-run/react';
 export const EditTransactionContainer = ({transaction}) => {
 
   return (
+    // <div key={transaction.id}>
     <div key={transaction.id}>
     <div>
       <Form method="post">
@@ -35,21 +36,28 @@ export const EditTransactionContainer = ({transaction}) => {
           </div>
         </div>
         <div className="flex flex-row mb-6 justify-center mx-2">
-          <div className="flex flex-col w-1/3 mx-2">
+          <div className="flex flex-col w-1/4 mx-2">
             <label htmlFor="amountDue" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">Amount</label>
             <input type="amountDue" id="amountDue" defaultValue={transaction.amountDue} name="amountDue" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
           </div>
-          <div className="flex flex-col w-1/3 mx-2">
+          <div className="flex flex-col w-1/4 mx-2">
             <label htmlFor="dueDate" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">Due Date</label>
             <input type="dueDate" id="dueDate" name="dueDate" defaultValue={format(new Date(transaction.dueDate), 'yyyy-MM-dd')} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
           </div>
-          <div className="flex flex-col w-1/3 mx-2">
+          <div className="flex flex-col w-1/4 mx-2">
             <label htmlFor="type" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">Type</label>
             <select type="type" id="type" name="type" defaultValue={transaction.type} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
               <option>Bill</option>
               <option>Income</option>
             </select>
           </div>
+          <div className="flex flex-col w-1/4 mx-2">
+              <label htmlFor="frequency" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">Frequency</label>
+              <select type="frequency" id="frequency" name="frequency" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <option>Monthly</option>
+                <option>Weekly</option>
+              </select>
+            </div>
         </div>
         <div className="flex flex-row justify-center">
           <button type="submit" name="intent" value="update" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 mx-5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Save</button>

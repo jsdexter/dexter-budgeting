@@ -11,7 +11,7 @@ datasource db {
 }
 
 model Transaction {
-  id              String    @id @default(uuid())
+  transactionId              String    @id @default(uuid())
   name            String    
   dueDate         DateTime 
   address         String
@@ -20,8 +20,19 @@ model Transaction {
   zip             String
   accountNumber   String
   amountDue       Float
-  frequency       String    @default("monthly")
+  frequency       String
   type            String
   isPaid          Boolean @default(false)
   isDeleted       Boolean @default(false)
+  recurring       Recurring? @relation(fields: [recurringId], references: [id])
+  recurringId     String?
+}
+
+model Recurring {
+  id           String @id @default(uuid())
+  name         String 
+  dueDate      DateTime
+  frequency    String
+  updatedAt    DateTime @updatedAt
+  transactions Transaction[]
 }
