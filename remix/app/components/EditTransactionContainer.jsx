@@ -6,7 +6,7 @@ export const EditTransactionContainer = ({transaction}) => {
 
   return (
     // <div key={transaction.id}>
-    <div key={transaction.id}>
+    <div key={transaction.transactionId}>
     <div>
       <Form method="post">
         <div className="mb-6 mx-2">

@@ -90,7 +90,7 @@ export async function action({ request, params }) {
 
 export async function loader({ params }) {
   const transaction = await prisma.transaction.findUnique({
-    where: { transactionId: params.id}
+    where: { transactionId: params.id},
   });
 
   if(!transaction) throw new Error("Transaction not found")

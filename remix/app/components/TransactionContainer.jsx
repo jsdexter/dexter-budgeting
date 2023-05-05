@@ -22,14 +22,13 @@ export const TransactionContainer = ({transactions}) => {
   }
   
   const handleClick = (id) => {
-    console.log(`Transaction ID: ${id}`)
+    // console.log(`Transaction ID: ${transactionId}`)
   }
   
   return transactions.map((transaction) => {
-    console.log("Here is the transactionContainer transaction: " + JSON.stringify(transaction.id))
     return (
-      <Link to={`/transactions/${transaction.id}`}
-       key={transaction.id}
+      <Link to={`/transactions/${transaction.transactionId}`}
+       key={transaction.transactionId}
        className={transactionBackground(transaction)}>
         <div className="flex flex-row justify-between">
           <div className="flex flex-col">

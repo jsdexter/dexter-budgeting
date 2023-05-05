@@ -11,7 +11,7 @@ datasource db {
 }
 
 model Transaction {
-  transactionId              String    @id @default(uuid())
+  transactionId   String    @id @default(uuid())
   name            String    
   dueDate         DateTime 
   address         String
