@@ -68,7 +68,7 @@ export async function action({ request, params }) {
     
     await prisma.transaction.update({ 
       where: { 
-        id: params.id,
+        transactionId: params.id,
       },
       data: {
         isPaid: !isPaid,
