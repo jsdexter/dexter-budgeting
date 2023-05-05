@@ -6,7 +6,9 @@ import { prisma } from "~/db.server";
 
 export async function loader() {
   const recurring = {
-    transactions: await prisma.transaction.findMany({})
+    transactions: await prisma.transaction.findMany({
+      where: { isDeleted: false }
+    })
   };
 
   return recurring;
