@@ -19,20 +19,19 @@ export const action = async ({request}) => {
   const type = formData.get("type");
   const frequency = formData.get("frequency".toLowerCase());
 
+  const billFields = { name, accountNumber, address, city, state, zip, amountDue, dueDate, type, frequency, };
+
   const newRecurring = await prisma.recurring.create({
-    data: {
-      name,
-      dueDate,
-      frequency,
-    }
+    data: billFields,
   });
+
   const recurringId = newRecurring.id;
 
-  const billFields = { name, accountNumber, address, city, state, zip, amountDue, dueDate, type, frequency, recurringId, };
+  const recurringFields = { name, accountNumber, address, city, state, zip, amountDue, dueDate, type, frequency, recurringId};
 
   await prisma.transaction.create({
-    data: billFields,
-});
+    data: recurringFields,
+  });
 
   return redirect(`/transactions`);
 }

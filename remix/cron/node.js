@@ -22,7 +22,7 @@ export const monthlyCron = nodeCron.schedule("* * * * * *", async () => {
       },
     });
 
-    console.log("The recurringTransactions: " + recurringTransactions)
+    
 
     recurringTransactions.forEach(async (recurring) => {
       const lastMonthlyTransaction = recurring.transactions

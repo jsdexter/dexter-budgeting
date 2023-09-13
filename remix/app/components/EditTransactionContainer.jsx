@@ -5,8 +5,7 @@ import { Form } from '@remix-run/react';
 export const EditTransactionContainer = ({transaction}) => {
 
   return (
-    // <div key={transaction.id}>
-    <div key={transaction.transactionId}>
+    <div key={transaction.id}>
     <div>
       <Form method="post">
         <div className="mb-6 mx-2">

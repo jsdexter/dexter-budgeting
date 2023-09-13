@@ -2,7 +2,7 @@ import { Link } from "@remix-run/react";
 import { monthlyCron } from "cron/node";
 import {format} from "date-fns"
 
-export const TransactionContainer = ({transactions}) => {
+export const TransactionContainer = ({transactions, shouldLinkToTransaction}) => {
   const itemDueDate = (transactionDate) => format(new Date(transactionDate), 'yyyy-MM-dd');
   const transactionColor = {
     "bill": "flex flex-col max-w-screen-2xl mx-2 py-3 px-6 bg-white border border-gray-200 rounded-lg shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700",
@@ -26,9 +26,11 @@ export const TransactionContainer = ({transactions}) => {
   }
   
   return transactions.map((transaction) => {
+    const typeOfRoute = shouldLinkToTransaction ? "transactions" : "transactions/settings";
+    
     return (
-      <Link to={`/transactions/${transaction.transactionId}`}
-       key={transaction.transactionId}
+      <Link to={`/${typeOfRoute}/${transaction.id}`}
+       key={transaction.id}
        className={transactionBackground(transaction)}>
         <div className="flex flex-row justify-between">
           <div className="flex flex-col">

@@ -19,28 +19,16 @@ export async function action({ request, params }) {
   const type = formData.get("type");
   const frequency = formData.get("frequency".toLowerCase());
 
-  const transaction = await prisma.transaction.findUnique({
-    where: { id: params.id }
+  const transaction = await prisma.recurring.findUnique({
+    where: { id: params.id}
   });
 
-  const recurringId = transaction.recurringId;
-
-  const billFields = { name, accountNumber, address, city, state, zip, amountDue, dueDate, type, frequency, recurringId, };
-  // const recurringFields = { name, dueDate, frequency, }
+  const billFields = { name, accountNumber, address, city, state, zip, amountDue, dueDate, type, frequency, };
 
   if(!transaction) throw new Error("Transaction not found");
 
   if (intent === "delete") {
-    // await prisma.transaction.update({ 
-    //   where: { 
-    //     transactionId: params.id,
-    //   },
-    //   data: {
-    //     isDeleted: true,
-    //     recurringId: null,
-    //   },
-    // });
-    await prisma.transaction.delete({
+    await prisma.recurring.delete({
       where: {
         id: params.id,
       }
@@ -49,24 +37,19 @@ export async function action({ request, params }) {
   }
 
   if (intent === "update") {
-    await prisma.transaction.update({ 
+    await prisma.recurring.update({ 
       data: billFields, 
       where: { 
         id: params.id,
        } })
-    // await prisma.recurring.update({
-    //   data: recurringFields,
-    //   where: {
-    //     id: recurringId
-    //   }
-    // })
-    return redirect("/transactions");
+    
+    return redirect("/transactions/settings/");
   }
 
   if (intent === "paid") {
     const isPaid = transaction.isPaid;
     
-    await prisma.transaction.update({ 
+    await prisma.recurring.update({ 
       where: { 
         id: params.id,
       },
@@ -74,7 +57,7 @@ export async function action({ request, params }) {
         isPaid: !isPaid,
       },
      })
-     return redirect("/transactions");
+     return redirect("/transactions/settings");
   }
 
   if(!transaction) throw new Error("Transaction not found")
@@ -83,13 +66,9 @@ export async function action({ request, params }) {
   return data
 } 
 
-// export async function loader({ params }) {
-//   const transaction = await prisma.recurring.findUnique({
-//     where: { id: params.id}
-//   });
-
 export async function loader({ params }) {
-  const transaction = await prisma.transaction.findUnique({
+  const transaction = await prisma.recurring.findUnique({
+
     where: { id: params.id},
   });
 

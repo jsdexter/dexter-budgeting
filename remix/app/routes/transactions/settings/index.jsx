@@ -4,10 +4,10 @@ import { useLoaderData, Outlet, LiveReload } from "@remix-run/react";
 import Header from "~/components/Header";
 import { prisma } from "~/db.server";
 
-export async function loader() {
+export async function loader(params) {
   const transaction = {
-    transactions: await prisma.transaction.findMany({
-      where: { isDeleted: false }
+    transactions: await prisma.recurring.findMany({
+      where: { id: params.id }
     })
   };
 
@@ -21,14 +21,13 @@ export async function loader() {
   return transaction;
 };
 
-function Transactions() {
+function Settings() {
   const { transactions } = useLoaderData();
-  console.log("All my transactions + recurring: " + JSON.stringify(transactions));
 
   return (
     <div>
       <Header />
-      <TransactionContainer shouldLinkToTransaction={true} transactions={transactions} />
+      <TransactionContainer shouldLinkToTransaction={false} transactions={transactions} />
       <Outlet />
       <LiveReload /> 
       <Footer />
@@ -36,4 +35,4 @@ function Transactions() {
   );
 }
 
-export default Transactions;
+export default Settings;
