@@ -1,6 +1,5 @@
 import { json } from "@remix-run/node";
 import {
-  Link,
   Links,
   LiveReload,
   Meta,
@@ -8,15 +7,10 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
-import Header from "./components/Header";
-import Main from "./routes/transactions";
+import { getUser } from "~/session.server";
+import tailwindStyles from "./styles/tailwind.css";
 
-import tailwindStylesheetUrl from "./styles/tailwind.css";
-import { getUser } from "./session.server";
-
-export const links = () => {
-  return [{ rel: "stylesheet", href: tailwindStylesheetUrl }];
-};
+export const links = () => [{ rel: "stylesheet", href: tailwindStyles }];
 
 export const meta = () => ({
   charset: "utf-8",
@@ -25,35 +19,22 @@ export const meta = () => ({
 });
 
 export async function loader({ request }) {
-  return json({
-    user: await getUser(request),
-  });
+  return json({ user: await getUser(request) });
 }
 
 export default function App() {
   return (
-    <Document>
+    <html lang="en" className="h-full bg-gray-950">
+      <head>
+        <Meta />
+        <Links />
+      </head>
+      <body className="h-full text-gray-100">
         <Outlet />
-    </Document>
-  )
-}
-
-function Document ({ children, title }) {
-  return (
-    <html lang="en" className="h-full dark">
-    <head>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.3/flowbite.min.css" rel="stylesheet" />
-      <Meta />
-      <Links />
-    </head>
-    <body className="h-full">
-      {children}
-      {process.env.NODE_ENV === "development" ? <LiveReload /> : null}
-      <ScrollRestoration />
-      <Scripts />
-      {/* <script src="remix/node_modules/flowbite/dist/flowbite.min.js"></script> */}
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.3/flowbite.min.js"></script>
-    </body>
-  </html>
-  )
+        <ScrollRestoration />
+        <Scripts />
+        {process.env.NODE_ENV === "development" && <LiveReload />}
+      </body>
+    </html>
+  );
 }

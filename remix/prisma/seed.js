@@ -1,89 +1,46 @@
 const { PrismaClient } = require("@prisma/client");
+const bcrypt = require("bcryptjs");
+
 const db = new PrismaClient();
 
 async function seed() {
-  // Create a recurring transaction
-  const recurring = await db.recurring.create({
-    data: {
-      name: "Monthly Bills",
-      dueDate: new Date("2023-04-01"),
-      frequency: "Monthly",
-      updatedAt: new Date(),
-    },
+  const email = "demo@example.com";
+  const passwordHash = await bcrypt.hash("password123", 10);
+
+  const user = await db.user.upsert({
+    where: { email },
+    update: {},
+    create: { email, passwordHash },
   });
 
-  // Create transactions linked to the recurring transaction
-  await Promise.all(
-    getTransactions().map((transaction) => {
-      return db.transaction.create({
-        data: {
-          ...transaction,
-          recurringId: recurring.id,
-        },
-      });
-    })
-  );
-}
+  const [utilities, subscriptions, insurance] = await Promise.all([
+    db.category.create({ data: { userId: user.id, name: "Utilities", color: "#3b82f6" } }),
+    db.category.create({ data: { userId: user.id, name: "Subscriptions", color: "#8b5cf6" } }),
+    db.category.create({ data: { userId: user.id, name: "Insurance", color: "#10b981" } }),
+  ]);
 
-seed();
-
-function getTransactions() {
-  return [
-    {
-      name: "First Bill",
-      address: "123 Main St.",
-      city: "Santa Monica",
-      state: "CA",
-      zip: "58745",
-      accountNumber: "1321654546",
-      amountDue: 123.56,
-      frequency: "monthly",
-      type: "Bill",
-      isPaid: false,
-      isDeleted: false,
-      dueDate: new Date("2023-04-01"),
-    },
-    {
-      name: "Second Bill",
-      address: "123 Main St.",
-      city: "Santa Clara",
-      state: "CA",
-      zip: "58745",
-      accountNumber: "1321654546",
-      amountDue: 123.56,
-      frequency: "monthly",
-      type: "Bill",
-      isPaid: false,
-      isDeleted: false,
-      dueDate: new Date("2023-04-02"),
-    },
-    {
-      name: "Third Bill",
-      address: "123 Main St.",
-      city: "Santa Clara",
-      state: "CA",
-      zip: "58745",
-      accountNumber: "1321654546",
-      amountDue: 123.56,
-      frequency: "monthly",
-      type: "Bill",
-      isPaid: false,
-      isDeleted: false,
-      dueDate: new Date("2023-04-03"),
-    },
+  const bills = [
+    { name: "Electric Bill", amount: 120, dueDay: 15, categoryId: utilities.id, accountNumber: "ELE-001" },
+    { name: "Internet", amount: 80, dueDay: 5, categoryId: utilities.id, accountNumber: "INT-002" },
+    { name: "Netflix", amount: 15.99, dueDay: 12, categoryId: subscriptions.id },
+    { name: "Spotify", amount: 9.99, dueDay: 20, categoryId: subscriptions.id },
+    { name: "Car Insurance", amount: 145, dueDay: 1, categoryId: insurance.id, accountNumber: "INS-2024" },
   ];
+
+  const now = new Date();
+  for (const billData of bills) {
+    const bill = await db.bill.create({ data: { ...billData, userId: user.id } });
+    await db.billEntry.create({
+      data: {
+        billId: bill.id,
+        dueDate: new Date(now.getFullYear(), now.getMonth(), bill.dueDay),
+        amountDue: bill.amount,
+      },
+    });
+  }
+
+  console.log("Seed complete.");
+  console.log("Login: demo@example.com / password123");
 }
 
-
-// id              String    @id @default(uuid())
-//   name            String    
-//   dueDate         DateTime
-//   address         String
-//   city            String
-//   state           String
-//   zip             Int
-//   accountNumber   String
-//   amountDue       Int
-//   month           String
-//   type            String
-//   isPaid          Boolean @default(false)
+seed().catch(console.error).finally(() => db.$disconnect());

@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -10,38 +7,51 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Transaction {
-  id   String    @id @default(uuid())
-  name            String    
-  dueDate         DateTime 
-  address         String
-  city            String
-  state           String
-  zip             String
-  accountNumber   String
-  amountDue       Float
-  frequency       String
-  type            String
-  isPaid          Boolean @default(false)
-  isDeleted       Boolean @default(false)
-  recurring       Recurring? @relation(fields: [recurringId], references: [id])
-  recurringId     String?
+model User {
+  id           String     @id @default(cuid())
+  email        String     @unique
+  passwordHash String
+  createdAt    DateTime   @default(now())
+  categories   Category[]
+  bills        Bill[]
 }
 
-model Recurring {
-  id            String @id @default(uuid())
-  name          String 
-  dueDate       DateTime
-  address       String
-  city          String 
-  state         String 
-  zip           String 
-  accountNumber String
-  amountDue     Float
-  frequency     String
-  type          String 
-  isPaid        Boolean @default(false) 
-  isDeleted     Boolean @default(false)
-  updatedAt     DateTime @updatedAt
-  transactions  Transaction[]
+model Category {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name      String
+  color     String   @default("#6366f1")
+  bills     Bill[]
+  createdAt DateTime @default(now())
+}
+
+model Bill {
+  id            String      @id @default(cuid())
+  userId        String
+  user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  categoryId    String?
+  category      Category?   @relation(fields: [categoryId], references: [id])
+  name          String
+  amount        Float
+  dueDay        Int
+  accountNumber String?
+  website       String?
+  notes         String?
+  isActive      Boolean     @default(true)
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  entries       BillEntry[]
+}
+
+model BillEntry {
+  id         String    @id @default(cuid())
+  billId     String
+  bill       Bill      @relation(fields: [billId], references: [id], onDelete: Cascade)
+  dueDate    DateTime
+  amountDue  Float
+  isPaid     Boolean   @default(false)
+  paidDate   DateTime?
+  paidAmount Float?
+  createdAt  DateTime  @default(now())
 }
