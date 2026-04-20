@@ -41,7 +41,7 @@ export async function action({ request }) {
   });
 }
 
-export const meta = () => ({ title: "Login" });
+export const meta = () => [{ title: "Login | Dexter Budget" }];
 
 export default function LoginPage() {
   const [searchParams] = useSearchParams();

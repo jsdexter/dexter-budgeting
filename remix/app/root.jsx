@@ -1,22 +1,21 @@
 import { json } from "@remix-run/node";
 import {
   Links,
-  LiveReload,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
 import { getUser } from "~/session.server";
-import tailwindStyles from "./styles/tailwind.css";
+import tailwindStyles from "~/tailwind.css?url";
 
 export const links = () => [{ rel: "stylesheet", href: tailwindStyles }];
 
-export const meta = () => ({
-  charset: "utf-8",
-  title: "Dexter Budgeting",
-  viewport: "width=device-width,initial-scale=1",
-});
+export const meta = () => [
+  { charset: "utf-8" },
+  { title: "Dexter Budgeting" },
+  { name: "viewport", content: "width=device-width,initial-scale=1" },
+];
 
 export async function loader({ request }) {
   return json({ user: await getUser(request) });
@@ -33,7 +32,6 @@ export default function App() {
         <Outlet />
         <ScrollRestoration />
         <Scripts />
-        {process.env.NODE_ENV === "development" && <LiveReload />}
       </body>
     </html>
   );

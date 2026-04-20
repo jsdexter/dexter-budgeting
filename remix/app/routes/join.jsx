@@ -36,7 +36,7 @@ export async function action({ request }) {
   return createUserSession({ request, userId: user.id, remember: false, redirectTo });
 }
 
-export const meta = () => ({ title: "Sign Up" });
+export const meta = () => [{ title: "Sign Up | Dexter Budget" }];
 
 export default function Join() {
   const [searchParams] = useSearchParams();
